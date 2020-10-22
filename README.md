@@ -42,7 +42,7 @@ Backend : 김재현
 
 
 
-<img src="https://ifh.cc/g/cLKwxM.png" height = "350px" width="800px"></img>
+<img src="https://ifh.cc/g/QWVhvo.png" height = "350px" width="800px"></img>
 
 
 
