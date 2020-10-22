@@ -215,7 +215,7 @@ Android Studio활용한 어플리케이션 개발
 | pm2 restart War2                            | 서버에 백엔드 빌드 파일 반영            |
 | (frontend 폴더에서) npm run buile           | 프론트엔드 뷰 배포                      |
 
-# 💪프로젝트 배경
+# :+1: 프로젝트 배경
 
 ## Rest API
 
