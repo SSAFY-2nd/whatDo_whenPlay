@@ -253,43 +253,64 @@ Android Studio활용한 어플리케이션 개발
 
 ## WireFrame
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #### 01 로딩페이지
-<img src="https://ifh.cc/g/jNI12A.jpg" width="300px"></img>
+<img src="https://ifh.cc/g/43vQcp.jpg" width="300px"></img>
 
 #### 02 메인페이지
-<img src="https://ifh.cc/g/8pHS8B.jpg"  width="300px"></img>
+<img src="https://ifh.cc/g/mWjdkf.jpg"  width="300px"></img>
 
 #### 03 로그인 시 메인페이지
-<img src="https://ifh.cc/g/Gx9gja.jpg"  width="300px"></img>
+<img src="https://ifh.cc/g/HeBN57.jpg"  width="300px"></img>
 
 #### 04 클릭 시 화면
-<img src="https://ifh.cc/g/SaHqIB.jpg"  width="300px"></img>
+<img src="https://ifh.cc/g/nmBViu.jpg"  width="300px"></img>
 
 #### 05 검색 시
-<img src="https://ifh.cc/g/hBHJtp.jpg"  width="300px"></img>
+<img src="https://ifh.cc/g/AjQls8.jpg"  width="300px"></img>
 
 #### 06 상세 보기
-<img src="https://ifh.cc/g/vVztml.jpg"  width="300px"></img>
+<img src="https://ifh.cc/g/8fM4Ho.jpg"  width="300px"></img>
 
 #### 07 즐겨 찾기
-<img src="https://ifh.cc/g/Z9sbAF.jpg"  width="300px"></img>
+<img src="https://ifh.cc/g/i8iWJP.jpg"  width="300px"></img>
 
 #### 08 내 정보
-<img src="https://ifh.cc/g/PHb7JY.jpg"  width="300px"></img>
+<img src="https://ifh.cc/g/DqoNUo.jpg"  width="300px"></img>
 
 #### 09 회원 가입
-<img src="https://ifh.cc/g/71ZOXB.jpg"  width="300px"></img>
+<img src="https://ifh.cc/g/KBtBrR.jpg"  width="300px"></img>
 
 #### 10 회원 가입 중복 시
-<img src="https://ifh.cc/g/Lp8upI.jpg"  width="300px"></img>
+<img src="https://ifh.cc/g/uhr4Ba.jpg"  width="300px"></img>
 
 #### 11 회원 가입 성공 시
-<img src="https://ifh.cc/g/7wM05a.jpg"  width="300px"></img>
+<img src="https://ifh.cc/g/GMpI4F.jpg"  width="300px"></img>
 
 #### 12 비밀번호 변경
-<img src="https://ifh.cc/g/sWOHMa.jpg"  width="300px"></img>
+<img src="https://ifh.cc/g/2djD5E.jpg"  width="300px"></img>
 
+#### 13 같이 놀기
+<img src="https://ifh.cc/g/xhNL22.jpg"  width="300px"></img>
 
+#### 14 취향 비교
+<img src="https://ifh.cc/g/PMHfRx.jpg"  width="300px"></img>
+
+#### 15 추천 결과
+<img src="https://ifh.cc/g/9ydSYY.jpg"  width="300px"></img>
 
 
 ## System Architceture
