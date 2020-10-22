@@ -27,7 +27,7 @@
 <img src="https://ifh.cc/g/BCtt1j.jpg" width="80px"></img>
 Frontend 장 : 우주호
 
-<img src="https://ifh.cc/g/WW8w5c.jpg" width="80px"></img>
+<img src="https://ifh.cc/g/M0zpRD.jpg" width="80px"></img>
 Frontend Ace : 백상혁
 
 <img src="https://ifh.cc/g/z4MKxX.jpg" width="80px"></img>
@@ -173,17 +173,25 @@ Backend : 김재현
     - Dependency: Lombok, Spring Web 선택
 
 
+
 ## 개발 환경 및 IDE
+
 
 
 <img src="https://t1.daumcdn.net/cfile/tistory/213F23475902E2B619" width="80px"></img>
 STS를 사용해 BackEnd 작업
 
+
+
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Visual_Studio_Code_1.18_icon.svg/1028px-Visual_Studio_Code_1.18_icon.svg.png" width="80px"></img>
 VS CODE 사용하여 FrontEnd 작업
 
+
+
 <img src="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" height = "80px" width="80px"></img>
 AWS 활용한 서버 연동
+
+
 
 <img src="https://ifh.cc/g/H1VIIA.png"  height="100px" width="100px"></img>
 Android Studio활용한 어플리케이션 개발
@@ -191,8 +199,6 @@ Android Studio활용한 어플리케이션 개발
 
 
 ## FrontEnd 명령어 정리
-
-
 
 * 명령어는 Node.js와 Vue.js가 설치되어 있다고 가정합니다
 
@@ -204,8 +210,6 @@ Android Studio활용한 어플리케이션 개발
 
 
 ## AWS 서버 명령어 정리 
-
-
 
 | 명령어                                      | 내용                                    |
 | ------------------------------------------- | --------------------------------------- |
@@ -219,13 +223,67 @@ Android Studio활용한 어플리케이션 개발
 
 # :rocket: 프로젝트 배경
 
+
+
 ## Rest API
+|Task|URL|Method|Action|
+|---|------|--|--------|
+|회원상세정보|/account/{user_id}|GET|해당 user_id 회원 정보 조회|
+|회원가입|/account/signup|POST|	회원 가입|
+|로그인|/account/login|GET|로그인|
+|회원정보 변경|/account/{user_id}|PUT|회원정보 변경|
+|회원 탈퇴|/account/{user_id}|DELETE|해당 user_id 회원 정보 삭제|
+|닉네임 중복 테스트|/account/nickname|GET|닉네임 중복 여부를 테스트함|
+|상점 목록|	/store/{category}|	GET|	음식점 or 놀거리 가게 목록 |
+|상점 상세 페이지|	/store/{store_id}|	GET|	해당되는 가게 검색|
+|역 검색|	/subway/{subway_id}|GET|	지하철 검색||
+|역 이름 검색|	/subway/{subway_name}|	GET|지하철 이름 검색|
+|역 주변 상점 검색|/store/{subway_id}|	GET|역 주변 음식점 리스트 검색|
+|같은 취향 리스트 검색|/friends/{user_id}|GET|친구와 같은 취향 상점 리스트 검색|
+|즐겨찾기 추가|/liketo|POST|별표를 눌렀을 때 즐겨찾기 추가|
+|즐겨찾기 삭제|/liketo/{user_id}/{store_id}|DELETE|눌러져 있는 별표를 눌렀을 때 즐겨찾기 삭제|
+
 
 
 ## ERD
 
+<img src="https://ifh.cc/g/KZX3y2.png"></img>
+
+
 
 ## WireFrame
+
+<img src="https://ifh.cc/g/jNI12A.jpg" width="300px"></img>
+                          01 로딩페이지
+<img src="https://ifh.cc/g/8pHS8B.jpg"  width="300px"></img>
+                          02 메인페이지
+<img src="https://ifh.cc/g/Gx9gja.jpg"  width="300px"></img>
+                   03 로그인 시 메인페이지
+<img src="https://ifh.cc/g/SaHqIB.jpg"  width="300px"></img>
+                         04 클릭 시 화면
+<img src="https://ifh.cc/g/hBHJtp.jpg"  width="300px"></img>
+                          05 검색 시
+<img src="https://ifh.cc/g/vVztml.jpg"  width="300px"></img>
+                          06 상세 보기
+<img src="https://ifh.cc/g/Z9sbAF.jpg"  width="300px"></img>
+                          07 즐겨 찾기
+<img src="https://ifh.cc/g/PHb7JY.jpg"  width="300px"></img>
+                          08 내 정보
+<img src="https://ifh.cc/g/71ZOXB.jpg"  width="300px"></img>
+                          09 회원 가입
+<img src="https://ifh.cc/g/Lp8upI.jpg"  width="300px"></img>
+                   10 회원 가입 중복 시
+<img src="https://ifh.cc/g/7wM05a.jpg"  width="300px"></img>
+                   11 회원 가입 성공 시
+<img src="https://ifh.cc/g/sWOHMa.jpg"  width="300px"></img>
+                     12 비밀번호 변경
+
+
+
+## System Architceture
+
+<img src="https://ifh.cc/g/kJcDFU.png"></img>
+
 
 
 ## Browser Support
@@ -235,6 +293,7 @@ Android Studio활용한 어플리케이션 개발
 | <img src="https://is2-ssl.mzstatic.com/image/thumb/Purple114/v4/bb/72/49/bb72493a-6ede-8369-5513-f1e9f930b642/AppIcon-0-1x_U007emarketing-0-6-0-0-85-220.png/246x0w.png" width="80px"> | <img src = "https://zdnet4.cbsistatic.com/hub/i/2019/01/29/f4eba7da-10cd-4b45-b974-464c08e145be/microsoft-edge.png" width="80px"></img> | <img src = "https://t1.daumcdn.net/cfile/tistory/253EC1495495846E1C" width = "80px"></img> |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | latest✔                                                      | latest✔                                                      | latest✔                                                      |
+
 
 
 # 💪기여 방법
@@ -251,7 +310,8 @@ Android Studio활용한 어플리케이션 개발
 
 
 ## Git Rules 
-* git pull origin develop를 통해 develop와 먼저 merge 한 상태로 진행합니다.
+* git pull origin 
+* develop를 통해 develop와 먼저 merge 한 상태로 진행합니다.
 * git status를 통해 변경 된 점을 확인합니다
 * git add 를 통해서 변경을 주고 싶은 점을 진행합니다.
 * git commit -m "지라번호" 를 통해서 각 지라에 등록을 해서 커밋합니다.
