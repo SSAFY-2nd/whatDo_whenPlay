@@ -17,46 +17,51 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public List<UserInfo> selectUserInfo() {
-		return null;
+		return userInfoDao.selectUserInfo();
 	}
 
 	@Override
 	public UserInfo selectUserInfoByUserid(int user_id) {
-		return null;
+		return userInfoDao.selectUserInfoByUserid(user_id);
 	}
 
 	@Override
 	public int insertUserInfo(UserInfo userinfo) {
-		return 0;
+		return userInfoDao.insertUserInfo(userinfo);
 	}
 
 	@Override
 	public int updateUserInfo(UserInfo userinfo) {
-		return 0;
+		return userInfoDao.updateUserInfo(userinfo);
 	}
 
 	@Override
 	public int deleteUserInfo(int user_id) {
-		return 0;
+		return userInfoDao.deleteUserInfo(user_id);
 	}
 
 	@Override
 	public UserInfo findUserInfoByNickname(String nickname) {
-		return null;
+		return userInfoDao.findUserInfoByNickname(nickname);
 	}
 
 	@Override
 	public String findNicknameById(int user_id) {
-		return null;
+		return userInfoDao.findNicknameById(user_id);
 	}
 
 	@Override
 	public int updatePassword(UserInfo userinfo) {
-		return 0;
+		return userInfoDao.updatePassword(userinfo);
 	}
 
 	@Override
 	public int updateLike(int user_id) {
-		return 0;
+		return userInfoDao.updateLike(user_id);
+	}
+
+	@Override
+	public int getUserId(String nickname) {
+		return userInfoDao.getUserId(nickname);
 	}
 }

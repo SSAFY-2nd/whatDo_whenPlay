@@ -14,4 +14,5 @@ public interface UserInfoService {
 	public String findNicknameById(int user_id);
 	public int updatePassword(UserInfo userinfo);
 	public int updateLike(int user_id);
+	public int getUserId(String nickname);
 }
