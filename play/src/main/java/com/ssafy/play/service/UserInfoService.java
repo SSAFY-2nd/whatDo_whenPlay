@@ -1,12 +1,10 @@
-package com.ssafy.play.dao;
+package com.ssafy.play.service;
 
 import java.util.List;
-import org.apache.ibatis.annotations.Mapper;
 
 import com.ssafy.play.model.UserInfo;
 
-@Mapper
-public interface UserInfoDAO {
+public interface UserInfoService {
 	public List<UserInfo> selectUserInfo();
 	public UserInfo selectUserInfoByUserid(int user_id);
 	public int insertUserInfo(UserInfo userinfo);
@@ -16,5 +14,4 @@ public interface UserInfoDAO {
 	public String findNicknameById(int user_id);
 	public int updatePassword(UserInfo userinfo);
 	public int updateLike(int user_id);
-	
 }

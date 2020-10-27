@@ -4,13 +4,15 @@ public class UserInfo {
 	private int user_id;
 	private String username;
 	private String nickname;
-	private String email;
 	private String password;
-	private int like1;
-	private int like2;
-	private int like3;
-	
-	
+	private int eatlike1;
+	private int eatlike2;
+	private int eatlike3;
+	private int playlike1;
+	private int playlike2;
+	private int playlike3;
+	private int liketo;
+
 	public int getUser_id() {
 		return user_id;
 	}
@@ -35,14 +37,6 @@ public class UserInfo {
 		this.nickname = nickname;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public String getPassword() {
 		return password;
 	}
@@ -51,51 +45,80 @@ public class UserInfo {
 		this.password = password;
 	}
 
-	public int getLike1() {
-		return like1;
+	public int getEatlike1() {
+		return eatlike1;
 	}
 
-	public void setLike1(int like1) {
-		this.like1 = like1;
+	public void setEatlike1(int eatlike1) {
+		this.eatlike1 = eatlike1;
 	}
 
-	public int getLike2() {
-		return like2;
+	public int getEatlike2() {
+		return eatlike2;
 	}
 
-	public void setLike2(int like2) {
-		this.like2 = like2;
+	public void setEatlike2(int eatlike2) {
+		this.eatlike2 = eatlike2;
 	}
 
-	public int getLike3() {
-		return like3;
+	public int getEatlike3() {
+		return eatlike3;
 	}
 
-	public void setLike3(int like3) {
-		this.like3 = like3;
+	public void setEatlike3(int eatlike3) {
+		this.eatlike3 = eatlike3;
+	}
+
+	public int getPlaylike1() {
+		return playlike1;
+	}
+
+	public void setPlaylike1(int playlike1) {
+		this.playlike1 = playlike1;
+	}
+
+	public int getPlaylike2() {
+		return playlike2;
+	}
+
+	public void setPlaylike2(int playlike2) {
+		this.playlike2 = playlike2;
+	}
+
+	public int getPlaylike3() {
+		return playlike3;
+	}
+
+	public void setPlaylike3(int playlike3) {
+		this.playlike3 = playlike3;
+	}
+
+	public int getLiketo() {
+		return liketo;
+	}
+
+	public void setLiketo(int liketo) {
+		this.liketo = liketo;
+	}
+
+	public UserInfo(int user_id, String username, String nickname, String password, int eatlike1, int eatlike2,
+			int eatlike3, int playlike1, int playlike2, int playlike3, int liketo) {
+		super();
+		this.user_id = user_id;
+		this.username = username;
+		this.nickname = nickname;
+		this.password = password;
+		this.eatlike1 = eatlike1;
+		this.eatlike2 = eatlike2;
+		this.eatlike3 = eatlike3;
+		this.playlike1 = playlike1;
+		this.playlike2 = playlike2;
+		this.playlike3 = playlike3;
+		this.liketo = liketo;
 	}
 
 	public UserInfo() {
 		super();
 	}
 
-	public UserInfo(int user_id, String username, String nickname, String email, String password, int like1, int like2,
-			int like3) {
-		super();
-		this.user_id = user_id;
-		this.username = username;
-		this.nickname = nickname;
-		this.email = email;
-		this.password = password;
-		this.like1 = like1;
-		this.like2 = like2;
-		this.like3 = like3;
-	}
-
-	@Override
-	public String toString() {
-		return "UserInfo [user_id=" + user_id + ", username=" + username + ", nickname=" + nickname + ", email=" + email
-				+ ", password=" + password + ", like1=" + like1 + ", like2=" + like2 + ", like3=" + like3 + "]";
-	}
-	
 }
