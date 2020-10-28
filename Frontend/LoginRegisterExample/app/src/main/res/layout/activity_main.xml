@@ -2,99 +2,144 @@
 
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    :layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <FrameLayout
-        android:id="@+id/main_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="?attr/actionBarSize">
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginBottom="50dp"
-        android:src="@drawable/mainlogo" />
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="412dp"
-        android:layout_gravity="center"
+        android:id="@+id/main_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        android:layout_marginBottom="?attr/actionBarSize"
+    >
+        <!--  어떻게 하면 Layout끼리 겹치지 않게 할 수 있을까?-->
 
 
-        <EditText
-            android:drawableLeft="@drawable/baseline_account_circle_black_18dp"
-            android:id="@+id/et_id"
-            android:layout_width="fill_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            >
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/mainlogo" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/edit_round"
-            android:hint="@string/hint_id"
-            android:inputType="textCapWords"
-            android:padding="10dp"
-            android:textColor="@color/input_register"
-            android:textColorHint="@color/input_register_hint"
-
-            />
-
-        <EditText
-            android:drawableLeft="@drawable/baseline_vpn_key_black_18dp"
-            android:id="@+id/et_pass"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/edit_round"
-            android:hint="@string/hint_password"
-            android:inputType="textEmailAddress"
-            android:padding="10dp"
-            android:textColor="@color/input_register"
-            android:textColorHint="@color/input_register_hint" />
-
-        <Button
-            android:id="@+id/btn_login"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dip"
-            android:background="#FFD0D6"
-            android:text="@string/btn_login"
-            android:textColor="@color/white" />
-
-        <Button
-            android:id="@+id/btn_register"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dip"
-            android:background="#ea4c88"
-            android:text="@string/btn_register"
-            android:textColor="@color/white" />
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
 
 
+            <EditText
+                android:id="@+id/et_id"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/edit_round"
+                android:drawableLeft="@drawable/baseline_account_circle_black_18dp"
+                android:hint="@string/hint_id"
+                android:inputType="textCapWords"
+                android:padding="10dp"
+                android:textColor="@color/input_register"
+                android:textColorHint="@color/input_register_hint"
 
+                />
+
+            <EditText
+                android:id="@+id/et_pass"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/edit_round"
+                android:drawableLeft="@drawable/baseline_vpn_key_black_18dp"
+                android:hint="@string/hint_password"
+                android:inputType="textEmailAddress"
+                android:padding="10dp"
+                android:textColor="@color/input_register"
+                android:textColorHint="@color/input_register_hint" />
+
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dip"
+                android:background="#FFD0D6"
+                android:text="@string/btn_login"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/btn_register"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dip"
+                android:background="#ea4c88"
+                android:text="@string/btn_register"
+                android:textColor="@color/white" />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/et_findPassword"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:padding="10dp"
+                    android:text="@string/hint_find_password1"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="right"
+                    android:linksClickable="true"
+                    android:padding="10dp"
+                    android:text="@string/hint_find_password2"
+                    android:textColor="@color/black" />
+                <!-- 링크 클링    -->
+            </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
 
-    <FrameLayout/>
-
+    <!-- Bottom Navibar 부분-->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
+        app:labelVisibilityMode="labeled"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
         android:layout_marginEnd="0dp"
         android:layout_marginStart="0dp"
         android:layout_gravity="bottom"
-        android:background="@color/cardview_dark_background"
-        app:menu="@menu/menu_bottom"
-        app:labelVisibilityMode="unlabeled"
+        android:background="#FFD0D6"
 
-        app:itemBackground="@color/cardview_dark_background"
-        app:itemIconTint="@drawable/item_color"
-        app:itemTextColor="@drawable/item_color"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        app:itemIconTint="@color/iconText"
+        app:itemTextColor="@color/iconText"
+        app:menu="@menu/menu_bottom"
+
+
+        >
+
+
+
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
