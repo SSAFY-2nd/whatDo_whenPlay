@@ -14,7 +14,7 @@ import com.ssafy.play.interceptor.JwtInterceptor;
 
 @SpringBootApplication
 @MapperScan(basePackages = { "com.ssafy.play.mapper" })
-public class PlayApplication {
+public class PlayApplication implements WebMvcConfigurer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PlayApplication.class, args);
@@ -24,12 +24,11 @@ public class PlayApplication {
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(jwtInterceptor).addPathPatterns("/account/**")
-				.excludePathPatterns(Arrays.asList("/account/signup/**"))
-				.excludePathPatterns(Arrays.asList("/account/login/**"))
-				.excludePathPatterns(Arrays.asList("/account/user/**"));
+		registry.addInterceptor(jwtInterceptor).addPathPatterns("/play/**")
+				.excludePathPatterns(Arrays.asList("/play/signup/**"))
+				.excludePathPatterns(Arrays.asList("/play/login/**"))
+				.excludePathPatterns(Arrays.asList("/play/user/**"));
 	}
-	
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		registry.addMapping("/**").allowedOrigins("*").allowedMethods("*").allowedHeaders("*")
