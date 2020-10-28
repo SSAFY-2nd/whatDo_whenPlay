@@ -13,6 +13,7 @@ import com.ssafy.play.service.UserService;
 public class UserServiceImpl implements UserService {
 
 	@Autowired
+
 	private UserDAO UserDao;
 
 	@Override
@@ -43,6 +44,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findUserByNickname(String nickname) {
 		return UserDao.findUserByNickname(nickname);
+	
 	}
 
 	@Override
