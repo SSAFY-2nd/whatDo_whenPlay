@@ -1,6 +1,6 @@
 package com.ssafy.play.model;
 
-public class UserInfo {
+public class User {
 	private int user_id;
 	private String username;
 	private String nickname;
@@ -101,7 +101,7 @@ public class UserInfo {
 		this.liketo = liketo;
 	}
 
-	public UserInfo(int user_id, String username, String nickname, String password, int eatlike1, int eatlike2,
+	public User(int user_id, String username, String nickname, String password, int eatlike1, int eatlike2,
 			int eatlike3, int playlike1, int playlike2, int playlike3, int liketo) {
 		super();
 		this.user_id = user_id;
@@ -117,7 +117,7 @@ public class UserInfo {
 		this.liketo = liketo;
 	}
 
-	public UserInfo() {
+	public User() {
 		super();
 	}
 
