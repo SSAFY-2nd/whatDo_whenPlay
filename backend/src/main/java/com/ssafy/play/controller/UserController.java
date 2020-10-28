@@ -23,22 +23,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-<<<<<<< HEAD:backend/src/main/java/com/ssafy/play/controller/UserController.java
 
 
 import com.ssafy.play.model.TokenSet;
-=======
 import com.ssafy.play.model.BasicResponse;
->>>>>>> a58e3a3780903be77d0c6fa187a0ff96ddc74af1:backend/src/main/java/com/ssafy/play/controller/UserInfoController.java
+
 import com.ssafy.play.model.User;
 import com.ssafy.play.service.AuthService;
 import com.ssafy.play.service.JwtService;
 import com.ssafy.play.service.UserService;
-<<<<<<< HEAD:backend/src/main/java/com/ssafy/play/controller/UserController.java
-import com.ssafy.play.model.BasicResponse;
-=======
 
->>>>>>> a58e3a3780903be77d0c6fa187a0ff96ddc74af1:backend/src/main/java/com/ssafy/play/controller/UserInfoController.java
 import io.swagger.annotations.ApiOperation;
 
 
@@ -51,11 +45,8 @@ public class UserController {
 	private JwtService jwtService;
 
 	@Autowired
-<<<<<<< HEAD:backend/src/main/java/com/ssafy/play/controller/UserController.java
 	private UserService UserService;
-=======
-	private UserService userInfoService;
->>>>>>> a58e3a3780903be77d0c6fa187a0ff96ddc74af1:backend/src/main/java/com/ssafy/play/controller/UserInfoController.java
+
 
 	@Autowired
 	private AuthService authService;
@@ -63,21 +54,13 @@ public class UserController {
 	@ApiOperation(value = "모든 회원 정보를 반환한다.", response = List.class)
 	@GetMapping
 	public ResponseEntity<List<User>> selectUser() throws Exception {
-<<<<<<< HEAD:backend/src/main/java/com/ssafy/play/controller/UserController.java
 		return new ResponseEntity<List<User>>(UserService.selectUser(), HttpStatus.OK);
-=======
-		return new ResponseEntity<List<User>>(userInfoService.selectUserInfo(), HttpStatus.OK);
->>>>>>> a58e3a3780903be77d0c6fa187a0ff96ddc74af1:backend/src/main/java/com/ssafy/play/controller/UserInfoController.java
+
 	}
 	
 	@ApiOperation(value = "유저 회원가입 시 회원 정보를 등록한다.", response = String.class)
 	@PostMapping("signup")
-<<<<<<< HEAD:backend/src/main/java/com/ssafy/play/controller/UserController.java
 	public ResponseEntity<BasicResponse> insertUser(@RequestBody User User) {
-=======
-	public ResponseEntity<BasicResponse> insertUserInfo(@RequestBody User userinfo) {
->>>>>>> a58e3a3780903be77d0c6fa187a0ff96ddc74af1:backend/src/main/java/com/ssafy/play/controller/UserInfoController.java
-	
 		String password = User.getPassword();
 		User.setPassword(password);
 		
