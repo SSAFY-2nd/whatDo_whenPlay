@@ -5,63 +5,63 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ssafy.play.dao.UserInfoDAO;
-import com.ssafy.play.model.UserInfo;
-import com.ssafy.play.service.UserInfoService;
+import com.ssafy.play.dao.UserDAO;
+import com.ssafy.play.model.User;
+import com.ssafy.play.service.UserService;
 
 @Service
-public class UserInfoServiceImpl implements UserInfoService {
+public class UserServiceImpl implements UserService {
 
 	@Autowired
-	private UserInfoDAO userInfoDao;
+	private UserDAO UserDao;
 
 	@Override
-	public List<UserInfo> selectUserInfo() {
-		return userInfoDao.selectUserInfo();
+	public List<User> selectUser() {
+		return UserDao.selectUser();
 	}
 
 	@Override
-	public UserInfo selectUserInfoByUserid(int user_id) {
-		return userInfoDao.selectUserInfoByUserid(user_id);
+	public User selectUserByUserid(int user_id) {
+		return UserDao.selectUserByUserid(user_id);
 	}
 
 	@Override
-	public int insertUserInfo(UserInfo userinfo) {
-		return userInfoDao.insertUserInfo(userinfo);
+	public int insertUser(User User) {
+		return UserDao.insertUser(User);
 	}
 
 	@Override
-	public int updateUserInfo(UserInfo userinfo) {
-		return userInfoDao.updateUserInfo(userinfo);
+	public int updateUser(User User) {
+		return UserDao.updateUser(User);
 	}
 
 	@Override
-	public int deleteUserInfo(int user_id) {
-		return userInfoDao.deleteUserInfo(user_id);
+	public int deleteUser(int user_id) {
+		return UserDao.deleteUser(user_id);
 	}
 
 	@Override
-	public UserInfo findUserInfoByNickname(String nickname) {
-		return userInfoDao.findUserInfoByNickname(nickname);
+	public User findUserByNickname(String nickname) {
+		return UserDao.findUserByNickname(nickname);
 	}
 
 	@Override
 	public String findNicknameById(int user_id) {
-		return userInfoDao.findNicknameById(user_id);
+		return UserDao.findNicknameById(user_id);
 	}
 
 	@Override
-	public int updatePassword(UserInfo userinfo) {
-		return userInfoDao.updatePassword(userinfo);
+	public int updatePassword(User User) {
+		return UserDao.updatePassword(User);
 	}
 
 	@Override
 	public int updateLike(int user_id) {
-		return userInfoDao.updateLike(user_id);
+		return UserDao.updateLike(user_id);
 	}
 
 	@Override
 	public int getUserId(String nickname) {
-		return userInfoDao.getUserId(nickname);
+		return UserDao.getUserId(nickname);
 	}
 }

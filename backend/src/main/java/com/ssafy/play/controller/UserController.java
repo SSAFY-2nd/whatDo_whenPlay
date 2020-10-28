@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.ssafy.play.model.TokenSet;
-import com.ssafy.play.model.UserInfo;
+import com.ssafy.play.model.User;
 import com.ssafy.play.service.AuthService;
 import com.ssafy.play.service.JwtService;
-import com.ssafy.play.service.UserInfoService;
+import com.ssafy.play.service.UserService;
 import com.ssafy.play.model.BasicResponse;
 import io.swagger.annotations.ApiOperation;
 
@@ -26,35 +26,35 @@ import io.swagger.annotations.ApiOperation;
 @CrossOrigin(origins = { "*" })
 @RestController
 @RequestMapping("/account")
-public class UserInfoController {
+public class UserController {
 
 	@Autowired
 	private JwtService jwtService;
 
 	@Autowired
-	private UserInfoService userInfoService;
+	private UserService UserService;
 
 	@Autowired
 	private AuthService authService;
 	
 	@ApiOperation(value = "모든 회원 정보를 반환한다.", response = List.class)
 	@GetMapping
-	public ResponseEntity<List<UserInfo>> selectUser() throws Exception {
-		return new ResponseEntity<List<UserInfo>>(userInfoService.selectUserInfo(), HttpStatus.OK);
+	public ResponseEntity<List<User>> selectUser() throws Exception {
+		return new ResponseEntity<List<User>>(UserService.selectUser(), HttpStatus.OK);
 	}
 	
 	@ApiOperation(value = "유저 회원가입 시 회원 정보를 등록한다.", response = String.class)
 	@PostMapping("signup")
-	public ResponseEntity<BasicResponse> insertUserInfo(@RequestBody UserInfo userinfo) {
+	public ResponseEntity<BasicResponse> insertUser(@RequestBody User User) {
 	
-		String password = userinfo.getPassword();
-		userinfo.setPassword(password);
+		String password = User.getPassword();
+		User.setPassword(password);
 		
-		if (userInfoService.insertUserInfo(userinfo) == 1) {
+		if (UserService.insertUser(User) == 1) {
 			BasicResponse result = new BasicResponse();
 			result.status = true;
 			result.data = "success";
-			result.object = String.valueOf(userInfoService.getUserId(userinfo.getNickname()));
+			result.object = String.valueOf(UserService.getUserId(User.getNickname()));
 			return new ResponseEntity<>(result, HttpStatus.OK);
 		}
 		BasicResponse result = new BasicResponse();
