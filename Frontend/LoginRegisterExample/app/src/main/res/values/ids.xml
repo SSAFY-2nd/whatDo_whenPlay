@@ -2,5 +2,6 @@
 <resources>
     <string name="et_id">id</string>
     <string name="et_pass">pass</string>
+    <string name="et_findPassword">findPassword</string>
     <string name="bottom_navbar">navbar</string>
 </resources>
