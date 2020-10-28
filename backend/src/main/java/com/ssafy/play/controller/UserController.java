@@ -60,7 +60,7 @@ public class UserController {
 	
 	@ApiOperation(value = "유저 회원가입 시 회원 정보를 등록한다.", response = String.class)
 	@PostMapping("signup")
-	public ResponseEntity<BasicResponse> insertUser(@RequestBody User User) {
+	public ResponseEntity<BasicResponse> SignupUser(@RequestBody User User) {
 		String password = User.getPassword();
 		User.setPassword(password);
 		
