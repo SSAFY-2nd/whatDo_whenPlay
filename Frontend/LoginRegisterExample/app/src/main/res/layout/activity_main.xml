@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
     <LinearLayout
         android:id="@+id/main_layout"
         android:layout_width="wrap_content"
@@ -16,7 +15,6 @@
         android:layout_marginBottom="?attr/actionBarSize"
     >
         <!--  어떻게 하면 Layout끼리 겹치지 않게 할 수 있을까?-->
-
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -56,7 +54,6 @@
                 android:padding="10dp"
                 android:textColor="@color/input_register"
                 android:textColorHint="@color/input_register_hint"
-
                 />
 
             <EditText
