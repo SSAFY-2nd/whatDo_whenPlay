@@ -160,7 +160,6 @@ public class UserController {
 		if (user.getPlaylike3() >= 0) {
 			user2.setPlaylike3(user.getPlaylike3());
 		}
-
 		if (UserService.updateUser(user2) == 1) {
 			return new ResponseEntity<String>("success", HttpStatus.OK);
 		}
