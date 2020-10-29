@@ -38,6 +38,11 @@
 		select *
 		from user where email = #{email}
 	</select>
+	
+	<select id="searchByNickname" parameterType="String" resultType="User">
+	select * from user where nickname = #{nickname}
+</select>
+	
 
 	<delete id="deleteUser" parameterType="Integer">
 		delete

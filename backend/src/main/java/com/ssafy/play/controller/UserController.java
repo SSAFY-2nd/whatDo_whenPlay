@@ -21,10 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ssafy.play.model.Auth;
 import com.ssafy.play.model.BasicResponse;
 import com.ssafy.play.model.User;
-import com.ssafy.play.service.AuthService;
+
 import com.ssafy.play.service.JwtService;
 import com.ssafy.play.service.UserService;
 
@@ -40,9 +39,6 @@ public class UserController {
 
 	@Autowired
 	private UserService UserService;
-
-	@Autowired
-	private AuthService authService;
 
 	@ApiOperation(value = "모든 회원 정보를 반환한다.", response = List.class)
 	@GetMapping
@@ -250,26 +246,26 @@ public class UserController {
 //		}
 //		
 //		
-//		@GetMapping("/info")
-//		public ResponseEntity<Map<String,Object>> getInfo(HttpServletRequest req, @RequestParam("nickname") String nickname,HttpServletResponse res){
-//			
-//			Map<String,Object> resultMap = new HashMap<>();
-//			HttpStatus status = null;
-//			try {
-//				User user = service.searchByNickname(nickname);
-//				String token = jwtService.create(user);
-//				//System.out.println(token);
-//				// 토큰 정보는 request의 헤더로 보내고 나머지는  Map에 담아주자
-//				res.setHeader("jwt-auth-token", token);
-//				// resultMap.put("User", jwtService.get(req.getHeader("jwt-auth-token")).get("User"));
-//				resultMap.put("status", true);
-//				resultMap.put("data", user);
-//				status = HttpStatus.OK;
-//			}catch(RuntimeException e) {
-//				resultMap.put("message", "실패");
-//				status = HttpStatus.NOT_FOUND;
-//			}
-//			return new ResponseEntity<Map<String,Object>>(resultMap, status);
-//		}
+		@GetMapping("/info")
+		public ResponseEntity<Map<String,Object>> getInfo(HttpServletRequest req, @RequestParam("nickname") String nickname,HttpServletResponse res){
+			
+			Map<String,Object> resultMap = new HashMap<>();
+			HttpStatus status = null;
+			try {
+				User user = UserService.searchByNickname(nickname);
+				String token = jwtService.create(user);
+				//System.out.println(token);
+				// 토큰 정보는 request의 헤더로 보내고 나머지는  Map에 담아주자
+				res.setHeader("jwt-auth-token", token);
+				// resultMap.put("User", jwtService.get(req.getHeader("jwt-auth-token")).get("User"));
+				resultMap.put("status", true);
+				resultMap.put("data", user);
+				status = HttpStatus.OK;
+			}catch(RuntimeException e) {
+				resultMap.put("message", "실패");
+				status = HttpStatus.NOT_FOUND;
+			}
+			return new ResponseEntity<Map<String,Object>>(resultMap, status);
+		}
 
 }

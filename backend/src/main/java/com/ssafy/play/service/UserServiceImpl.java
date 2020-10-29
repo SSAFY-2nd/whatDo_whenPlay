@@ -72,7 +72,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+
+	public User searchByNickname(String nickname) {
+		return UserDao.searchByNickname(nickname);
+	}
+
 	public User searchById(int id) {
 		return UserDao.searchById(id);
+
 	}
 }
