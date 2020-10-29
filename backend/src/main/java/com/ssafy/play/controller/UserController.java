@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -66,7 +67,6 @@ public class UserController {
 		return new ResponseEntity<>(result, HttpStatus.NO_CONTENT);
 	}
 
-
 	// (영문(대소문자 구분), 숫자, 특수문자 조합, 8~12자리)
 	String pwPattern = "^(?=.*\\d)(?=.*[~`!@#$%\\^&*()-])(?=.*[a-z])(?=.*[A-Z]).{8,12}$";
 
@@ -98,26 +98,72 @@ public class UserController {
 
 		return response;
 	}
-	
-	@DeleteMapping("/{user_id}")
+
+	@DeleteMapping("{user_id}")
 	@ApiOperation(value = "회원 삭제 후 성공/실패 여부를 반환다")
-	
-	public ResponseEntity<String> deleteUser(@PathVariable int user_id){
-		
+
+	public ResponseEntity<String> deleteUser(@PathVariable int user_id) {
+
 		User user = UserService.searchById(user_id);
 		ResponseEntity response = null;
-		
+
 		UserService.deleteUser(user.getid());
-		response = new ResponseEntity<>("User delete success" , HttpStatus.OK);
+		response = new ResponseEntity<>("User delete success", HttpStatus.OK);
 		return response;
 	}
-	
+
 	@GetMapping("{user_id}")
 	@ApiOperation(value = "해당 아이디의 회원정보를 반환한다")
 	public ResponseEntity<User> searchById(@PathVariable int user_id) {
 		User user = UserService.searchById(user_id);
-		ResponseEntity response = new ResponseEntity<>(user , HttpStatus.OK);
+		ResponseEntity response = new ResponseEntity<>(user, HttpStatus.OK);
 		return response;
+	}
+
+	@ApiOperation(value = "유저 id에 해당하는 회원 정보를 수정한다.", response = String.class)
+	@PutMapping
+	public ResponseEntity<String> updateUser(@RequestBody User user, HttpServletRequest request) {
+		User user2 = UserService.searchById(user.getid());
+
+		if (user.getNickname() != null) {
+			user2.setNickname(user.getNickname());
+		}
+
+		if (user.getEmail() != null) {
+			user2.setEmail(user.getEmail());
+		}
+
+		if (user.getPassword() != null) {
+			String password = user.getPassword(); // 입력받은 비밀번호
+			user2.setPassword(password);
+		}
+
+		if (user.getEatlike1() >= 0) {
+			user2.setEatlike1(user.getEatlike1());
+		}
+
+		if (user.getEatlike1() >= 0) {
+			user2.setEatlike1(user.getEatlike1());
+		}
+		if (user.getEatlike2() >= 0) {
+			user2.setEatlike2(user.getEatlike2());
+		}
+		if (user.getEatlike3() >= 0) {
+			user2.setEatlike3(user.getEatlike3());
+		}
+		if (user.getPlaylike1() >= 0) {
+			user2.setPlaylike1(user.getPlaylike1());
+		}
+		if (user.getPlaylike2() >= 0) {
+			user2.setPlaylike2(user.getPlaylike2());
+		}
+		if (user.getPlaylike3() >= 0) {
+			user2.setPlaylike3(user.getPlaylike3());
+		}
+		if (UserService.updateUser(user2) == 1) {
+			return new ResponseEntity<String>("success", HttpStatus.OK);
+		}
+		return new ResponseEntity<String>("fail", HttpStatus.NO_CONTENT);
 	}
 //		
 //		@PostMapping("/signup")

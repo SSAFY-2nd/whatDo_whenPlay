@@ -55,4 +55,19 @@
 		from user where id = #{id}
 	</select>
 	
+	<update id="updateUser" parameterType="User">
+		update user
+		set 
+		nickname = #{nickname},
+		email = #{email},
+		password= #{password},
+		eatlike1= #{eatlike1},
+		eatlike2= #{eatlike2},
+		eatlike3= #{eatlike3},
+		playlike1= #{playlike1},
+		playlike2= #{playlike2},
+		playlike3= #{playlike3}
+		where id = #{id}
+	</update>
+	
 </mapper>

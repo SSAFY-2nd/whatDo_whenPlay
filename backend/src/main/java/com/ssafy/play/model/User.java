@@ -11,7 +11,6 @@ public class User {
 	private int playlike1;
 	private int playlike2;
 	private int playlike3;
-	private int liketo;
 	private String email;
 
 	public String getEmail() {
@@ -102,16 +101,9 @@ public class User {
 		this.playlike3 = playlike3;
 	}
 
-	public int getLiketo() {
-		return liketo;
-	}
-
-	public void setLiketo(int liketo) {
-		this.liketo = liketo;
-	}
 
 	public User(int id, String name, String nickname, String password, int eatlike1, int eatlike2,
-			int eatlike3, int playlike1, int playlike2, int playlike3, int liketo, String email) {
+			int eatlike3, int playlike1, int playlike2, int playlike3, String email) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -123,7 +115,6 @@ public class User {
 		this.playlike1 = playlike1;
 		this.playlike2 = playlike2;
 		this.playlike3 = playlike3;
-		this.liketo = liketo;
 		this.email = email;
 	}
 
