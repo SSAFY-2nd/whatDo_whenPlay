@@ -23,5 +23,5 @@ public interface UserDAO {
 
 	public User searchByNickname(String nickname);
 	public User searchById(int id);
-
+	public User findUserByEmail(String email);
 }

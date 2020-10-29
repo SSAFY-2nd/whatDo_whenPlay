@@ -70,4 +70,11 @@
 		where id = #{id}
 	</update>
 	
+	<!-- 이메일에 해당하는 회원정보 조회 -->
+	<select id="findUserByEmail" resultType="User">
+		select *
+		from user
+		where email = #{email}
+	</select>
+	
 </mapper>

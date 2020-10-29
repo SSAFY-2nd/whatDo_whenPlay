@@ -2,7 +2,9 @@ package com.ssafy.play.service;
 
 import java.util.List;
 
+
 import com.ssafy.play.model.User;
+
 
 public interface UserService {
 	public List<User> selectUser();
@@ -20,5 +22,5 @@ public interface UserService {
 	public User searchByNickname(String nickname);
 
 	public User searchById(int id);
-
+	public User findUserByEmail(String email);
 }
