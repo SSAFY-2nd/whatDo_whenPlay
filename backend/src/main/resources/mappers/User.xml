@@ -17,8 +17,10 @@
 		password, name, nickname, email, eatlike1, eatlike2, eatlike3,
 		playlike1, playlike2, playlike3
 		) values (
-		#{password}, #{name}, #{nickname}, #{email}, #{eatlike1}, #{eatlike2},
-		#{eatlike3}, #{playlike1},
+		#{password}, #{name},
+		#{nickname}, #{email}, #{eatlike1}, #{eatlike2},
+		#{eatlike3},
+		#{playlike1},
 		#{playlike2},#{playlike3}
 		)
 	</insert>
@@ -30,11 +32,22 @@
 		where
 		nickname = #{nickname}
 	</select>
-	
+
 	<!-- User 조회 -->
 	<select id="search" parameterType="String" resultType="User">
-		select * from user where email = #{email}
+		select *
+		from user where email = #{email}
 	</select>
 
-
+	<delete id="deleteUser" parameterType="Integer">
+		delete
+		from user
+		where id = #{id}
+	</delete>
+	
+	<select id="searchById" resultType="User">
+		select *
+		from user where id = #{id}
+	</select>
+	
 </mapper>
