@@ -1,12 +1,18 @@
 package com.example.loginregisterexample;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.FrameLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -22,12 +28,52 @@ public class MainActivity extends AppCompatActivity {
     private Frag2 frag2;
 //    private Frag3 frag3;
 
+    Button btn_register;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
+        InitializeView();
+        SetListener();
+
+        frag0=new Frag0();
+        frag1=new Frag1();
+        frag2=new Frag2();
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        setFrag(0); // 첫 프래그먼트 화면 지정
+        SetSignUp();
+    }
+
+    public void SetSignUp() {
+        Log.d("test","main page");
+
+        btn_register = (Button)findViewById(R.id.btn_register);
+        btn_register.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+//                //이곳에 버튼 클릭시 일어날 일을 적습니다.
+                Log.d("test","signup click");
+                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
+                startActivity(intent);
+            }
+        });
+
+    }
+    public void InitializeView()
+    {
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        btn_register = (Button)findViewById(R.id.btn_register);
+    }
+    public void SetListener()
+    {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener()
         {
 
@@ -39,31 +85,21 @@ public class MainActivity extends AppCompatActivity {
                 {
                     case R.id.tab1:
                         setFrag(0);
+                        SetSignUp();
                         break;
                     case R.id.tab2:
-//                        System.out.println("before_setFrag(1)");
                         setFrag(1);
-//                        System.out.println("after_setFrag(1)");
                         break;
                     case R.id.tab3:
-//                        System.out.println("before_setFrag(2)");
                         setFrag(2);
-//                        System.out.println("after_setFrag(2)");
                         break;
                 }
                 return true;
             }
         });
-        frag0=new Frag0();
-//        System.out.println("BB");
-        frag1=new Frag1();
-//        System.out.println("CC");
-        frag2=new Frag2();
-//        frag3=new Frag3();
-        setFrag(0); // 첫 프래그먼트 화면 지정
+
 
     }
-
 
     // 프레그먼트 교체
     private void setFrag(int n)
@@ -75,17 +111,17 @@ public class MainActivity extends AppCompatActivity {
         {
             case 0:
                 ft.replace(R.id.main_frame , frag0);
-                ft.commit();
+                ft.commitNow();
                 break;
 
             case 1:
                 ft.replace(R.id.main_frame, frag1);
-                ft.commit();
+                ft.commitNow();
                 break;
 
             case 2:
                 ft.replace(R.id.main_frame, frag2);
-                ft.commit();
+                ft.commitNow();
                 break;
 
 
