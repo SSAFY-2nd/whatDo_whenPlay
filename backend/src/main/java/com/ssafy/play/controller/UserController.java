@@ -3,8 +3,6 @@ package com.ssafy.play.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,24 +15,18 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
-import com.ssafy.play.model.TokenSet;
 import com.ssafy.play.model.BasicResponse;
-
 import com.ssafy.play.model.User;
-import com.ssafy.play.service.AuthService;
+
 import com.ssafy.play.service.JwtService;
 import com.ssafy.play.service.UserService;
 
 import io.swagger.annotations.ApiOperation;
-
 
 @CrossOrigin(origins = { "*" })
 @RestController
@@ -46,20 +38,20 @@ public class UserController {
 
 	@Autowired
 	private UserService UserService;
-	
+
 	@ApiOperation(value = "모든 회원 정보를 반환한다.", response = List.class)
 	@GetMapping
 	public ResponseEntity<List<User>> selectUser() throws Exception {
 		return new ResponseEntity<List<User>>(UserService.selectUser(), HttpStatus.OK);
 
 	}
-	
+
 	@ApiOperation(value = "유저 회원가입 시 회원 정보를 등록한다.", response = String.class)
 	@PostMapping("signup")
 	public ResponseEntity<BasicResponse> insertUser(@RequestBody User User) {
 		String password = User.getPassword();
 		User.setPassword(password);
-		
+
 		if (UserService.insertUser(User) == 1) {
 			BasicResponse result = new BasicResponse();
 			result.status = true;
@@ -73,40 +65,60 @@ public class UserController {
 		result.object = null;
 		return new ResponseEntity<>(result, HttpStatus.NO_CONTENT);
 	}
-	
+
+
 	// (영문(대소문자 구분), 숫자, 특수문자 조합, 8~12자리)
-		String pwPattern = "^(?=.*\\d)(?=.*[~`!@#$%\\^&*()-])(?=.*[a-z])(?=.*[A-Z]).{8,12}$";
+	String pwPattern = "^(?=.*\\d)(?=.*[~`!@#$%\\^&*()-])(?=.*[a-z])(?=.*[A-Z]).{8,12}$";
 
-		
-		@GetMapping("/login")
-		@ApiOperation(value = "로그인 성공/실패 여부를 반환한다")
-		public ResponseEntity<Map<String,Object>> login(@RequestParam("email") String email,
-	            @RequestParam("password")  String password , HttpServletResponse res) {
-			Map<String,Object> resultMap = new HashMap<>();
-			// 해당 이메일 회원 확인
-			User user = UserService.search(email);
-			ResponseEntity response = null;
-			
-			if(user == null) {	// 이메일이 없다면... 아이디 없음
-				
-				response = new ResponseEntity<>("ID not exist", HttpStatus.NOT_FOUND);
-			}else {
-				if(!user.getPassword().equals(password)) {	// 비밀번호가 틀리다면 ..
-					response = new ResponseEntity<>("Wrong Password", HttpStatus.NOT_FOUND);
-				}else {			// 이상 없음
-					// 로그인에 성공햇다면 토큰 생성
-					String token = jwtService.create(user);
-					// 토큰 정보는 request의 헤더로 보내고 나머지는  Map에 담아주자
-					res.setHeader("jwt-auth-token", token);
-					resultMap.put("status", true);
-					resultMap.put("data", user);
-					response = new ResponseEntity<>(resultMap, HttpStatus.OK);
-				}
+	@GetMapping("/login")
+	@ApiOperation(value = "로그인 성공/실패 여부를 반환한다")
+	public ResponseEntity<Map<String, Object>> login(@RequestParam("email") String email,
+			@RequestParam("password") String password, HttpServletResponse res) {
+		Map<String, Object> resultMap = new HashMap<>();
+		// 해당 이메일 회원 확인
+		User user = UserService.search(email);
+		ResponseEntity response = null;
+
+		if (user == null) { // 이메일이 없다면... 아이디 없음
+
+			response = new ResponseEntity<>("ID not exist", HttpStatus.NOT_FOUND);
+		} else {
+			if (!user.getPassword().equals(password)) { // 비밀번호가 틀리다면 ..
+				response = new ResponseEntity<>("Wrong Password", HttpStatus.NOT_FOUND);
+			} else { // 이상 없음
+				// 로그인에 성공햇다면 토큰 생성
+				String token = jwtService.create(user);
+				// 토큰 정보는 request의 헤더로 보내고 나머지는 Map에 담아주자
+				res.setHeader("jwt-auth-token", token);
+				resultMap.put("status", true);
+				resultMap.put("data", user);
+				response = new ResponseEntity<>(resultMap, HttpStatus.OK);
 			}
-		
-
-			return response;
 		}
+
+		return response;
+	}
+	
+	@DeleteMapping("/{user_id}")
+	@ApiOperation(value = "회원 삭제 후 성공/실패 여부를 반환다")
+	
+	public ResponseEntity<String> deleteUser(@PathVariable int user_id){
+		
+		User user = UserService.searchById(user_id);
+		ResponseEntity response = null;
+		
+		UserService.deleteUser(user.getid());
+		response = new ResponseEntity<>("User delete success" , HttpStatus.OK);
+		return response;
+	}
+	
+	@GetMapping("{user_id}")
+	@ApiOperation(value = "해당 아이디의 회원정보를 반환한다")
+	public ResponseEntity<User> searchById(@PathVariable int user_id) {
+		User user = UserService.searchById(user_id);
+		ResponseEntity response = new ResponseEntity<>(user , HttpStatus.OK);
+		return response;
+	}
 //		
 //		@PostMapping("/signup")
 //		@ApiOperation(value = "회원가입 후 성공/실패 여부를 반환한다")
@@ -138,13 +150,7 @@ public class UserController {
 //			return response;
 //		}
 //		
-//		@GetMapping("/user/{user_id}")
-//		@ApiOperation(value = "해당 아이디의 회원정보를 반환한다")
-//		public ResponseEntity<User> searchByID(@PathVariable String user_id) {
-//			User user = service.searchByID(user_id);
-//			ResponseEntity response = new ResponseEntity<>(user , HttpStatus.OK);
-//			return response;
-//		}
+
 //		
 //		@PutMapping("/user")
 //		@ApiOperation(value = "회원수정 후 성공/실패 여부를 반환다")
@@ -192,24 +198,6 @@ public class UserController {
 //			return response;
 //		}
 //		
-//		@DeleteMapping("/user/{user_id}")
-//		@ApiOperation(value = "회원 삭제 후 성공/실패 여부를 반환다")
-//		//@RequestParam("passsword")  String password
-//		public ResponseEntity<String> deleteUser(@PathVariable String user_id){
-//			
-//			User user = service.searchByID(user_id);
-//			ResponseEntity response = null;
-//			
-////			if(!user.getPassword().equals(password)) {	// 비밀번호가 틀리다면 ...
-////				response = new ResponseEntity<>("Wrong Password", HttpStatus.NOT_FOUND);
-////			}else {
-////				service.deleteUser(user_id);
-////				response = new ResponseEntity<>("User delete success" , HttpStatus.OK);
-////			}
-//			service.deleteUser(user.getUser_id());
-//			response = new ResponseEntity<>("User delete success" , HttpStatus.OK);
-//			return response;
-//		}
 //		
 		@GetMapping("/info")
 		public ResponseEntity<Map<String,Object>> getInfo(HttpServletRequest req, @RequestParam("nickname") String nickname,HttpServletResponse res){

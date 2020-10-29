@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.ssafy.play.dao.UserDAO;
 import com.ssafy.play.model.User;
-import com.ssafy.play.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -73,7 +72,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+
 	public User searchByNickname(String nickname) {
 		return UserDao.searchByNickname(nickname);
+	}
+
+	public User searchById(int id) {
+		return UserDao.searchById(id);
+
 	}
 }

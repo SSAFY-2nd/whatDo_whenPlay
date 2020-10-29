@@ -1,6 +1,7 @@
 package com.ssafy.play.dao;
 
 import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.ssafy.play.model.User;
@@ -18,6 +19,8 @@ public interface UserDAO {
 	public int updateLike(int user_id);
 	public int getUserId(String nickname);
 	public User search(String email);
+
 	public User searchByNickname(String nickname);
-	
+	public User searchById(int id);
+
 }
