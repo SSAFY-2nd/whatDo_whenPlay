@@ -66,4 +66,9 @@ public class UserServiceImpl implements UserService {
 	public int getUserId(String nickname) {
 		return UserDao.getUserId(nickname);
 	}
+
+	@Override
+	public User search(String email) {
+		return UserDao.search(email);
+	}
 }

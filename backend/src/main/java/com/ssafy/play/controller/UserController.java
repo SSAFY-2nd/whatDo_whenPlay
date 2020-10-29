@@ -82,35 +82,35 @@ public class UserController {
 		String pwPattern = "^(?=.*\\d)(?=.*[~`!@#$%\\^&*()-])(?=.*[a-z])(?=.*[A-Z]).{8,12}$";
 
 		
-//		@GetMapping("/login")
-//		@ApiOperation(value = "로그인 성공/실패 여부를 반환한다")
-//		public ResponseEntity<Map<String,Object>> login(@RequestParam("email") String email,
-//	            @RequestParam("password")  String password , HttpServletResponse res) {
-//			Map<String,Object> resultMap = new HashMap<>();
-//			// 해당 이메일 회원 확인
-//			User user = service.search(email);
-//			ResponseEntity response = null;
-//			
-//			if(user == null) {	// 이메일이 없다면... 아이디 없음
-//				
-//				response = new ResponseEntity<>("ID not exist", HttpStatus.NOT_FOUND);
-//			}else {
-//				if(!user.getPassword().equals(password)) {	// 비밀번호가 틀리다면 ..
-//					response = new ResponseEntity<>("Wrong Password", HttpStatus.NOT_FOUND);
-//				}else {			// 이상 없음
-//					// 로그인에 성공햇다면 토큰 생성
-//					String token = jwtService.create(user);
-//					// 토큰 정보는 request의 헤더로 보내고 나머지는  Map에 담아주자
-//					res.setHeader("jwt-auth-token", token);
-//					resultMap.put("status", true);
-//					resultMap.put("data", user);
-//					response = new ResponseEntity<>(resultMap, HttpStatus.OK);
-//				}
-//			}
-//		
-//
-//			return response;
-//		}
+		@GetMapping("/login")
+		@ApiOperation(value = "로그인 성공/실패 여부를 반환한다")
+		public ResponseEntity<Map<String,Object>> login(@RequestParam("email") String email,
+	            @RequestParam("password")  String password , HttpServletResponse res) {
+			Map<String,Object> resultMap = new HashMap<>();
+			// 해당 이메일 회원 확인
+			User user = UserService.search(email);
+			ResponseEntity response = null;
+			
+			if(user == null) {	// 이메일이 없다면... 아이디 없음
+				
+				response = new ResponseEntity<>("ID not exist", HttpStatus.NOT_FOUND);
+			}else {
+				if(!user.getPassword().equals(password)) {	// 비밀번호가 틀리다면 ..
+					response = new ResponseEntity<>("Wrong Password", HttpStatus.NOT_FOUND);
+				}else {			// 이상 없음
+					// 로그인에 성공햇다면 토큰 생성
+					String token = jwtService.create(user);
+					// 토큰 정보는 request의 헤더로 보내고 나머지는  Map에 담아주자
+					res.setHeader("jwt-auth-token", token);
+					resultMap.put("status", true);
+					resultMap.put("data", user);
+					response = new ResponseEntity<>(resultMap, HttpStatus.OK);
+				}
+			}
+		
+
+			return response;
+		}
 //		
 //		@PostMapping("/signup")
 //		@ApiOperation(value = "회원가입 후 성공/실패 여부를 반환한다")

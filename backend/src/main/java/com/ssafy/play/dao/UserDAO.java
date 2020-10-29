@@ -17,5 +17,6 @@ public interface UserDAO {
 	public int updatePassword(User User);
 	public int updateLike(int user_id);
 	public int getUserId(String nickname);
+	public User search(String email);
 	
 }
