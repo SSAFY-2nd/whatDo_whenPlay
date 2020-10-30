@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/action_food"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:columnWidth="90dip"
-    android:numColumns="5"
-    android:verticalSpacing="10dp"
-    android:horizontalSpacing="10dp"
-    android:stretchMode="columnWidth"
-    android:gravity="center"/>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:text="food category"
+        android:textColor="#000000"
+        android:gravity="center" />
+
+
+
+</LinearLayout>
