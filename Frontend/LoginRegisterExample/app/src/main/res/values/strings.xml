@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">놀면 뭐하니?</string>
+    <string name="hint_id"> ID를 입력하세요</string>
+    <string name="hint_password"> 패스워드를 입력하세요</string>
+    <string name="hint_find_password1"> 비밀번호를 잊으셨나요?</string>
+    <string name="hint_find_password2"> 비밀번호 찾기</string>
+    <string name="hint_name"> 성명을 입력하세요</string>
+    <string name="hint_mobileNO"> 휴대폰번호를 입력하세요</string>
+    <string name="hint_email"> 이메일을 입력하세요</string>
+    <string name="btn_login"> 로 그 인 </string>
+    <string name="btn_register"> 회 원 가 입 </string>
+    <string name="btn_logout"> 로 그 아 웃 </string>
+
+</resources>
