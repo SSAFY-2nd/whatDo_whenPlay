@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="et_id">id</string>
+    <string name="et_pass">pass</string>
+    <string name="et_findPassword">findPassword</string>
+    <string name="bottom_navbar">navbar</string>
+</resources>
