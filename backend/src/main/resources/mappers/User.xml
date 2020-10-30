@@ -77,4 +77,10 @@
 		where email = #{email}
 	</select>
 	
+	<update id="updatePassword" parameterType="User">
+		update user
+		set password = #{password}
+		where id = #{id}
+	</update>
+	
 </mapper>
