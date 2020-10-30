@@ -1,4 +1,4 @@
-package com.example.list;
+package com.example.loginregisterexample;
 
 import android.content.Context;
 import android.view.View;

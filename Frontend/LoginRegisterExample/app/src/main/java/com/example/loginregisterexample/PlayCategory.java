@@ -1,4 +1,4 @@
-package com.example.list;
+package com.example.loginregisterexample;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
