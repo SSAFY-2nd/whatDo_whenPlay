@@ -1,9 +1,11 @@
-package com.example.loginregisterexample;
+package com.example.loginregisterexample.Register;
 
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.loginregisterexample.R;
 
 public class SignupActivity extends AppCompatActivity {
     @Override
