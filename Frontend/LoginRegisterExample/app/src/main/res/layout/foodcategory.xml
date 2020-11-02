@@ -1,4 +1,6 @@
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
@@ -6,26 +8,34 @@
 
     <ImageButton
         android:id="@+id/pizza"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/pizza_icon" />
+        android:layout_width="95dp"
+        android:layout_height="95dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/pizza_icon"
+        android:background="@android:color/transparent"/>
 
     <ImageButton
         android:id="@+id/pizza2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/pizza_icon" />
+        android:layout_width="95dp"
+        android:layout_height="95dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/pizza_icon"
+        android:background="@android:color/transparent"/>
 
     <ImageButton
         android:id="@+id/cola"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/c" />
+        android:layout_width="95dp"
+        android:layout_height="95dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/c"
+        android:background="@android:color/transparent"/>
 
     <ImageButton
         android:id="@+id/egg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/e" />
+        android:layout_width="95dp"
+        android:layout_height="95dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/e"
+        android:background="@android:color/transparent"/>
 
 </GridLayout>
