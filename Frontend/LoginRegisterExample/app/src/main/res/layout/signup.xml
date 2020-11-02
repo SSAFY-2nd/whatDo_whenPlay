@@ -45,30 +45,39 @@
 
 
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/et_nickname"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/edit_round"
-                android:drawableLeft="@drawable/icons8_name_tag_35"
-                android:hint=" 닉 네 임"
-                android:ems="10"
-                android:inputType="textEmailAddress"
-                android:padding="10dp"
-                android:textColor="@color/input_register"
-                android:textColorHint="@color/input_register_hint"
-                android:fontFamily="@font/nanumbarunpenb"
+                <EditText
+                    android:id="@+id/et_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/edit_round"
+                    android:drawableLeft="@drawable/icons8_name_tag_35"
+                    android:hint=" 닉 네 임"
+                    android:ems="10"
+                    android:inputType="textEmailAddress"
+                    android:padding="10dp"
+                    android:textColor="@color/input_register"
+                    android:textColorHint="@color/input_register_hint"
+                    android:fontFamily="@font/nanumbarunpenb"
+                    android:layout_alignParentLeft="true"
+                    />
 
-                />
-<!--            <Button-->
-<!--                android:id="@+id/check_btn"-->
-<!--                style ="@style/defaultButton"-->
+                <Button
+                    android:id="@+id/check_button"
+                    android:layout_width="126dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/edit_round"
+                    android:text="중복확인"
+                    android:padding="10dp" />
 
-<!--                >-->
 
-<!--            </Button>-->
+            </RelativeLayout>
 
 
             <EditText
@@ -133,7 +142,7 @@
 
 
             <Button
-                android:id="@+id/btn_register"
+                android:id="@+id/join_button"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dip"

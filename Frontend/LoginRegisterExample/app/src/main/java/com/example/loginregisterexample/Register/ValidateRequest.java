@@ -1,7 +1,9 @@
 package com.example.loginregisterexample.Register;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
 import java.util.HashMap;
@@ -12,6 +14,8 @@ public class ValidateRequest extends StringRequest {
     final static private String URL="";
     private Map<String, String> map;
 
+
+    // POST 방식
     public ValidateRequest(String NickName, Response.Listener<String> listener){
         super(Method.POST, URL, listener, null);
 
