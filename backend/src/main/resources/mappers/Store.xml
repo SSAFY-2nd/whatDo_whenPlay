@@ -4,6 +4,23 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssafy.play.dao.StoreDAO">
 
+	<select id="searchById" resultType="Store">
+		select *
+		from store where id = #{id}
+	</select>
+	
+	<select id="searchBySubwayId" resultType="Store">
+		select *
+		from store where subway_id = #{subway_id}
+	</select>
+	
+	<select id="searchBySubway" resultType="Store">
+		select *
+		from store 
+		where subway_id=#{subway_id}
+		AND category=#{category}
+	</select>
+	
 	
 	
 </mapper>
