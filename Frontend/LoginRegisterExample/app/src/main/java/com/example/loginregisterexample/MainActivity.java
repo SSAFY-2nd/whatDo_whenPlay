@@ -1,42 +1,127 @@
 package com.example.loginregisterexample;
 
-import android.database.Cursor;
-import android.database.SQLException;
-import android.graphics.PointF;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-import com.davemorrissey.labs.subscaleview.ImageSource;
-import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
-
-import java.io.IOException;
-
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
+
+    private BottomNavigationView bottomNavigationView; // 바텀 네비게이션 뷰
+    private FragmentManager fm;
+    private FragmentTransaction ft;
+    private Frag0 frag0;
+    private Frag1 frag1;
+    private Frag2 frag2;
+//    private Frag3 frag3;
+
+    Button btn_register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_subway);
+        setContentView(R.layout.activity_main);
 
-        Cursor c = null;
-        SubwayDatabaseHelper myDbHelper = new SubwayDatabaseHelper(MainActivity.this);
-        try{
-            myDbHelper.createDataBase();
-        } catch (Exception e) {
-            throw new Error ("Unable to create database");
+        InitializeView();
+        SetListener();
+
+        frag0=new Frag0();
+        frag1=new Frag1();
+        frag2=new Frag2();
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        setFrag(0); // 첫 프래그먼트 화면 지정
+        SetSignUp();
+    }
+
+    public void SetSignUp() {
+        Log.d("test","main page");
+
+        btn_register = (Button)findViewById(R.id.btn_register);
+        btn_register.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+//                //이곳에 버튼 클릭시 일어날 일을 적습니다.
+                Log.d("test","signup click");
+                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
+                startActivity(intent);
+            }
+        });
+
+    }
+    public void InitializeView()
+    {
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        btn_register = (Button)findViewById(R.id.btn_register);
+    }
+    public void SetListener()
+    {
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener()
+        {
+
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem)
+            {
+                System.out.println(menuItem);
+                switch (menuItem.getItemId())
+                {
+                    case R.id.tab1:
+                        setFrag(0);
+                        SetSignUp();
+                        break;
+                    case R.id.tab2:
+                        setFrag(1);
+                        break;
+                    case R.id.tab3:
+                        setFrag(2);
+                        break;
+                }
+                return true;
+            }
+        });
+
+
+    }
+
+    // 프레그먼트 교체
+    private void setFrag(int n)
+    {
+        fm = getSupportFragmentManager();
+        ft= fm.beginTransaction();
+        System.out.println(n);
+        switch (n)
+        {
+            case 0:
+                ft.replace(R.id.main_frame , frag0);
+                ft.commitNow();
+                break;
+
+            case 1:
+                ft.replace(R.id.main_frame, frag1);
+                ft.commitNow();
+                break;
+
+            case 2:
+                ft.replace(R.id.main_frame, frag2);
+                ft.commitNow();
+                break;
+
+
         }
-        try{
-            myDbHelper.openDataBase();
-        } catch (Exception e) {
-            throw e;
-        }
-        c = myDbHelper.query("subwayData", null, null, null, null, null, null); // SQLDataRead
-        c.moveToNext();
-        Log.d("database",c.getInt(2)+"");
+
     }
 }
