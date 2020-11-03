@@ -21,6 +21,20 @@ public class SubwayActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_subway);
+
+        Cursor c = null;
+        SubwayDatabaseHelper myDbHelper = new SubwayDatabaseHelper(SubwayActivity.this);
+        try{
+            myDbHelper.createDataBase();
+        } catch (Exception e) {
+            throw new Error ("Unable to create database");
+        }
+        try{
+            myDbHelper.openDataBase();
+        } catch (Exception e) {
+            throw e;
+        }
+
     }
 }
