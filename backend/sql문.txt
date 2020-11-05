@@ -1,0 +1,101 @@
+CREATE TABLE `foodcategory` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+CREATE TABLE `subway` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE `liketo` (
+  `user_id` int NOT NULL,
+  `store_id` int NOT NULL,
+  PRIMARY KEY (`user_id`),
+  KEY `store_id_idx` (`store_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE `playcategory` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE `playstore` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `subway_id` int NOT NULL,
+  `category` int NOT NULL,
+  `name` varchar(45) COLLATE utf8_bin NOT NULL,
+  `totReview` int NOT NULL,
+  `rating` double NOT NULL,
+  `address` varchar(255) COLLATE utf8_bin NOT NULL,
+  `distance` int DEFAULT NULL,
+  `phoneNumber` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `workingTime` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `introduce` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `menu` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `subway_id_idx` (`subway_id`),
+  CONSTRAINT `subway_id` FOREIGN KEY (`subway_id`) REFERENCES `subway` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE `foodstore` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `subway_id` int NOT NULL,
+  `category` int NOT NULL,
+  `name` varchar(45) COLLATE utf8_bin NOT NULL,
+  `totReview` int NOT NULL,
+  `rating` double NOT NULL,
+  `address` varchar(255) COLLATE utf8_bin NOT NULL,
+  `distance` int DEFAULT NULL,
+  `phoneNumber` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `workingTime` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `introduce` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `menu` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `subway_id_idx` (`subway_id`),
+  CONSTRAINT `subway_id2` FOREIGN KEY (`subway_id`) REFERENCES `subway` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+CREATE TABLE `user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `password` varchar(255) NOT NULL,
+  `name` varchar(255)  NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `nickname` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `nickname_UNIQUE` (`nickname`)
+) ;
+
+create table foodcategoryposting (
+     `id` int NOT NULL AUTO_INCREMENT,
+     `subway_id` int not null,
+      `category_id` int not null,
+      `post` int,
+     PRIMARY KEY (`id`)
+);
+
+create table playcategoryposting (
+     `id` int NOT NULL AUTO_INCREMENT,
+     `subway_id` int not null,
+      `category_id` int not null,
+      `post` int,
+     PRIMARY KEY (`id`)
+)
+create table foodtaste(
+   `id` int not null auto_increment, 
+    `user_id` int not null,
+    `category_id` int not null,
+    PRIMARY KEY(`id`)
+);
+
+create table playtaste(
+   `id` int not null auto_increment, 
+    `user_id` int not null,
+    `category_id` int not null,
+    PRIMARY KEY(`id`)
+)
