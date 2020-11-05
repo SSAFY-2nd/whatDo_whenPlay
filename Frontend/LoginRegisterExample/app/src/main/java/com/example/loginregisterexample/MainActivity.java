@@ -55,9 +55,9 @@ public class MainActivity extends AppCompatActivity {
         btn_register.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-//                //이곳에 버튼 클릭시 일어날 일을 적습니다.
+                //이곳에 버튼 클릭시 일어날 일을 적습니다.
                 Log.d("test","signup click");
-                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
+                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
                 startActivity(intent);
             }
         });
