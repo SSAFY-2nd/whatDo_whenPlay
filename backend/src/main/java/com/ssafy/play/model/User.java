@@ -5,35 +5,21 @@ public class User {
 	private String name;
 	private String nickname;
 	private String password;
-	private int eatlike1;
-	private int eatlike2;
-	private int eatlike3;
-	private int playlike1;
-	private int playlike2;
-	private int playlike3;
 	private String email;
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public int getid() {
+	public int getId() {
 		return id;
 	}
 
-	public void setid(int id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public String getname() {
+	public String getName() {
 		return name;
 	}
 
-	public void setname(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
@@ -53,68 +39,20 @@ public class User {
 		this.password = password;
 	}
 
-	public int getEatlike1() {
-		return eatlike1;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setEatlike1(int eatlike1) {
-		this.eatlike1 = eatlike1;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public int getEatlike2() {
-		return eatlike2;
-	}
-
-	public void setEatlike2(int eatlike2) {
-		this.eatlike2 = eatlike2;
-	}
-
-	public int getEatlike3() {
-		return eatlike3;
-	}
-
-	public void setEatlike3(int eatlike3) {
-		this.eatlike3 = eatlike3;
-	}
-
-	public int getPlaylike1() {
-		return playlike1;
-	}
-
-	public void setPlaylike1(int playlike1) {
-		this.playlike1 = playlike1;
-	}
-
-	public int getPlaylike2() {
-		return playlike2;
-	}
-
-	public void setPlaylike2(int playlike2) {
-		this.playlike2 = playlike2;
-	}
-
-	public int getPlaylike3() {
-		return playlike3;
-	}
-
-	public void setPlaylike3(int playlike3) {
-		this.playlike3 = playlike3;
-	}
-
-
-	public User(int id, String name, String nickname, String password, int eatlike1, int eatlike2,
-			int eatlike3, int playlike1, int playlike2, int playlike3, String email) {
+	public User(int id, String name, String nickname, String password, String email) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.nickname = nickname;
 		this.password = password;
-		this.eatlike1 = eatlike1;
-		this.eatlike2 = eatlike2;
-		this.eatlike3 = eatlike3;
-		this.playlike1 = playlike1;
-		this.playlike2 = playlike2;
-		this.playlike3 = playlike3;
 		this.email = email;
 	}
 

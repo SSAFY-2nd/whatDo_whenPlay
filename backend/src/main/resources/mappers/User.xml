@@ -5,23 +5,17 @@
 <mapper namespace="com.ssafy.play.dao.UserDAO">
 	<!-- 회원정보 전체 조회 -->
 	<select id="selectUser" resultType="User">
-		select id, password, name,
-		nickname, email, eatlike1, eatlike2, eatlike3, playlike1, playlike2,
-		playlike3
+		select *
 		from user
 	</select>
 
 	<!-- 회원정보 등록 -->
 	<insert id="insertUser" parameterType="User">
 		insert into user(
-		password, name, nickname, email, eatlike1, eatlike2, eatlike3,
-		playlike1, playlike2, playlike3
+		password, name, nickname, email
 		) values (
 		#{password}, #{name},
-		#{nickname}, #{email}, #{eatlike1}, #{eatlike2},
-		#{eatlike3},
-		#{playlike1},
-		#{playlike2},#{playlike3}
+		#{nickname}, #{email}
 		)
 	</insert>
 
@@ -60,13 +54,6 @@
 		set 
 		nickname = #{nickname},
 		email = #{email},
-		password= #{password},
-		eatlike1= #{eatlike1},
-		eatlike2= #{eatlike2},
-		eatlike3= #{eatlike3},
-		playlike1= #{playlike1},
-		playlike2= #{playlike2},
-		playlike3= #{playlike3}
 		where id = #{id}
 	</update>
 	
@@ -76,5 +63,11 @@
 		from user
 		where email = #{email}
 	</select>
+	
+	<update id="updatePassword" parameterType="User">
+		update user
+		set password = #{password}
+		where id = #{id}
+	</update>
 	
 </mapper>
