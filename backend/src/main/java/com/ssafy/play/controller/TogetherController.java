@@ -124,8 +124,6 @@ public class TogetherController {
 		List<PlayCategoryposting> playpost = playpostservice.searchBySubwayId(subway_id);
 		
 		// 내 정보 넣기
-
-		
 		
 		ResponseEntity response = new ResponseEntity<>(taste, HttpStatus.OK);
 		return response;

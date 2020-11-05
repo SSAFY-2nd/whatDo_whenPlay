@@ -231,11 +231,11 @@ public class UserController {
 			HttpStatus status = null;
 			try {
 				User user = UserService.searchByNickname(nickname);
-				String token = jwtService.create(user);
-				//System.out.println(token);
-				// 토큰 정보는 request의 헤더로 보내고 나머지는  Map에 담아주자
-				res.setHeader("jwt-auth-token", token);
-				// resultMap.put("User", jwtService.get(req.getHeader("jwt-auth-token")).get("User"));
+//				String token = jwtService.create(user);
+//				//System.out.println(token);
+//				// 토큰 정보는 request의 헤더로 보내고 나머지는  Map에 담아주자
+//				res.setHeader("jwt-auth-token", token);
+//				// resultMap.put("User", jwtService.get(req.getHeader("jwt-auth-token")).get("User"));
 				resultMap.put("status", true);
 				resultMap.put("data", user);
 				status = HttpStatus.OK;
