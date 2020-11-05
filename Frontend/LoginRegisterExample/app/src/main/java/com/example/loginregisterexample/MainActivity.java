@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private Frag0 frag0;
     private Frag1 frag1;
     private Frag2 frag2;
-//    private Frag3 frag3;
+    private Frag3 frag3;
 
     Button btn_register;
 
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         frag0=new Frag0();
         frag1=new Frag1();
         frag2=new Frag2();
-
+        frag3=new Frag3();
 
     }
 
@@ -93,6 +93,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.tab3:
                         setFrag(2);
                         break;
+                    case R.id.tab4:
+                        setFrag(3);
+                        break;
                 }
                 return true;
             }
@@ -123,9 +126,10 @@ public class MainActivity extends AppCompatActivity {
                 ft.replace(R.id.main_frame, frag2);
                 ft.commitNow();
                 break;
-
-
+            case 3:
+                ft.replace(R.id.main_frame, frag3);
+                ft.commitNow();
+                break;
         }
-
     }
 }
