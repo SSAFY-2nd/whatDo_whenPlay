@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="250dp"
+    android:layout_height="wrap_content">
+    <Button
+        android:text="같이놀기"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/subway_main_btn"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button_shape_sm"
+        android:textColor="#FFFFFF"/>
+
+    <Button
+        android:id="@+id/subway_name_btn"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/button_shape"
+        android:textColor="#000000" />
+
+    <Button
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_toLeftOf="@id/subway_name_btn"
+        android:layout_marginTop="40dp"
+        android:id="@+id/subway_left"
+        android:background="@drawable/button_shape_sm"
+        android:text="놀거리"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="40dp"
+        android:layout_toRightOf="@id/subway_name_btn"
+        android:id="@+id/subway_right"
+        android:background="@drawable/button_shape_sm"
+        android:text="먹거리"
+        android:textColor="#FFFFFF" />
+</RelativeLayout>

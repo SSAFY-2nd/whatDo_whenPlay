@@ -1,26 +1,53 @@
 package com.example.loginregisterexample;
 
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.Point;
+import android.graphics.PointF;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.github.chrisbanes.photoview.PhotoView;
 
 
-public class SubwayActivity extends AppCompatActivity implements GestureDetector.OnGestureListener,
-        GestureDetector.OnDoubleTapListener{
-
+public class SubwayActivity extends AppCompatActivity /*implements GestureDetector.OnGestureListener,
+        GestureDetector.OnDoubleTapListener*/{
     private TextView gestureText;
     private GestureDetector gDetector;
+    private Cursor c;
+    static public boolean state = true;
+    public static Context mContext;
+    private SubsamplingScaleImageView imageView;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("resume","resume");
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subway);
+        mContext = this;
 
-        /*Cursor c = null;
-        SubwayDatabaseHelper myDbHelper = new SubwayDatabaseHelper(MainActivity.this);
+        imageView = (SubsamplingScaleImageView) findViewById(R.id.photoView);
+        imageView.setImage(ImageSource.resource(R.drawable.img_subway));
+
+
+        c = null;
+        SubwayDatabaseHelper myDbHelper = new SubwayDatabaseHelper(SubwayActivity.this);
         try{
             myDbHelper.createDataBase();
         } catch (Exception e) {
@@ -31,18 +58,14 @@ public class SubwayActivity extends AppCompatActivity implements GestureDetector
         } catch (Exception e) {
             throw e;
         }
-        c = myDbHelper.query("subwayData", null, null, null, null, null, null); // SQLDataRead*/
-        /*final SubsamplingScaleImageView imageView = (SubsamplingScaleImageView) findViewById(R.id.photoView); // 지하철역 이미지뷰
-        imageView.setImage(ImageSource.resource(R.drawable.img_subway));*/
+        c = myDbHelper.query("subwayData", null, null, null, null, null, null); // SQLDataRead
 
-        this.gDetector = new GestureDetector(this,this);
+        //this.gDetector = new GestureDetector(this,this);
     }
 
-    @Override
+/*    @Override
     public boolean onTouchEvent(MotionEvent event){
         this.gDetector.onTouchEvent(event);
-        // 오버라이딩한 슈퍼 클래스의 메서드를 호출한다.
-        Log.i("tag","onTouchEvent");
         return super.onTouchEvent(event);
     }
 
@@ -105,5 +128,5 @@ public class SubwayActivity extends AppCompatActivity implements GestureDetector
         //gestureText.setText("onFling");
         Log.i("tag","onFling");
         return true;
-    }
+    }*/
 }
