@@ -2,21 +2,21 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ssafy.play.dao.StoreDAO">
+<mapper namespace="com.ssafy.play.dao.FoodStoreDAO">
 
-	<select id="searchById" resultType="Store">
+	<select id="searchById" resultType="FoodStore">
 		select *
-		from store where id = #{id}
+		from foodstore where id = #{id}
 	</select>
 	
-	<select id="searchBySubwayId" resultType="Store">
+	<select id="searchBySubwayId" resultType="FoodStore">
 		select *
-		from store where subway_id = #{subway_id}
+		from foodstore where subway_id = #{subway_id}
 	</select>
 	
-	<select id="searchBySubway" resultType="Store">
+	<select id="searchBySubway" resultType="FoodStore">
 		select *
-		from store 
+		from foodstore 
 		where subway_id=#{subway_id}
 		AND category=#{category}
 	</select>

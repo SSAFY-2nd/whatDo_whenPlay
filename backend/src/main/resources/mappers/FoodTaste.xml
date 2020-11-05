@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.play.dao.FoodTasteDAO">
+	
+	<select id = "selectTaste" resultType = "Integer">
+		select category_id
+		from foodtaste
+		where user_id = #{user_id}
+	</select>
+	
+	<insert id="insertTaste">
+		insert into foodtaste(
+		user_id,category_id
+		) values(
+		#{user_id},#{category_id}
+		)
+	</insert>
+	
+	<delete id="deleteTaste">
+		delete from foodtaste
+		where user_id = #{user_id} 
+		AND category_id = #{category_id}
+	</delete>
+	
+</mapper>

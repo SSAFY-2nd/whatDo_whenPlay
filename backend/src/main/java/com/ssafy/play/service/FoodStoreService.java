@@ -2,12 +2,13 @@ package com.ssafy.play.service;
 
 import java.util.List;
 
-import com.ssafy.play.model.Store;
+import com.ssafy.play.model.FoodStore;
+import com.ssafy.play.model.PlayStore;
 
-public interface StoreService {
+public interface FoodStoreService {
 
-	List<Store> searchBySubway(int subway_id, String category);
-	Store searchById(String store_id);
-	List<Store> searchBySubwayId(String subway_id);
+	List<FoodStore> searchBySubway(int subway_id, String category);
+	FoodStore searchById(String store_id);
+	List<FoodStore> searchBySubwayId(String subway_id);
 	
 }

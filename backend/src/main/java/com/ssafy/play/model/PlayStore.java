@@ -1,6 +1,6 @@
 package com.ssafy.play.model;
 
-public class FoodStore {
+public class PlayStore {
 	private int id;
 	private int subway_id;
 	private int category;
@@ -110,7 +110,7 @@ public class FoodStore {
 		this.menu = menu;
 	}
 
-	public FoodStore(int id, int subway_id, int category, String name, String totReview, double rating, String address,
+	public PlayStore(int id, int subway_id, int category, String name, String totReview, double rating, String address,
 			int distance, String phoneNumber, String workingTime, String introduce, String menu) {
 		super();
 		this.id = id;
@@ -127,7 +127,7 @@ public class FoodStore {
 		this.menu = menu;
 	}
 
-	public FoodStore() {
+	public PlayStore() {
 		super();
 	}
 

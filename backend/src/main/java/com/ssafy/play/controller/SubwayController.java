@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ssafy.play.model.Subway;
 import com.ssafy.play.model.User;
 import com.ssafy.play.service.SubwayService;
+import com.ssafy.play.service.UserService;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -28,6 +29,9 @@ public class SubwayController {
 	
 	@Autowired
 	private SubwayService subwayservice;
+	
+	@Autowired
+	private UserService userservice;
 	
 	@GetMapping("{subway_id}")
 	@ApiOperation(value = "지하철 검색")
@@ -44,5 +48,5 @@ public class SubwayController {
 		ResponseEntity response = new ResponseEntity<>(subway, HttpStatus.OK);
 		return response;
 	}
-
+	
 }

@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.ssafy.play.model.Store;
+import com.ssafy.play.model.FoodStore;
 
 @Mapper
-public interface StoreDAO {
-	List<Store> searchBySubway(int subway_id, String category);
-	Store searchById(String store_id);
-	List<Store> searchBySubwayId(String subway_id);
+public interface FoodStoreDAO {
+	List<FoodStore> searchBySubway(int subway_id, String category);
+	FoodStore searchById(String store_id);
+	List<FoodStore> searchBySubwayId(String subway_id);
 }

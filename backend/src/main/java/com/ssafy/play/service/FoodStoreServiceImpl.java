@@ -5,28 +5,28 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ssafy.play.dao.StoreDAO;
-import com.ssafy.play.model.Store;
+import com.ssafy.play.dao.FoodStoreDAO;
+import com.ssafy.play.model.FoodStore;
 
 
 @Service
-public class StoreServiceImpl implements StoreService {
+public class FoodStoreServiceImpl implements FoodStoreService {
 
 	@Autowired
-	private StoreDAO storeDAO;
+	private FoodStoreDAO storeDAO;
 
 	@Override
-	public List<Store> searchBySubway(int subway_id, String category) {
+	public List<FoodStore> searchBySubway(int subway_id, String category) {
 		return storeDAO.searchBySubway(subway_id, category);
 	}
 
 	@Override
-	public Store searchById(String store_id) {
+	public FoodStore searchById(String store_id) {
 		return storeDAO.searchById(store_id);
 	}
 
 	@Override
-	public List<Store> searchBySubwayId(String subway_id) {
+	public List<FoodStore> searchBySubwayId(String subway_id) {
 		return storeDAO.searchBySubwayId(subway_id);
 	}
 

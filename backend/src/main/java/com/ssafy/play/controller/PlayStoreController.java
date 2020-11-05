@@ -17,41 +17,41 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ssafy.play.model.FoodStore;
-import com.ssafy.play.service.FoodStoreService;
+import com.ssafy.play.model.PlayStore;
+import com.ssafy.play.service.PlayStoreService;
 
 
 import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = { "*" })
 @RestController
-@RequestMapping("/foodstore")
-public class FoodStoreController {
+@RequestMapping("/playStore")
+public class PlayStoreController {
 	
 	@Autowired
-	private FoodStoreService storeservice;
+	private PlayStoreService storeservice;
 	
 	@GetMapping("{subway_id}/{category}")
-	@ApiOperation(value = "음식점  가게 목록")
-	public ResponseEntity<FoodStore> searchBySubway(@PathVariable int subway_id, @PathVariable String category) {
-		List<FoodStore> store=storeservice.searchBySubway(subway_id, category);
-		ResponseEntity response = new ResponseEntity<List<FoodStore>>(store, HttpStatus.OK);
+	@ApiOperation(value = "놀거리 가게 목록")
+	public ResponseEntity<PlayStore> searchBySubway(@PathVariable int subway_id, @PathVariable String category) {
+		List<PlayStore> store=storeservice.searchBySubway(subway_id, category);
+		ResponseEntity response = new ResponseEntity<List<PlayStore>>(store, HttpStatus.OK);
 		return response;
 	}
 
 	@GetMapping("{store_id}")
-	@ApiOperation(value = "음식점 검색")
-	public ResponseEntity<FoodStore> searchById(@PathVariable String store_id) {
-		FoodStore store = storeservice.searchById(store_id);
+	@ApiOperation(value = "놀거리 검색")
+	public ResponseEntity<PlayStore> searchById(@PathVariable String store_id) {
+		PlayStore store = storeservice.searchById(store_id);
 		ResponseEntity response = new ResponseEntity<>(store, HttpStatus.OK);
 		return response;
 	}
 	
 	@GetMapping("/sub/{subway_id}")
-	@ApiOperation(value = "역 주변 음식점리스트 검색")
-	public ResponseEntity<List<FoodStore>> searchBySubwayId(@PathVariable String subway_id) {
-		List<FoodStore> store = storeservice.searchBySubwayId(subway_id);
-		ResponseEntity response = new ResponseEntity<List<FoodStore>>(store, HttpStatus.OK);
+	@ApiOperation(value = "역 주변 놀거리리스트 검색")
+	public ResponseEntity<List<PlayStore>> searchBySubwayId(@PathVariable String subway_id) {
+		List<PlayStore> store = storeservice.searchBySubwayId(subway_id);
+		ResponseEntity response = new ResponseEntity<List<PlayStore>>(store, HttpStatus.OK);
 		return response;
 	}
 

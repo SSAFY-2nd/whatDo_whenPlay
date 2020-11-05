@@ -36,7 +36,7 @@ public class EmailController {
 	@GetMapping
 	public ResponseEntity<String> sendEmailAction (@RequestParam String email) throws Exception {
         User User = UserService.findUserByEmail(email);
-        String USERNAME = User.getname();
+        String USERNAME = User.getName();
         String EMAIL = email;
         StringBuffer sb = new StringBuffer();
         Random rn = new Random();
