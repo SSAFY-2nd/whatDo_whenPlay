@@ -10,14 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LoginRegisterExample">
         <activity android:name=".MainActivity">
-        </activity>
-        <activity android:name=".SignupActivity"/>
-        <activity android:name=".SubwayActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".SignupActivity"/>
+        <activity android:name=".SubwayActivity">
         </activity>
         <!-- 팝업 Activity -->
         <activity android:name=".PopupActivity" android:theme="@android:style/Theme.Holo.Dialog" />

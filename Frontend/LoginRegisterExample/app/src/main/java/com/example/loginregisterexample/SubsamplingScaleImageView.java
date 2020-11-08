@@ -568,7 +568,7 @@ public class SubsamplingScaleImageView extends View {
                 Log.d("onSingleTapUp","true");
                 Log.d("coord",e.getX()+" "+e.getY());
                 setScaleAndCenter(2f,viewToSourceCoord(e.getX(),e.getY()));
-                Context subwayContext = SubwayActivity.mContext;
+                Context subwayContext = MainActivity.mContext;
                 Intent intent = new Intent(subwayContext, PopupActivity.class);
                 intent.putExtra("data","서울역");
                 subwayContext.startActivity(intent);

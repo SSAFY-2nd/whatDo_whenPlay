@@ -1,10 +1,12 @@
 package com.example.loginregisterexample;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
@@ -24,10 +26,14 @@ public class MainActivity extends AppCompatActivity {
     private Frag2 frag2;
 //    private Frag3 frag3;
 
+    public static Context mContext;
+
     Button btn_register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mContext = this;
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -63,6 +69,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    private SubsamplingScaleImageView imageView;
+
+    public void SetSearchSubway() {
+        imageView = (SubsamplingScaleImageView) findViewById(R.id.photoView);
+        imageView.setImage(ImageSource.resource(R.drawable.img_subway));
+    }
     public void InitializeView()
     {
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -85,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.tab2:
                         setFrag(1);
+                        SetSearchSubway();
                         break;
                     case R.id.tab3:
                         setFrag(2);
