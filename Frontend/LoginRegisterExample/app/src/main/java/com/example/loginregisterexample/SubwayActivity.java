@@ -26,7 +26,6 @@ public class SubwayActivity extends AppCompatActivity /*implements GestureDetect
     private TextView gestureText;
     private GestureDetector gDetector;
     private Cursor c;
-    static public boolean state = true;
     public static Context mContext;
     private SubsamplingScaleImageView imageView;
 
