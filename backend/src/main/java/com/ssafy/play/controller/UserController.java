@@ -108,7 +108,7 @@ public class UserController {
 		User user = UserService.searchById(user_id);
 		ResponseEntity response = null;
 
-		UserService.deleteUser(user.getid());
+		UserService.deleteUser(user.getId());
 		response = new ResponseEntity<>("User delete success", HttpStatus.OK);
 		return response;
 	}
@@ -124,7 +124,7 @@ public class UserController {
 	@ApiOperation(value = "유저 id에 해당하는 회원 정보를 수정한다.", response = String.class)
 	@PutMapping
 	public ResponseEntity<String> updateUser(@RequestBody User user, HttpServletRequest request) {
-		User user2 = UserService.searchById(user.getid());
+		User user2 = UserService.searchById(user.getId());
 
 		if (user.getNickname() != null) {
 			user2.setNickname(user.getNickname());
@@ -139,28 +139,6 @@ public class UserController {
 			user2.setPassword(password);
 		}
 
-		if (user.getEatlike1() >= 0) {
-			user2.setEatlike1(user.getEatlike1());
-		}
-
-		if (user.getEatlike1() >= 0) {
-			user2.setEatlike1(user.getEatlike1());
-		}
-		if (user.getEatlike2() >= 0) {
-			user2.setEatlike2(user.getEatlike2());
-		}
-		if (user.getEatlike3() >= 0) {
-			user2.setEatlike3(user.getEatlike3());
-		}
-		if (user.getPlaylike1() >= 0) {
-			user2.setPlaylike1(user.getPlaylike1());
-		}
-		if (user.getPlaylike2() >= 0) {
-			user2.setPlaylike2(user.getPlaylike2());
-		}
-		if (user.getPlaylike3() >= 0) {
-			user2.setPlaylike3(user.getPlaylike3());
-		}
 		if (UserService.updateUser(user2) == 1) {
 			return new ResponseEntity<String>("success", HttpStatus.OK);
 		}
@@ -253,11 +231,11 @@ public class UserController {
 			HttpStatus status = null;
 			try {
 				User user = UserService.searchByNickname(nickname);
-				String token = jwtService.create(user);
-				//System.out.println(token);
-				// 토큰 정보는 request의 헤더로 보내고 나머지는  Map에 담아주자
-				res.setHeader("jwt-auth-token", token);
-				// resultMap.put("User", jwtService.get(req.getHeader("jwt-auth-token")).get("User"));
+//				String token = jwtService.create(user);
+//				//System.out.println(token);
+//				// 토큰 정보는 request의 헤더로 보내고 나머지는  Map에 담아주자
+//				res.setHeader("jwt-auth-token", token);
+//				// resultMap.put("User", jwtService.get(req.getHeader("jwt-auth-token")).get("User"));
 				resultMap.put("status", true);
 				resultMap.put("data", user);
 				status = HttpStatus.OK;

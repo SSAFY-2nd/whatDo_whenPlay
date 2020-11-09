@@ -18,11 +18,11 @@ public class ImageAdapter extends BaseAdapter{
             R.drawable.c, R.drawable.e,
             R.drawable.c, R.drawable.e,
             R.drawable.c, R.drawable.e,
-            R.drawable.q, R.drawable.j,
-            R.drawable.q, R.drawable.j,
-            R.drawable.q, R.drawable.j,
-            R.drawable.q, R.drawable.j,
-            R.drawable.q, R.drawable.j
+            R.drawable.pizza_icon, R.drawable.pizza_icon,
+            R.drawable.pizza_icon, R.drawable.pizza_icon,
+            R.drawable.pizza_icon, R.drawable.pizza_icon,
+            R.drawable.pizza_icon, R.drawable.pizza_icon,
+            R.drawable.pizza_icon, R.drawable.pizza_icon
     };
 
     public ImageAdapter(Context c) {

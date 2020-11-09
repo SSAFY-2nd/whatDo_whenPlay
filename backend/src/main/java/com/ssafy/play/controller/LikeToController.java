@@ -33,7 +33,7 @@ public class LikeToController {
 		return new ResponseEntity<String>("fail", HttpStatus.NO_CONTENT);
 	}
 
-	@ApiOperation(value = "질병 정보를 삭제한다.", response = String.class)
+	@ApiOperation(value = "즐겨찾기를 삭제한다.", response = String.class)
 	@DeleteMapping
 	public ResponseEntity<String> deleteLiketo(@RequestParam int user_id, @RequestParam int store_id) {
 		if (likeService.deleteLiketo(user_id, store_id) == 1) {

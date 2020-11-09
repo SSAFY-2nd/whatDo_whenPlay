@@ -1,22 +1,21 @@
 package com.example.loginregisterexample;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
-import android.widget.FrameLayout;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.example.loginregisterexample.Register.RegisterActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import org.w3c.dom.ls.LSOutput;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,12 +25,16 @@ public class MainActivity extends AppCompatActivity {
     private Frag0 frag0;
     private Frag1 frag1;
     private Frag2 frag2;
-//    private Frag3 frag3;
+    private Frag3 frag3;
+
+    public static Context mContext;
 
     Button btn_register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mContext = this;
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -41,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         frag0=new Frag0();
         frag1=new Frag1();
         frag2=new Frag2();
-
+        frag3=new Frag3();
 
     }
 
@@ -59,13 +62,20 @@ public class MainActivity extends AppCompatActivity {
         btn_register.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-//                //이곳에 버튼 클릭시 일어날 일을 적습니다.
+                //이곳에 버튼 클릭시 일어날 일을 적습니다.
                 Log.d("test","signup click");
-                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
+                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
                 startActivity(intent);
             }
         });
 
+    }
+
+    private SubsamplingScaleImageView imageView;
+
+    public void SetSearchSubway() {
+        imageView = (SubsamplingScaleImageView) findViewById(R.id.photoView);
+        imageView.setImage(ImageSource.resource(R.drawable.img_subway));
     }
     public void InitializeView()
     {
@@ -89,9 +99,13 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.tab2:
                         setFrag(1);
+                        SetSearchSubway();
                         break;
                     case R.id.tab3:
                         setFrag(2);
+                        break;
+                    case R.id.tab4:
+                        setFrag(3);
                         break;
                 }
                 return true;
@@ -123,9 +137,10 @@ public class MainActivity extends AppCompatActivity {
                 ft.replace(R.id.main_frame, frag2);
                 ft.commitNow();
                 break;
-
-
+            case 3:
+                ft.replace(R.id.main_frame, frag3);
+                ft.commitNow();
+                break;
         }
-
     }
 }

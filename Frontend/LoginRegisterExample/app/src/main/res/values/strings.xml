@@ -10,5 +10,9 @@
     <string name="btn_login"> 로 그 인 </string>
     <string name="btn_register"> 회 원 가 입 </string>
     <string name="btn_logout"> 로 그 아 웃 </string>
+    <string name="play_with_id"> 같이 놀고 싶은 회원의 아이디를 입력하세요</string>
+    <string name="found_play"> 같이 놀기</string>
+    <string name="found_play_text"> 회원님의 취향과 같이 놀고 싶은 회원의 취향을 조합해드려요</string>
+    <string name="choicestation"> ex) 강남역</string>
 
 </resources>
