@@ -16,7 +16,7 @@ import java.io.OutputStream;
 
 public class SubwayDatabaseHelper extends SQLiteOpenHelper {
     String DB_PATH = null;
-    private static String DB_NAME = "subwayDatabase.db";   //SQL Lite 파일명 이름
+    private static String DB_NAME = "database.db";   //SQL Lite 파일명 이름
     private SQLiteDatabase myDataBase;
     private final Context myContext;
 
@@ -32,8 +32,8 @@ public class SubwayDatabaseHelper extends SQLiteOpenHelper {
         Log.d("test",dbExist+"");
         if (dbExist) {
         } else {
+            Log.d("test","CopyDataBase");
             this.getReadableDatabase();
-
             copyDataBase();
         }
     }
@@ -44,6 +44,7 @@ public class SubwayDatabaseHelper extends SQLiteOpenHelper {
             String myPath = DB_PATH + DB_NAME;
             checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
         } catch (SQLiteException e) {
+            checkDB = null;
         }
         if (checkDB != null) {
             checkDB.close();
@@ -54,7 +55,7 @@ public class SubwayDatabaseHelper extends SQLiteOpenHelper {
     private void copyDataBase()  {
         InputStream myInput = null;
         try {
-            myInput = myContext.getApplicationContext().getAssets().open(DB_NAME);
+            myInput = myContext.getAssets().open(DB_NAME);
         } catch (IOException e) {
             Log.d("test","myInput");
             e.printStackTrace();
@@ -68,7 +69,7 @@ public class SubwayDatabaseHelper extends SQLiteOpenHelper {
             Log.d("test","myOutput");
             e.printStackTrace();
         }
-        byte[] buffer = new byte[10];
+        byte[] buffer = new byte[1024];
         int length;
         try {
             while ((length = myInput.read(buffer)) > 0) {
@@ -80,6 +81,7 @@ public class SubwayDatabaseHelper extends SQLiteOpenHelper {
         } catch (Exception e) {
             Log.d("test","other");
         }
+        Log.d("test","잘됨");
     }
 
     public void openDataBase() throws SQLException {
