@@ -17,8 +17,8 @@ public class Frag1 extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        view = inflater.inflate(R.layout.foodcategory,container,false);
-
+        //view = inflater.inflate(R.layout.foodcategory,container,false);
+        view = inflater.inflate(R.layout.activity_subway,container,false);
         return view;
     }
 
