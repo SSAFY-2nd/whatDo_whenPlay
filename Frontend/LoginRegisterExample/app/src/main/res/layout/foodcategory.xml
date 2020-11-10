@@ -12,7 +12,6 @@
         android:orientation="vertical"
         android:layout_marginBottom="?attr/actionBarSize"
         tools:ignore="MissingConstraints">
-        <!--  어떻게 하면 Layout끼리 겹치지 않게 할 수 있을까?-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,9 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="지역 명물 image" />
-
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
