@@ -80,7 +80,6 @@ public class TogetherController {
 
 		ArrayList<Integer> foodin = new ArrayList<Integer>();
 		ArrayList<Integer> foodout = new ArrayList<Integer>();
-
 		foodout.addAll(Myfood);
 
 		for (int i = 0; i < Youfood.size(); i++) {
@@ -99,6 +98,26 @@ public class TogetherController {
 		return response;
 	}
 
-	
+	@GetMapping("/{user_id}/{friend_name}/{subway_id}")
+	@ApiOperation(value = "같은 취향 리스트 검색")
+	public ResponseEntity<Taste> searchBysubwaytaste(@PathVariable int user_id, @PathVariable String friend_name, @PathVariable int subway_id) {
+		Taste taste = new Taste();
+		User me = userservice.searchById(user_id);
+		User friend = userservice.searchByNickname(friend_name);
+		
+		List<Integer> Myplay = playtasteservice.selectTaste(user_id);
+		List<Integer> Myfood = foodtasteservice.selectTaste(user_id);
+
+		List<Integer> Youplay = playtasteservice.selectTaste(friend.getId());
+		List<Integer> Youfood = foodtasteservice.selectTaste(friend.getId());
+		
+		List<FoodCategoryposting> foodpost = foodpostservice.searchBySubwayId(subway_id);
+		List<PlayCategoryposting> playpost = playpostservice.searchBySubwayId(subway_id);
+		
+		// 내 정보 넣기
+		
+		ResponseEntity response = new ResponseEntity<>(taste, HttpStatus.OK);
+		return response;
+	}
 
 }
