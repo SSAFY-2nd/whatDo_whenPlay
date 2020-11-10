@@ -9,6 +9,6 @@ import com.ssafy.play.model.FoodCategoryposting;
 @Mapper
 public interface FoodCategorypostingDAO {
 
-	List<FoodCategoryposting> searchBySubwayId(int subway_id);
+	List<Integer> searchBySubwayId(int subway_id);
 
 }

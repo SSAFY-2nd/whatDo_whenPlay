@@ -12,4 +12,5 @@ public interface PlayTasteService {
 	int deleteTaste(int user_id, int category_id);
 
 	List<Integer> selectTaste(int user_id);
+
 }

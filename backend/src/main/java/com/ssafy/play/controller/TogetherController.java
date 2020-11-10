@@ -102,20 +102,57 @@ public class TogetherController {
 	@GetMapping("/{user_id}/{friend_name}/{subway_id}")
 	@ApiOperation(value = "같은 취향 리스트 검색")
 	public ResponseEntity<Taste> searchBysubwaytaste(@PathVariable int user_id, @PathVariable String friend_name, @PathVariable int subway_id) {
-		Taste taste = new Taste();
-		User me = userservice.searchById(user_id);
-		User friend = userservice.searchByNickname(friend_name);
-		
 		List<Integer> Myplay = playtasteservice.selectTaste(user_id);
 		List<Integer> Myfood = foodtasteservice.selectTaste(user_id);
 
+		User friend = userservice.searchByNickname(friend_name);
+
 		List<Integer> Youplay = playtasteservice.selectTaste(friend.getId());
 		List<Integer> Youfood = foodtasteservice.selectTaste(friend.getId());
+
+		Taste taste = new Taste();
+
+		ArrayList<Integer> playin = new ArrayList<Integer>();
+		ArrayList<Integer> playout = new ArrayList<Integer>();
+
+		playout.addAll(Myplay);
+
+		for (int i = 0; i < Youplay.size(); i++) {
+			if (playout.contains(Youplay.get(i))) {
+				playin.add(Youplay.get(i));
+				playout.remove((Integer)Youplay.get(i));
+			}
+			else
+				playout.add(Youplay.get(i));
+		}
+
+		taste.playin = playin;
+		taste.playout = playout;
+
+		ArrayList<Integer> foodin = new ArrayList<Integer>();
+		ArrayList<Integer> foodout = new ArrayList<Integer>();
+		foodout.addAll(Myfood);
+
+		for (int i = 0; i < Youfood.size(); i++) {
+			if (foodout.contains(Youfood.get(i))) {
+				foodin.add(Youfood.get(i));
+				foodout.remove((Integer)Youfood.get(i));
+			}
+			else
+				foodout.add(Youplay.get(i));
+		}
+
+		taste.foodin = foodin;
+		taste.foodout = foodout;
 		
-		List<FoodCategoryposting> foodpost = foodpostservice.searchBySubwayId(subway_id);
-		List<PlayCategoryposting> playpost = playpostservice.searchBySubwayId(subway_id);
+		//짝과의 취향 선택 (겹치는거 & 안겹치는거)
 		
-		// 내 정보 넣기
+		
+		List<Integer> SubwayPlay = playpostservice.searchBySubwayId(subway_id);
+		List<Integer> SubwayFood = foodpostservice.searchBySubwayId(subway_id);
+		
+		//각 지하철 리스트 (포스팅 갯수 순서대로)
+		
 		
 		ResponseEntity response = new ResponseEntity<>(taste, HttpStatus.OK);
 		return response;

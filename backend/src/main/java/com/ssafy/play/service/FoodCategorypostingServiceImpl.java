@@ -18,7 +18,7 @@ public class FoodCategorypostingServiceImpl implements FoodCategorypostingServic
 	private FoodCategorypostingDAO FoodDAO;
 
 	@Override
-	public List<FoodCategoryposting> searchBySubwayId(int subway_id) {
+	public List<Integer> searchBySubwayId(int subway_id) {
 		return FoodDAO.searchBySubwayId(subway_id);
 	}
 	
