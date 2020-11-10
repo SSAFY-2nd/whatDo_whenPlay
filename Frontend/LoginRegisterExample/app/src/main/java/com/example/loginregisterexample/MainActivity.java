@@ -53,6 +53,10 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         setFrag(0); // 첫 프래그먼트 화면 지정
         SetSignUp();
+
+        // 로그인 성공시 역검색 화면으로 넘어가며, Home 화면에는 로그인된 아이디를 띄워준다.
+
+
     }
 
     public void SetSignUp() {
