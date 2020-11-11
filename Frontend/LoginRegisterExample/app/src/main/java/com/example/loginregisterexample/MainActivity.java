@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.loginregisterexample.Playwithme.Frag2;
 import com.example.loginregisterexample.Register.RegisterActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
