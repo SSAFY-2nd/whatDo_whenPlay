@@ -31,7 +31,7 @@ import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = { "*" })
 @RestController
-@RequestMapping(value = "/api/account",method= {RequestMethod.GET, RequestMethod.POST})
+@RequestMapping(value = "/account",method= {RequestMethod.GET, RequestMethod.POST})
 public class UserController {
 
 	@Autowired
