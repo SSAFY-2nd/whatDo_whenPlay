@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         frag1=new Frag1();
         frag2=new Frag2();
         frag3=new Frag3();
-
     }
 
     @Override
@@ -73,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
     private SubsamplingScaleImageView imageView;
