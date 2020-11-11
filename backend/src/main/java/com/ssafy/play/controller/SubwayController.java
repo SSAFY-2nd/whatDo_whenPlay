@@ -25,7 +25,7 @@ import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = { "*" })
 @RestController
-@RequestMapping(value = "/subway",method= {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+@RequestMapping(value = "/subway",method= {RequestMethod.GET, RequestMethod.POST})
 public class SubwayController {
 	
 	@Autowired

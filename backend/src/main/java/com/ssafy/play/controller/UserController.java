@@ -31,7 +31,7 @@ import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = { "*" })
 @RestController
-@RequestMapping(value = "/api/account",method= {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+@RequestMapping(value = "/api/account",method= {RequestMethod.GET, RequestMethod.POST})
 public class UserController {
 
 	@Autowired
@@ -72,11 +72,11 @@ public class UserController {
 
 	@GetMapping("/login")
 	@ApiOperation(value = "로그인 성공/실패 여부를 반환한다")
-	public ResponseEntity<Map<String, Object>> login(@RequestParam("email") String email,
+	public ResponseEntity<Map<String, Object>> login(@RequestParam("nickname") String nickname,
 			@RequestParam("password") String password, HttpServletResponse res) {
 		Map<String, Object> resultMap = new HashMap<>();
 		// 해당 이메일 회원 확인
-		User user = UserService.search(email);
+		User user = UserService.searchByNickname(nickname);
 		ResponseEntity response = null;
 
 		if (user == null) { // 이메일이 없다면... 아이디 없음

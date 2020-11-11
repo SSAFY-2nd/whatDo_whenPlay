@@ -26,7 +26,7 @@ import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = { "*" })
 @RestController
-@RequestMapping(value = "/playStore", method= {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+@RequestMapping(value = "/playStore", method= {RequestMethod.GET, RequestMethod.POST})
 public class PlayStoreController {
 	
 	@Autowired
@@ -34,7 +34,7 @@ public class PlayStoreController {
 	
 	@GetMapping("{subway_id}/{category}")
 	@ApiOperation(value = "놀거리 가게 목록")
-	public ResponseEntity<PlayStore> searchBySubway(@PathVariable int subway_id, @PathVariable String category) {
+	public ResponseEntity<PlayStore> searchBySubway(@PathVariable int subway_id, @PathVariable int category) {
 		List<PlayStore> store=storeservice.searchBySubway(subway_id, category);
 		ResponseEntity response = new ResponseEntity<List<PlayStore>>(store, HttpStatus.OK);
 		return response;

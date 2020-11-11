@@ -26,7 +26,7 @@ import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = { "*" })
 @RestController
-@RequestMapping(value = "/foodstore", method= {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+@RequestMapping(value = "/foodstore", method= {RequestMethod.GET, RequestMethod.POST})
 public class FoodStoreController {
 	
 	@Autowired
@@ -34,7 +34,7 @@ public class FoodStoreController {
 	
 	@GetMapping("{subway_id}/{category}")
 	@ApiOperation(value = "음식점  가게 목록")
-	public ResponseEntity<FoodStore> searchBySubway(@PathVariable int subway_id, @PathVariable String category) {
+	public ResponseEntity<FoodStore> searchBySubway(@PathVariable int subway_id, @PathVariable int category) {
 		List<FoodStore> store=storeservice.searchBySubway(subway_id, category);
 		ResponseEntity response = new ResponseEntity<List<FoodStore>>(store, HttpStatus.OK);
 		return response;

@@ -7,7 +7,7 @@ import com.ssafy.play.model.PlayStore;
 
 public interface FoodStoreService {
 
-	List<FoodStore> searchBySubway(int subway_id, String category);
+	List<FoodStore> searchBySubway(int subway_id, int category);
 	FoodStore searchById(String store_id);
 	List<FoodStore> searchBySubwayId(String subway_id);
 	

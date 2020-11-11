@@ -19,7 +19,7 @@ import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = { "*" })
 @RestController
-@RequestMapping(value = "/liketo", method= {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+@RequestMapping(value = "/liketo", method= {RequestMethod.GET, RequestMethod.POST})
 public class LikeToController {
 
 	@Autowired

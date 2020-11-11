@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ssafy.play.model.FoodCategoryposting;
 import com.ssafy.play.model.PlayCategoryposting;
 import com.ssafy.play.model.Taste;
+import com.ssafy.play.model.Together;
 import com.ssafy.play.model.User;
 import com.ssafy.play.service.FoodCategorypostingService;
 import com.ssafy.play.service.FoodTasteService;
@@ -28,7 +29,7 @@ import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = { "*" })
 @RestController
-@RequestMapping(value = "/together",method= {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+@RequestMapping(value = "/together",method= {RequestMethod.GET, RequestMethod.POST})
 public class TogetherController {
 
 	@Autowired
@@ -100,8 +101,9 @@ public class TogetherController {
 	}
 
 	@GetMapping("/{user_id}/{friend_name}/{subway_id}")
-	@ApiOperation(value = "같은 취향 리스트 검색")
-	public ResponseEntity<Taste> searchBysubwaytaste(@PathVariable int user_id, @PathVariable String friend_name, @PathVariable int subway_id) {
+	@ApiOperation(value = "지하철 취향 리스트 검색")
+	public ResponseEntity<Together> searchBysubwaytaste(@PathVariable int user_id, @PathVariable String friend_name, @PathVariable int subway_id) {
+		Together together = new Together();
 		List<Integer> Myplay = playtasteservice.selectTaste(user_id);
 		List<Integer> Myfood = foodtasteservice.selectTaste(user_id);
 
@@ -109,8 +111,6 @@ public class TogetherController {
 
 		List<Integer> Youplay = playtasteservice.selectTaste(friend.getId());
 		List<Integer> Youfood = foodtasteservice.selectTaste(friend.getId());
-
-		Taste taste = new Taste();
 
 		ArrayList<Integer> playin = new ArrayList<Integer>();
 		ArrayList<Integer> playout = new ArrayList<Integer>();
@@ -126,9 +126,6 @@ public class TogetherController {
 				playout.add(Youplay.get(i));
 		}
 
-		taste.playin = playin;
-		taste.playout = playout;
-
 		ArrayList<Integer> foodin = new ArrayList<Integer>();
 		ArrayList<Integer> foodout = new ArrayList<Integer>();
 		foodout.addAll(Myfood);
@@ -142,19 +139,52 @@ public class TogetherController {
 				foodout.add(Youplay.get(i));
 		}
 
-		taste.foodin = foodin;
-		taste.foodout = foodout;
-		
 		//짝과의 취향 선택 (겹치는거 & 안겹치는거)
-		
 		
 		List<Integer> SubwayPlay = playpostservice.searchBySubwayId(subway_id);
 		List<Integer> SubwayFood = foodpostservice.searchBySubwayId(subway_id);
 		
 		//각 지하철 리스트 (포스팅 갯수 순서대로)
 		
+		ArrayList<Integer> playlist = new ArrayList<Integer>();
+		ArrayList<Integer> foodlist = new ArrayList<Integer>();
 		
-		ResponseEntity response = new ResponseEntity<>(taste, HttpStatus.OK);
+		playlist.addAll(SubwayPlay);
+		foodlist.addAll(SubwayFood);
+		
+		ArrayList<Integer> subplay = new ArrayList<Integer>();
+		ArrayList<Integer> subfood = new ArrayList<Integer>();
+		
+		for (int i = 0; i < playin.size(); i++) {
+			for (int j = 0; j < playlist.size(); j++) {
+				if(playin.get(i)==playlist.get(j)) {
+					subplay.add(playin.get(i));
+					playlist.remove(j);
+				}
+			}
+		}
+		
+		for (int i = 0; i < playlist.size(); i++) {
+			subplay.add(playlist.get(i));
+		}
+		
+		for (int i = 0; i < foodin.size(); i++) {
+			for (int j = 0; j < foodlist.size(); j++) {
+				if(foodin.get(i)==foodlist.get(j)) {
+					subfood.add(foodin.get(i));
+					foodlist.remove(j);
+				}
+			}
+		}
+		
+		for (int i = 0; i < foodlist.size(); i++) {
+			subfood.add(foodlist.get(i));
+		}
+		
+		together.subplay=subplay;
+		together.subfood=subfood;
+		
+		ResponseEntity response = new ResponseEntity<>(together, HttpStatus.OK);
 		return response;
 	}
 
