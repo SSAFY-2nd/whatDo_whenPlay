@@ -157,7 +157,7 @@ public class TogetherController {
 		
 		for (int i = 0; i < playin.size(); i++) {
 			for (int j = 0; j < playlist.size(); j++) {
-				if(playin.get(i)==playlist.get(j)) {
+				if(playin.get(i).equals(playlist.get(j))) {
 					subplay.add(playin.get(i));
 					playlist.remove(j);
 				}
@@ -170,7 +170,7 @@ public class TogetherController {
 		
 		for (int i = 0; i < foodin.size(); i++) {
 			for (int j = 0; j < foodlist.size(); j++) {
-				if(foodin.get(i)==foodlist.get(j)) {
+				if(foodin.get(i).equals(foodlist.get(j))) {
 					subfood.add(foodin.get(i));
 					foodlist.remove(j);
 				}

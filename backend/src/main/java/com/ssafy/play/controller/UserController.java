@@ -41,7 +41,7 @@ public class UserController {
 	private UserService UserService;
 
 	@ApiOperation(value = "모든 회원 정보를 반환한다.", response = List.class)
-	@GetMapping
+	@GetMapping("all")
 	public ResponseEntity<List<User>> selectUser() throws Exception {
 		return new ResponseEntity<List<User>>(UserService.selectUser(), HttpStatus.OK);
 

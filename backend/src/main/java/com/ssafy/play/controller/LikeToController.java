@@ -26,7 +26,7 @@ public class LikeToController {
 	private LikeToService likeService;
 
 	@ApiOperation(value = "즐겨찾기 추가", response = String.class)
-	@PostMapping
+	@PostMapping("create")
 	public ResponseEntity<String> createLiketo(@RequestBody LikeTo liketo) {
 		if (likeService.createLiketo(liketo) == 1) {
 			return new ResponseEntity<String>("success", HttpStatus.OK);
