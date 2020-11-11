@@ -1,6 +1,7 @@
 package com.example.loginregisterexample.viewpager;
 
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,13 +11,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.loginregisterexample.R;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder>{
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder> implements View.OnClickListener{
 
     private ArrayList<String> listData = new ArrayList<>();
     private int selectedPosition = 0;
@@ -36,7 +38,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         if(selectedPosition == position) {
             holder.textView.setBackgroundResource(R.drawable.custom_ripple_effect_border);
-
             holder.textView.setTextColor(Color.RED);
         } else {
             holder.textView.setBackgroundResource(R.drawable.custom_ripple_effect);
@@ -45,11 +46,37 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         holder.textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectedPosition = position;
-                for (int i=0; i<getItemCount(); ++i)
-                    notifyItemChanged(i);
+                // move viewpager position
+                v.setBackgroundResource(R.drawable.custom_ripple_effect_border);
+                CategoryListActivity.viewPager.setCurrentItem(position,true);
             }
 
+        });
+        CategoryListActivity.viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                Log.d("onPageSelected", position+"");
+                int oldPosition = selectedPosition;
+                selectedPosition = position;
+                if(oldPosition == position)
+                    return;
+                // fixed ripple effect error
+                notifyItemChanged(oldPosition);
+                notifyItemChanged(selectedPosition);
+                // menu make center
+                int width = CategoryListActivity.linearLayoutManager.getWidth()/2 - CategoryListActivity.linearLayoutManager.findViewByPosition(position).getWidth()/2;
+                CategoryListActivity.linearLayoutManager.scrollToPositionWithOffset(position,width);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                Log.d("state",state+"");
+            }
         });
         holder.onBind(listData.get(position));
     }
@@ -61,6 +88,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
 
     void addItem(String data) {
         listData.add(data);
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder {

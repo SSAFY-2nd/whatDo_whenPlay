@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:padding="15dp"
         android:id="@+id/linearLayout3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,13 +16,14 @@
 
         <ImageView
             android:id="@+id/poster"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_weight="1"
             android:scaleType="fitXY"
             tools:srcCompat="@tools:sample/backgrounds/scenic[2]" />
 
         <LinearLayout
+            android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -30,7 +32,8 @@
                 android:id="@+id/movieName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textSize="15sp"/>
 
             <TextView
                 android:id="@+id/grade"

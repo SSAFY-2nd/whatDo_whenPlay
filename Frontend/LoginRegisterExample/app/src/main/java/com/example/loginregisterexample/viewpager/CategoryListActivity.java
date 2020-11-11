@@ -1,6 +1,7 @@
 package com.example.loginregisterexample.viewpager;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.loginregisterexample.R;
@@ -22,25 +24,31 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CategoryListActivity extends AppCompatActivity {
+    static public Context mContext;
+
     private RecyclerAdapter recyclerAdapter;
     private ArrayList<String> foodNameList;
     private ArrayList<String> playNameList;
 
-    private ArrayList<ArrayList<SampleData>> categoryList;
+    private ArrayList<ArrayList<SampleData>> categoryFoodList;
+    private ArrayList<ArrayList<SampleData>> categoryPlayList;
     private int selectedPosition = 0;
     private static final int DP = 24;
 
     private TextView foodButton;
     private TextView playButton;
 
-    private LinearLayoutManager linearLayoutManager;
-    private RecyclerView recyclerView;
+    static public LinearLayoutManager linearLayoutManager;
+    static public RecyclerView recyclerView;
+
+    static public ViewPager viewPager;
 
     @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.categorylist_activity);
+        mContext = this;
 
         this.initializeData();
 
@@ -61,6 +69,9 @@ public class CategoryListActivity extends AppCompatActivity {
                 selectButton();
                 recyclerAdapter = new RecyclerAdapter(foodNameList);
                 recyclerView.setAdapter(recyclerAdapter);
+
+                viewPager = findViewById(R.id.viewPager);
+                viewPager.setAdapter(new ViewPagerAdapter(CategoryListActivity.mContext, categoryFoodList));
             }
         });
         playButton.setOnClickListener(new View.OnClickListener() {
@@ -71,22 +82,29 @@ public class CategoryListActivity extends AppCompatActivity {
                 selectButton();
                 recyclerAdapter = new RecyclerAdapter(playNameList);
                 recyclerView.setAdapter(recyclerAdapter);
+
+                viewPager = findViewById(R.id.viewPager);
+                viewPager.setAdapter(new ViewPagerAdapter(CategoryListActivity.mContext, categoryPlayList));
             }
         });
 
 
         // button list
         linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        linearLayoutManager.setInitialPrefetchItemCount(20);
         recyclerView = findViewById(R.id.buttonListView);
         recyclerView.setLayoutManager(linearLayoutManager);
 
 
+        // 일단 처음에 food로
         recyclerAdapter = new RecyclerAdapter(foodNameList);
         recyclerView.setAdapter(recyclerAdapter);
+        recyclerView.setItemAnimator(null);
+
 
         // list viewPager
-        ViewPager viewPager = findViewById(R.id.viewPager);
-        viewPager.setAdapter(new ViewPagerAdapter(this, categoryList));
+        viewPager = findViewById(R.id.viewPager);
+        viewPager.setAdapter(new ViewPagerAdapter(this, categoryFoodList));
 
         //viewPager.setClipToPadding(false);
         /*float density = getResources().getDisplayMetrics().density;
@@ -123,15 +141,24 @@ public class CategoryListActivity extends AppCompatActivity {
         playNameList.add("PC방");
         playNameList.add("박물관");
 
-        categoryList = new ArrayList<ArrayList<SampleData>>();
+        categoryFoodList = new ArrayList<ArrayList<SampleData>>();
 
-        for (int i=0; i<5; i++) {
+        for (int i=0; i<foodNameList.size(); i++) {
             ArrayList<SampleData> temp = new ArrayList<>();
             temp.add(new SampleData(R.drawable.user_icon, "미션임파서블","15세 이상관람가"));
             temp.add(new SampleData(R.drawable.user_icon, "아저씨","19세 이상관람가"));
             temp.add(new SampleData(R.drawable.user_icon, "어벤져스","12세 이상관람가"));
-            categoryList.add(temp);
+            categoryFoodList.add(temp);
         }
 
+        categoryPlayList = new ArrayList<ArrayList<SampleData>>();
+
+        for (int i=0; i<playNameList.size(); i++) {
+            ArrayList<SampleData> temp = new ArrayList<>();
+            temp.add(new SampleData(R.drawable.user_icon, "미션임파서블","15세 이상관람가"));
+            temp.add(new SampleData(R.drawable.user_icon, "아저씨","19세 이상관람가"));
+            temp.add(new SampleData(R.drawable.user_icon, "어벤져스","12세 이상관람가"));
+            categoryPlayList.add(temp);
+        }
     }
 }
