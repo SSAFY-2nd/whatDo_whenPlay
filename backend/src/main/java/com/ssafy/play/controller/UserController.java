@@ -99,7 +99,7 @@ public class UserController {
 		return response;
 	}
 
-	@DeleteMapping("{user_id}")
+	@DeleteMapping("rm/{user_id}")
 	@ApiOperation(value = "회원 삭제 후 성공/실패 여부를 반환다")
 
 	public ResponseEntity<String> deleteUser(@PathVariable int user_id) {
