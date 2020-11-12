@@ -42,7 +42,7 @@ Backend : 김재현
 
 
 
-<img src="https://ifh.cc/g/QWVhvo.png" height = "350px" width="800px"></img>
+<img src="" height = "350px" width="800px"></img>
 
 
 
@@ -229,43 +229,174 @@ Android Studio활용한 어플리케이션 개발
 |Task|URL|Method|Action|
 |---|------|--|--------|
 |회원상세정보|/account/{user_id}|GET|해당 user_id 회원 정보 조회|
-|회원가입|/account/signup|POST|	회원 가입|
+|회원가입|/account/signup|POST|회원 가입|
 |로그인|/account/login|GET|로그인|
-|회원정보 변경|/account/{user_id}|PUT|회원정보 변경|
-|회원 탈퇴|/account/{user_id}|DELETE|해당 user_id 회원 정보 삭제|
-|닉네임 중복 테스트|/account/nickname|GET|닉네임 중복 여부를 테스트함|
-|상점 목록|	/store/{category}|	GET|	음식점 or 놀거리 가게 목록 |
-|상점 상세 페이지|	/store/{store_id}|	GET|	해당되는 가게 검색|
-|역 검색|	/subway/{subway_id}|GET|	지하철 검색||
-|역 이름 검색|	/subway/{subway_name}|	GET|지하철 이름 검색|
-|역 주변 상점 검색|/store/{subway_id}|	GET|역 주변 음식점 리스트 검색|
-|같은 취향 리스트 검색|/friends/{user_id}|GET|친구와 같은 취향 상점 리스트 검색|
-|즐겨찾기 추가|/liketo|POST|별표를 눌렀을 때 즐겨찾기 추가|
-|즐겨찾기 삭제|/liketo/{user_id}/{store_id}|DELETE|눌러져 있는 별표를 눌렀을 때 즐겨찾기 삭제|
+|회원정보 변경|/account|PUT|회원정보 변경|
+|회원정보 조회|/account/info|	GET|회원정보 얻어오기|
+|회원 탈퇴|	/account/rm/{user_id}|DELETE|해당 user_id 회원 정보 삭제|
+|닉네임 중복체크|/account/{nickname}|GET|닉네임으로 중복 체크|
+|음식점 목록|/foodstore/{subway_id}/{category}|GET|음식점 가게 목록 |
+|음식점 검색|/foodstore/{store_id}|GET|음식점 아이디로 검색|
+|역 주변 음식점 리스트 검색|/foodstore/sub/{subway_id}|GET|역 주변에 있는 음식점들 검색|
+|놀거리 목록|/playstore/{subway_id}/{category}|GET|놀거리 가게 목록 |
+|놀거리 검색|/playstore/{store_id}|	GET|	놀거리 아이디로 검색|
+|역 주변 놀거리 리스트 검색|/playstore/sub/{subway_id}|GET|역 주변에 있는 놀거리들 검색|
+|역 검색|	/subway/{subway_id}|GET|지하철 검색|
+|역 이름 검색|	/subway/name/{subway_name}|	GET|지하철 이름 검색|
+|놀거리 취향 등록|	/playtaste/add|	POST|놀거리 취향을 등록한다|
+|놀거리 취향 삭제|	/playtaste/{user_id}/{category_id}|	DELETE|	놀거리 취향을 삭제한다 (해당하는 유저)|
+|음식점 취향 등록|	/foodtaste/add|	POST|먹거리 취향을 등록한다|
+|음식점 취향 삭제|	/foodtaste/{user_id}/{category_id}|	DELETE|	먹거리 취향을 삭제한다 (해당하는 유저)|
+|같은 취향 리스트 검색|	/together/{user_id}/{friend_name}|	GET|	친구와 같은 취향 상점 리스트 검색|
+|지하철 취향 리스트 검색|	/together/{user_id}/{friend_name}/{subway_id}|	GET|친구와 같은 취향과 함께 지하철에 어울리는 리스트 검색|
+|즐겨찾기 추가|/liketo|POST|	별표를 눌렀을 때 즐겨찾기 추가|
+|즐겨찾기 삭제|/liketo/{user_id}/{store_id}|	DELETE|	눌러져 있는 별표를 눌렀을 때 즐겨찾기 삭제|
 
 
 
 ## ERD
 
-<img src="https://ifh.cc/g/KZX3y2.png"></img>
+<img src="https://ifh.cc/g/HUMXxO.png"></img>
 
 
+## SQL 문
+
+##### 회원 테이블
+``` sql
+create table user(
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `password` VARCHAR(255) NOT NULL,
+  `name` VARCHAR(255) NOT NULL,
+  `email` VARCHAR(255) NOT NULL,
+  `nickname` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id`)         
+);
+
+```
+##### food category 테이블
+``` sql
+CREATE TABLE IF NOT EXISTS foodcategory` (
+  `id` INT(11) NOT NULL,
+  `name` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id`)
+  );
+```
+
+##### food categoryposting 테이블
+``` sql
+CREATE TABLE IF NOT EXISTS foodcategoryposting (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `subway_id` INT(11) NOT NULL,
+  `category_id` INT(11) NOT NULL,
+  `post` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+  );
+```
+
+##### 지하철 테이블
+``` sql
+CREATE TABLE IF NOT EXISTS `playwithme`.`subway` (
+  `id` INT(11) NOT NULL,
+  `name` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id`)
+  );
+```
+##### food store 테이블
+``` sql
+CREATE TABLE IF NOT EXISTS foodstore (
+ `id` INT(11) NOT NULL,
+  `subway_id` INT(11) NOT NULL,
+  `category` INT(11) NOT NULL,
+  `name` VARCHAR(45) NOT NULL,
+  `totReview` INT(11) NOT NULL,
+  `rating` DOUBLE NOT NULL,
+  `address` VARCHAR(255) NOT NULL,
+  `distance` INT(11) NULL DEFAULT NULL,
+  `phoneNumber` VARCHAR(255) NULL DEFAULT NULL,
+  `workingTime` VARCHAR(255) NULL DEFAULT NULL,
+  `introduce` VARCHAR(255) NULL DEFAULT NULL,
+  `menu` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `subway_id_idx` (`subway_id` ASC) VISIBLE,
+  CONSTRAINT `subway_id2`
+    FOREIGN KEY (`subway_id`)
+    REFERENCES `playwithme`.`subway` (`id`))
+  );
+```
+
+##### food taste 테이블
+``` sql
+CREATE TABLE IF NOT EXISTS foodtaste (
+`id` INT(11) NOT NULL AUTO_INCREMENT,
+  `user_id` INT(11) NOT NULL,
+  `category_id` INT(11) NOT NULL,
+  PRIMARY KEY (`id`)
+  );
+```
+
+##### 즐겨찾기 테이블
+``` sql
+CREATE TABLE IF NOT EXISTS liketo(
+  `user_id` INT(11) NOT NULL,
+  `store_id` INT(11) NOT NULL,
+  PRIMARY KEY (`user_id`)
+  );
+```
+
+##### playcategory 테이블
+``` sql
+CREATE TABLE IF NOT EXISTS playcategory(
+  `id` INT(11) NOT NULL,
+  `name` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id`)
+  );
+```
+
+##### playcategoryposting 테이블
+``` sql
+CREATE TABLE IF NOT EXISTS playcategoryposting(
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `subway_id` INT(11) NOT NULL,
+  `category_id` INT(11) NOT NULL,
+  `post` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+  );
+```
+
+##### playstore 테이블
+``` sql
+CREATE TABLE IF NOT EXISTS playcategoryposting(
+   `id` INT(11) NOT NULL,
+  `subway_id` INT(11) NOT NULL,
+  `category` INT(11) NOT NULL,
+  `name` VARCHAR(45) NOT NULL,
+  `totReview` INT(11) NOT NULL,
+  `rating` DOUBLE NOT NULL,
+  `address` VARCHAR(255) NOT NULL,
+  `distance` INT(11) NULL DEFAULT NULL,
+  `phoneNumber` VARCHAR(255) NULL DEFAULT NULL,
+  `workingTime` VARCHAR(255) NULL DEFAULT NULL,
+  `introduce` VARCHAR(255) NULL DEFAULT NULL,
+  `menu` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `subway_id_idx` (`subway_id` ASC) VISIBLE,
+  CONSTRAINT `subway_id`
+    FOREIGN KEY (`subway_id`)
+    REFERENCES `playwithme`.`subway` (`id`)
+  );
+```
+
+##### playtaste 테이블
+``` sql
+CREATE TABLE IF NOT EXISTS `playwithme`.`playtaste` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `user_id` INT(11) NOT NULL,
+  `category_id` INT(11) NOT NULL,
+  PRIMARY KEY (`id`)
+  );
+```
 
 ## WireFrame
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #### 01 로딩페이지
 <img src="https://ifh.cc/g/43vQcp.jpg" width="300px"></img>
@@ -329,6 +460,29 @@ Android Studio활용한 어플리케이션 개발
 
 
 
+# :crown: 프로젝트 결과물
+
+
+
+
+
+# :mortar_board: 프로젝트 후 소감
+
+
+
+<img src="https://ifh.cc/g/xxyJWv.jpg" width="80px"> </img>  임건호 :  싸피에서 프로젝트를 진행하며 배움을 얻고 즐겁게 작업했습니다. 실무에 가서도 즐겁게 프로젝트를 하고 싶습니다.
+
+<img src="https://ifh.cc/g/BCtt1j.jpg" width="80px"></img>  우주호 : 다양한 언어를 활용하여 프로젝트를 진행해서 좋았고 팀 분위기가 너무 좋아 행복하게 프로젝트를 진행했습니다.
+
+<img src="https://ifh.cc/g/M0zpRD.jpg" width="80px"></img>  백상혁 : 좋았다
+
+<img src="https://ifh.cc/g/z4MKxX.jpg" width="80px"></img>  김정현 :  마지막 프로젝트라서 뜻 깊었고 spring을 이용한 backend 전문가로 더욱 더 거듭나고 싶습니다
+
+<img src="https://ifh.cc/g/2U2ycR.jpg" width="80px"></img>  김재현 : 안드로이드라는 새로운 개발을 해볼 수 있어서 재밌었고 뜻 깊었던 프로젝트 였습니다. 
+
+
+
+
 # 💪기여 방법
 
 
@@ -361,3 +515,4 @@ Android Studio활용한 어플리케이션 개발
 
 * 공유 - 복제, 배포, 포맷 변경, 전송, 전시, 공연, 방송할 수 있습니다.
 * 변경 - 리믹스, 변형, 2차적 저작물 작성 및 영리목적의 이용이 가능합니다. 
+
