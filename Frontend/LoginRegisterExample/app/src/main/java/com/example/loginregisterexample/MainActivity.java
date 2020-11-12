@@ -1,20 +1,17 @@
 package com.example.loginregisterexample;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.loginregisterexample.Register.RegisterActivity;
+import com.example.loginregisterexample.Playwithme.Frag2;
+import com.example.loginregisterexample.main_category.Frag0;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,8 +25,6 @@ public class MainActivity extends AppCompatActivity {
     private Frag3 frag3;
 
     public static Context mContext;
-
-    Button btn_register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,31 +40,19 @@ public class MainActivity extends AppCompatActivity {
         frag1=new Frag1();
         frag2=new Frag2();
         frag3=new Frag3();
-
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         setFrag(0); // 첫 프래그먼트 화면 지정
-        SetSignUp();
-    }
 
-    public void SetSignUp() {
-        Log.d("test","main page");
+        // 로그인 성공시 역검색 화면으로 넘어가며, Home 화면에는 로그인된 아이디를 띄워준다.
 
-        btn_register = (Button)findViewById(R.id.btn_register);
-        btn_register.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                //이곳에 버튼 클릭시 일어날 일을 적습니다.
-                Log.d("test","signup click");
-                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
-                startActivity(intent);
-            }
-        });
 
     }
+
+
 
     private SubsamplingScaleImageView imageView;
 
@@ -80,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
     public void InitializeView()
     {
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        btn_register = (Button)findViewById(R.id.btn_register);
     }
     public void SetListener()
     {
@@ -95,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
                 {
                     case R.id.tab1:
                         setFrag(0);
-                        SetSignUp();
                         break;
                     case R.id.tab2:
                         setFrag(1);
@@ -137,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
                 ft.replace(R.id.main_frame, frag2);
                 ft.commitNow();
                 break;
+
             case 3:
                 ft.replace(R.id.main_frame, frag3);
                 ft.commitNow();

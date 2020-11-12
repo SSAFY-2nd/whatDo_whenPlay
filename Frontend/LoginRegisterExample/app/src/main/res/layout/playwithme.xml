@@ -42,12 +42,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_marginTop="25dp">
 
                 <EditText
                     android:id="@+id/et_id"
-                    android:layout_width="fill_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/edit_round"
@@ -55,40 +54,57 @@
                     android:inputType="textCapWords"
                     android:padding="10dp"
                     android:textColor="@color/input_register"
-                    android:textColorHint="@color/input_register_hint"/>
+                    android:textColorHint="@color/input_register_hint"
+                    android:layout_weight="5"
+                    android:textSize="10dp"
+                    />
+
+                <Button
+                    android:id="@+id/btn_choice_partner"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="#FFD0D6"
+                    android:textColor="@color/white"
+                    android:text="친구 검색"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_toRightOf="@id/et_id"
+                    android:textSize="10dp"
+                    android:layout_weight="2"
+                    />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:rowCount="2"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="25dp">
 
-                <Button
-                    android:id="@+id/btn_choice_station"
-                    android:layout_width="100dp"
-                    android:layout_height="fill_parent"
-                    android:background="#FFD0D6"
-                    android:text="역 선택"
-                    android:textColor="@color/white"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="25dp"
-                    android:layout_weight="1"/>
-
-                <EditText
+                <AutoCompleteTextView
                     android:id="@+id/et_choice_station"
-                    android:layout_width="200dp"
-                    android:layout_height="fill_parent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/edit_round"
                     android:hint="@string/choicestation"
                     android:inputType="textCapWords"
                     android:padding="10dp"
+                    android:textSize="10dp"
                     android:textColor="@color/input_register"
                     android:textColorHint="@color/input_register_hint"
-                    android:layout_weight="1"/>
+                    android:layout_weight="5"
+                    android:completionThreshold="1"/>
+
+                <Button
+                    android:id="@+id/btn_choice_station"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="#FFD0D6"
+                    android:text="역 선택"
+                    android:textColor="@color/white"
+                    android:textSize="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_weight="2"/>
 
             </LinearLayout>
 
