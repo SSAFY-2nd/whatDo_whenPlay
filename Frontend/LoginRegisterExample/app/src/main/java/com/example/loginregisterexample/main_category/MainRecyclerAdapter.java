@@ -66,6 +66,10 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
                 imageView1.setImageResource(data.getImage1());
             if(data.getImage2() != null)
                 imageView2.setImageResource(data.getImage2());
+            else {
+                imageView2.setOnClickListener(null);
+                imageView2.setImageResource(R.drawable.icons8_medium_icons_96);
+            }
         }
     }
 }
