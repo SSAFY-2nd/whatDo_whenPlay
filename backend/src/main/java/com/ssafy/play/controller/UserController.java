@@ -1,6 +1,7 @@
 package com.ssafy.play.controller;
 
 import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
@@ -49,15 +50,15 @@ public class UserController {
 
 	@ApiOperation(value = "유저 회원가입 시 회원 정보를 등록한다.", response = String.class)
 	@PostMapping("signup")
-	public ResponseEntity<BasicResponse> insertUser(@RequestBody User User) {
-		String password = User.getPassword();
-		User.setPassword(password);
+	public ResponseEntity<BasicResponse> insertUser(@RequestBody User user) {
+		String password = user.getPassword();
+		user.setPassword(password);
 
-		if (UserService.insertUser(User) == 1) {
+		if (UserService.insertUser(user) == 1) {
 			BasicResponse result = new BasicResponse();
 			result.status = true;
 			result.data = "success";
-			result.object = String.valueOf(UserService.getUserId(User.getNickname()));
+			result.object = String.valueOf(UserService.getUserId(user.getNickname()));
 			return new ResponseEntity<>(result, HttpStatus.OK);
 		}
 		BasicResponse result = new BasicResponse();
@@ -66,9 +67,6 @@ public class UserController {
 		result.object = null;
 		return new ResponseEntity<>(result, HttpStatus.NO_CONTENT);
 	}
-
-	// (영문(대소문자 구분), 숫자, 특수문자 조합, 8~12자리)
-	String pwPattern = "^(?=.*\\d)(?=.*[~`!@#$%\\^&*()-])(?=.*[a-z])(?=.*[A-Z]).{8,12}$";
 
 	@GetMapping("/login")
 	@ApiOperation(value = "로그인 성공/실패 여부를 반환한다")

@@ -1,6 +1,7 @@
 package com.ssafy.play.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.play.model.BasicResponse;
 import com.ssafy.play.model.PlayTaste;
-import com.ssafy.play.service.PlayTasteService;
 import com.ssafy.play.service.PlayTasteService;
 
 import io.swagger.annotations.ApiOperation;

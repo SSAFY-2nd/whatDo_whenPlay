@@ -1,6 +1,7 @@
 package com.ssafy.play.controller;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ssafy.play.model.FoodCategoryposting;
-import com.ssafy.play.model.PlayCategoryposting;
 import com.ssafy.play.model.Taste;
 import com.ssafy.play.model.Together;
 import com.ssafy.play.model.User;
@@ -22,7 +21,6 @@ import com.ssafy.play.service.FoodCategorypostingService;
 import com.ssafy.play.service.FoodTasteService;
 import com.ssafy.play.service.PlayCategorypostingService;
 import com.ssafy.play.service.PlayTasteService;
-import com.ssafy.play.service.SubwayService;
 import com.ssafy.play.service.UserService;
 
 import io.swagger.annotations.ApiOperation;
@@ -34,9 +32,6 @@ public class TogetherController {
 
 	@Autowired
 	private UserService userservice;
-
-	@Autowired
-	private SubwayService subwayservice;
 
 	@Autowired
 	private FoodCategorypostingService foodpostservice;
