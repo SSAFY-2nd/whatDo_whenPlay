@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView( R.layout.home);
+        setContentView(R.layout.activity_signup);
         setTitle("로그인");
 
         login_et_email = findViewById(R.id.et_id);

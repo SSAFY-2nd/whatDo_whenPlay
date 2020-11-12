@@ -91,7 +91,8 @@
                     android:textSize="10dp"
                     android:textColor="@color/input_register"
                     android:textColorHint="@color/input_register_hint"
-                    android:layout_weight="5"/>
+                    android:layout_weight="5"
+                    android:completionThreshold="1"/>
 
                 <Button
                     android:id="@+id/btn_choice_station"
