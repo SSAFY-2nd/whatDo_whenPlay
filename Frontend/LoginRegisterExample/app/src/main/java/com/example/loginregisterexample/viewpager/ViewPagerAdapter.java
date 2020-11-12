@@ -35,7 +35,6 @@ public class ViewPagerAdapter extends PagerAdapter {
         listView.setAdapter(listAdapter);
 
         container.addView(view);
-
         return view;
     }
 

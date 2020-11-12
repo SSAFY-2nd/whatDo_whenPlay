@@ -1,5 +1,6 @@
 package com.example.loginregisterexample.main_category;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.loginregisterexample.MainActivity;
 import com.example.loginregisterexample.R;
 import com.example.loginregisterexample.viewpager.CategoryListActivity;
 
@@ -20,9 +22,13 @@ import java.util.ArrayList;
 public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapter.ItemViewHolder>{
 
     private ArrayList<MainCategoryData> listData = new ArrayList<>();
+    private String genre = null;
+    private String[] array = null;
 
-    MainRecyclerAdapter(ArrayList<MainCategoryData> arrayList) {
+    MainRecyclerAdapter(ArrayList<MainCategoryData> arrayList, String genre, String[] array) {
         listData = arrayList;
+        this.genre = genre;
+        this.array = array;
     }
     @NonNull
     @Override
@@ -35,6 +41,33 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         holder.onBind(listData.get(position));
+
+        holder.imageView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                // 클릭해서 카테고리 리스트로 가는 함수
+                /*Intent intent = new Intent(v.getContext(),CategoryListActivity.class);
+                intent.putExtra("genre",genre);
+                intent.putExtra("category",array[position*2]);
+                v.getContext().startActivity(intent);*/
+            }
+        });
+        if(holder.imageView2.isClickable() == true) {
+            holder.imageView2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    // 클릭해서 카테고리 리스트로 가는 함수
+                    /*Intent intent = new Intent(v.getContext(), CategoryListActivity.class);
+                    intent.putExtra("genre", genre);
+                    intent.putExtra("category", array[position * 2 + 1]);
+                    Log.d(genre, array[position * 2 + 1]);
+                    v.getContext().startActivity(intent);*/
+                }
+            });
+        }
     }
 
     @Override
@@ -60,15 +93,14 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
         }
 
         void onBind(MainCategoryData data) {
-            Log.d("data",""+data.getImage2());
             //button.setText(data);
             if(data.getImage1() != null)
                 imageView1.setImageResource(data.getImage1());
             if(data.getImage2() != null)
                 imageView2.setImageResource(data.getImage2());
             else {
-                imageView2.setOnClickListener(null);
-                imageView2.setImageResource(R.drawable.icons8_medium_icons_96);
+                imageView2.setClickable(false);
+                imageView2.setImageBitmap(null);
             }
         }
     }

@@ -23,8 +23,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
     private ArrayList<String> listData = new ArrayList<>();
     private int selectedPosition = 0;
 
-    RecyclerAdapter(ArrayList<String> arrayList) {
+    RecyclerAdapter(ArrayList<String> arrayList,int position) {
         listData = arrayList;
+        selectedPosition = position;
     }
     @NonNull
     @Override
@@ -48,11 +49,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
             public void onClick(View v) {
                 // move viewpager position
                 v.setBackgroundResource(R.drawable.custom_ripple_effect_border);
-                CategoryListActivity.viewPager.setCurrentItem(position,true);
+                CategoryListFrag.viewPager.setCurrentItem(position,true);
             }
 
         });
-        CategoryListActivity.viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        CategoryListFrag.viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -69,8 +70,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
                 notifyItemChanged(oldPosition);
                 notifyItemChanged(selectedPosition);
                 // menu make center
-                int width = CategoryListActivity.linearLayoutManager.getWidth()/2 - CategoryListActivity.linearLayoutManager.findViewByPosition(position).getWidth()/2;
-                CategoryListActivity.linearLayoutManager.scrollToPositionWithOffset(position,width);
+                int width = CategoryListFrag.linearLayoutManager.getWidth()/2 - holder.textView.getWidth()/2;
+                CategoryListFrag.linearLayoutManager.scrollToPositionWithOffset(position,width);
             }
 
             @Override

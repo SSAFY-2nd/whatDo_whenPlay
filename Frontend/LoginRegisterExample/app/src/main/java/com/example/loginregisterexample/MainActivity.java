@@ -1,6 +1,7 @@
 package com.example.loginregisterexample;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Window;
@@ -12,6 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.loginregisterexample.Playwithme.Frag2;
 import com.example.loginregisterexample.main_category.Frag0;
+import com.example.loginregisterexample.viewpager.CategoryListFrag;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
     private Frag1 frag1;
     private Frag2 frag2;
     private Frag3 frag3;
+    private CategoryListFrag categoryListFrag;
+
+    private int selectedFrag = 0;
 
     public static Context mContext;
 
@@ -33,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Intent intent = getIntent();
+        selectedFrag = intent.getIntExtra("화면", 0);
+
         InitializeView();
         SetListener();
 
@@ -40,12 +48,25 @@ public class MainActivity extends AppCompatActivity {
         frag1=new Frag1();
         frag2=new Frag2();
         frag3=new Frag3();
+        categoryListFrag = new CategoryListFrag();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        setFrag(0); // 첫 프래그먼트 화면 지정
+        switch (selectedFrag) {
+            case 0: setFrag(0);
+                break;
+            case 1: setFrag(1);
+                break;
+            case 2: setFrag(2);
+                break;
+            case 3: setFrag(3);
+                break;
+            case 4: setFrag(4);
+                break;
+        }
+        //setFrag(0); // 첫 프래그먼트 화면 지정
 
         // 로그인 성공시 역검색 화면으로 넘어가며, Home 화면에는 로그인된 아이디를 띄워준다.
 
@@ -121,6 +142,16 @@ public class MainActivity extends AppCompatActivity {
 
             case 3:
                 ft.replace(R.id.main_frame, frag3);
+                ft.commitNow();
+                break;
+
+            case 4:
+                Bundle bundle = new Bundle();
+                bundle.putString("genre","놀거리");
+                bundle.putString("category","전체");
+                categoryListFrag.setArguments(bundle);
+
+                ft.replace(R.id.main_frame, categoryListFrag);
                 ft.commitNow();
                 break;
         }
