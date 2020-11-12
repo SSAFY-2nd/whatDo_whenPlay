@@ -17,26 +17,18 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LogIn.LoginActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+        <activity android:name=".viewpager.CategoryListActivity">
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+        </activity>
+        <activity android:name=".LogIn.LoginActivity">
+
         </activity>
         <activity android:name=".Playwithme.PlaywithmeLikelyActivity"/>
         <activity android:name=".Register.RegisterActivity"/>
-        <activity android:name=".SubwayActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
+        <activity android:name=".SubwayActivity"/>
         <!-- 팝업 Activity -->
         <activity android:name=".PopupActivity" android:theme="@android:style/Theme.Holo.Dialog" />
     </application>

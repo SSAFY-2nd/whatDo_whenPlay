@@ -1,7 +1,6 @@
 package com.example.loginregisterexample.Register;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,15 +12,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.Cache;
-import com.android.volley.Network;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.BasicNetwork;
-import com.android.volley.toolbox.DiskBasedCache;
-import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -30,17 +24,8 @@ import com.example.loginregisterexample.Playwithme.AppHelper;
 import com.example.loginregisterexample.R;
 
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.ConnectException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -244,7 +229,7 @@ public class RegisterActivity extends AppCompatActivity {
                     if(UserPwd.equals(PassCk)){
                         if(success){
                             Toast.makeText(getApplicationContext(), String.format("%s님 가입을 환영합니다. ", UserName), Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(RegisterActivity.this, PlayCategory.class);
+                            Intent intent = new Intent(RegisterActivity.this, Frag0.class);
                             startActivity(intent);
                         }else{
                             // 회원가입 실패시
