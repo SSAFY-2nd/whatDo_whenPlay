@@ -17,6 +17,7 @@ import com.example.loginregisterexample.R;
 import com.example.loginregisterexample.viewpager.RecyclerAdapter;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Frag0 extends Fragment {
 
@@ -42,6 +43,7 @@ public class Frag0 extends Fragment {
         playRecyclerView.setLayoutManager(playLinearLayoutManager);
 
         foodCategoryData = new ArrayList<>();
+        
         for(int i=0; i<10; ++i) {
             MainCategoryData temp = new MainCategoryData(null,null);
             temp.setImage1(R.drawable.pizza_icon);
