@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = { "*" })
 @RestController
-@RequestMapping(value = "/playStore", method= {RequestMethod.GET, RequestMethod.POST})
+@RequestMapping(value = "/playStore", method= {RequestMethod.GET})
 public class PlayStoreController {
 	
 	@Autowired

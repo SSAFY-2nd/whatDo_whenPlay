@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = { "*" })
 @RestController
-@RequestMapping(value = "/foodstore", method= {RequestMethod.GET, RequestMethod.POST})
+@RequestMapping(value = "/foodstore", method= {RequestMethod.GET})
 public class FoodStoreController {
 	
 	@Autowired

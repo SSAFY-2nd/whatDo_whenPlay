@@ -27,7 +27,7 @@ import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = { "*" })
 @RestController
-@RequestMapping(value = "/together",method= {RequestMethod.GET, RequestMethod.POST})
+@RequestMapping(value = "/together",method= {RequestMethod.GET})
 public class TogetherController {
 
 	@Autowired
