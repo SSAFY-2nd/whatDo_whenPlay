@@ -26,6 +26,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.loginregisterexample.PlayCategory;
+import com.example.loginregisterexample.Playwithme.AppHelper;
 import com.example.loginregisterexample.R;
 
 
@@ -183,9 +184,8 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void sendSignup(){
-    // 닉네임, 이름, 이메일, 비밀번호, 비밀번호 확인
+        // 닉네임, 이름, 이메일, 비밀번호, 비밀번호 확인
         // 값을 텍스트화 하고 toString()으로 변환
-
         String NickName = join_nickname.getText().toString();
         String UserName = join_name.getText().toString();
         String UserEmail = join_email.getText().toString();
