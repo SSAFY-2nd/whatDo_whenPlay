@@ -57,6 +57,13 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
             //button = itemView.findViewById(R.id.item_button);
             imageView1 = itemView.findViewById(R.id.item_imageview1);
             imageView2 = itemView.findViewById(R.id.item_imageview2);
+
+            imageView1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.v("1","1");
+                }
+            });
         }
 
         void onBind(MainCategoryData data) {

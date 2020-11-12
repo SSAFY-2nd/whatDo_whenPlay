@@ -1,10 +1,13 @@
 package com.example.loginregisterexample.main_category;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -91,7 +94,6 @@ public class Frag0 extends Fragment {
         playNameMap.put("오락실",R.drawable.arcade);
         playNameMap.put("헬스장",R.drawable.fitness);
         playNameMap.put("골프",R.drawable.golf);
-        playNameMap.put("야구",R.drawable.baseball);
         playNameMap.put("양궁",R.drawable.archery);
         playNameMap.put("연극",R.drawable.theater);
         playNameMap.put("방탈출",R.drawable.roomescape);
@@ -107,7 +109,7 @@ public class Frag0 extends Fragment {
         playNameMap.put("문화재",R.drawable.cultural_heritage);
         playRecyclerView.setAdapter(playAdapter);
 
-        String[] playInput = {"전시회","PC방","당구","볼링장","낚시까페","VR","오락실","헬스장","골프","야구","양궁","연극","방탈출","영화관","서점",
+        String[] playInput = {"전시회","PC방","당구","볼링장","낚시까페","VR","오락실","헬스장","골프","양궁","연극","방탈출","영화관","서점",
                 "공원","시장","찜질방","공방","수영장","탁구장","박물관","문화재"};
         for(int i=0; i<(playInput.length+1)/2; ++i) {
             MainCategoryData temp = new MainCategoryData(null,null);
@@ -119,10 +121,6 @@ public class Frag0 extends Fragment {
         }
         playAdapter.notifyDataSetChanged();
 
-
         return view;
     }
-
-
-
 }
