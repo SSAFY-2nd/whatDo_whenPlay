@@ -170,7 +170,7 @@ body {
     height: 100%;
     width: 100%;
     /* background: url("http://www.hdwallpapers.in/walls/milky_way_sky-wide.jpg") no-repeat center center; */
-    background: url("../assets/img/mainpage_img2.jpg") no-repeat center center;
+    background: url("../assets/img/mainpage_img5.jpg") no-repeat center center;
     /* background: url("../assets/img/benchpress_wallpaper.jpg") no-repeat center center; */
     background-size: cover;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
