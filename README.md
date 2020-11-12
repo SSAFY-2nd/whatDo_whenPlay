@@ -42,7 +42,7 @@ Backend : 김재현
 
 
 
-<img src="" height = "350px" width="800px"></img>
+<img src="https://ifh.cc/g/QWVhvo.png" height = "350px" width="800px"></img>
 
 
 
@@ -482,7 +482,6 @@ CREATE TABLE IF NOT EXISTS `playwithme`.`playtaste` (
 
 
 
-
 # 💪기여 방법
 
 
@@ -504,6 +503,7 @@ CREATE TABLE IF NOT EXISTS `playwithme`.`playtaste` (
 * git commit -m "지라번호" 를 통해서 각 지라에 등록을 해서 커밋합니다.
 * git push origin feature/"개발 기능"를 통해서 기능기리 겹치지 않게 수행합니다.
 * git bash에서 merge request를 신청합니다. 
+
 
 
 
