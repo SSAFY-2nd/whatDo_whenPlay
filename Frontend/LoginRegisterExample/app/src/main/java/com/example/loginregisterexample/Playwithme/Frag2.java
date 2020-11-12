@@ -25,6 +25,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.loginregisterexample.MainActivity;
 import com.example.loginregisterexample.R;
 import com.example.loginregisterexample.VO.Play;
 import com.example.loginregisterexample.VO.User;
@@ -50,6 +51,10 @@ public class Frag2 extends Fragment {
     private ArrayList<Integer> listFood;
     private ArrayList<Integer> listPlay;
     private boolean check = false;
+
+    private AutoCompleteTextView autoCompleteTextView;
+    private List<String> station_list;
+
 
     public Frag2() {
     }
