@@ -26,7 +26,7 @@
         <activity android:name=".LogIn.LoginActivity">
 
         </activity>
-
+        <activity android:name=".Playwithme.PlaywithmeLikelyActivity"/>
         <activity android:name=".Register.RegisterActivity"/>
         <activity android:name=".SubwayActivity"/>
         <!-- 팝업 Activity -->
