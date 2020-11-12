@@ -52,7 +52,7 @@ public class Frag0 extends Fragment {
         foodNameMap.put("피자",R.drawable.pizza);
         foodNameMap.put("분식",R.drawable.snack_bar);
         foodNameMap.put("일식",R.drawable.sushi);
-        foodNameMap.put("중식",R.drawable.noodles);
+        foodNameMap.put("중식",R.drawable.chinafood);
         foodNameMap.put("한식",R.drawable.koreafood);
         foodNameMap.put("양식",R.drawable.westernfood);
         foodNameMap.put("족발",R.drawable.beef);
@@ -89,30 +89,31 @@ public class Frag0 extends Fragment {
         Map<String, Integer> playNameMap = new HashMap<>();
         playNameMap.put("전시회",R.drawable.exhibition);
         playNameMap.put("PC방",R.drawable.pcroom);
-        playNameMap.put("당구장",R.drawable.billiardball);
+        playNameMap.put("당구",R.drawable.billiardball);
         playNameMap.put("볼링장",R.drawable.bowling);
-        playNameMap.put("낚시",R.drawable.fishing);
+        playNameMap.put("낚시까페",R.drawable.fishing);
         playNameMap.put("VR",R.drawable.vrchat);
         playNameMap.put("오락실",R.drawable.arcade);
         playNameMap.put("헬스장",R.drawable.fitness);
         playNameMap.put("골프",R.drawable.golf);
         playNameMap.put("야구",R.drawable.baseball);
         playNameMap.put("양궁",R.drawable.archery);
-        playNameMap.put("연극",R.drawable.theaterticket);
+        playNameMap.put("연극",R.drawable.theater);
         playNameMap.put("방탈출",R.drawable.roomescape);
         playNameMap.put("영화관",R.drawable.movie);
         playNameMap.put("서점",R.drawable.bookstore);
         playNameMap.put("공원",R.drawable.park);
         playNameMap.put("시장",R.drawable.sizang);
         playNameMap.put("찜질방",R.drawable.sauna);
-        playNameMap.put("공방",R.drawable.hammer);
+        playNameMap.put("공방",R.drawable.make);
         playNameMap.put("수영장",R.drawable.swimmingpool);
         playNameMap.put("탁구장",R.drawable.pingpong);
         playNameMap.put("박물관",R.drawable.museum);
         playNameMap.put("문화재",R.drawable.cultural_heritage);
         playRecyclerView.setAdapter(playAdapter);
 
-
+        String[] playInput = {"전시회","PC방","당구","볼링장","낚시까페","VR","오락실","헬스장","골프","야구","양궁","연극","방탈출","영화관","서점",
+                "공원","시장","찜질방","공방","수영장","탁구장","박물관","문화재"};
         for(int i=0; i<(playInput.length+1)/2; ++i) {
             MainCategoryData temp = new MainCategoryData(null,null);
             temp.setImage1(playNameMap.get(playInput[i*2]));
