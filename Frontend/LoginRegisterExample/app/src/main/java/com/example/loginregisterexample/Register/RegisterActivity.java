@@ -183,8 +183,8 @@ public class RegisterActivity extends AppCompatActivity {
         try{
             jsonBody.put("email", UserEmail);
             jsonBody.put("name", UserName);
-            jsonBody.put("nickname", UserPwd);
-            jsonBody.put("password", NickName);
+            jsonBody.put("nickname", NickName);
+            jsonBody.put("password", UserPwd);
         }catch(Exception e){
             e.printStackTrace();
         }
