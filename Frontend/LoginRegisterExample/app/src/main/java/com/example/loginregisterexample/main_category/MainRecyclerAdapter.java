@@ -96,6 +96,19 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
             //button = itemView.findViewById(R.id.item_button);
             imageView1 = itemView.findViewById(R.id.item_imageview1);
             imageView2 = itemView.findViewById(R.id.item_imageview2);
+
+            // 아이템 클릭 이벤트 처리.
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    if (pos != RecyclerView.NO_POSITION){
+                        // 데이터 리스트로부터 아이템 데이터 참조.
+                        System.out.println("POS: " +pos);
+                    }
+                }
+            });
+
         }
 
         void onBind(MainCategoryData data) {
