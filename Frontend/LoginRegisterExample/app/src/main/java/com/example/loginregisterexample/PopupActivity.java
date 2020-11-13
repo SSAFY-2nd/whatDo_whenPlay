@@ -15,9 +15,12 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.loginregisterexample.viewpager.CategoryListActivity;
+
 public class PopupActivity extends Activity {
     //private TextView textView;
     private Button subway_btn;
+    private Button food_btn, play_btn, playwith_btn;
 
     @Override
     protected void onPause() {
@@ -47,6 +50,40 @@ public class PopupActivity extends Activity {
         String data = intent.getStringExtra("data");
         //textView.setText(data);
         subway_btn.setText(data);
+
+        play_btn = findViewById(R.id.subway_left);
+        food_btn = findViewById(R.id.subway_right);
+        playwith_btn = findViewById(R.id.subway_main_btn);
+
+        food_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), CategoryListActivity.class);
+                intent.putExtra("genre","먹거리");
+                intent.putExtra("category","전체");
+                v.getContext().startActivity(intent);
+                finish();
+            }
+        });
+        play_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), CategoryListActivity.class);
+                intent.putExtra("genre","놀거리");
+                intent.putExtra("category","전체");
+                v.getContext().startActivity(intent);
+                finish();
+            }
+        });
+        playwith_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), MainActivity.class);
+                intent.putExtra("화면",4);
+                v.getContext().startActivity(intent);
+                finish();
+            }
+        });
     }
 
 

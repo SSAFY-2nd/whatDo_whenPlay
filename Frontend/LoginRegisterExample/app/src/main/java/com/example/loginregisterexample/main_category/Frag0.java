@@ -45,7 +45,9 @@ public class Frag0 extends Fragment {
         playRecyclerView.setLayoutManager(playLinearLayoutManager);
 
         foodCategoryData = new ArrayList<>();
-        foodNameMap = new HashMap<>();
+        String[] foodInput = {"치킨","피자","분식","일식","중식","한식","양식","족발","카페","디저트","곱창","술집","호프집","칵테일바","와인","죽","샐러드","도시락"};
+
+        Map<String, Integer> foodNameMap = new HashMap<>();
         foodNameMap.put("치킨",R.drawable.chicken);
         foodNameMap.put("피자",R.drawable.pizza);
         foodNameMap.put("분식",R.drawable.snack_bar);
@@ -65,10 +67,10 @@ public class Frag0 extends Fragment {
         foodNameMap.put("샐러드",R.drawable.salad);
         foodNameMap.put("도시락",R.drawable.dosirak);
 
-        foodAdapter = new MainRecyclerAdapter(foodCategoryData);
+        foodAdapter = new MainRecyclerAdapter(foodCategoryData,"먹거리",foodInput);
         foodRecyclerView.setAdapter(foodAdapter);
 
-        String[] foodInput = {"치킨","피자","분식","일식","중식","한식","양식","족발","카페","디저트","곱창","술집","호프집","칵테일바","와인","죽","샐러드","도시락"};
+
         for(int i=0; i<(foodInput.length+1)/2; ++i) {
             MainCategoryData temp = new MainCategoryData(null,null);
             temp.setImage1(foodNameMap.get(foodInput[i*2]));
@@ -79,8 +81,11 @@ public class Frag0 extends Fragment {
         }
         foodAdapter.notifyDataSetChanged();
 
+        String[] playInput = {"전시회","PC방","당구장","볼링장","낚시","VR","오락실","헬스장","골프","야구","양궁","연극","방탈출","영화관","서점",
+                "공원","시장","찜질방","공방","수영장","탁구장","박물관","문화재"};
+
         playCategoryData = new ArrayList<>();
-        playAdapter = new MainRecyclerAdapter(playCategoryData);
+        playAdapter = new MainRecyclerAdapter(playCategoryData,"놀거리",playInput);
         Map<String, Integer> playNameMap = new HashMap<>();
         playNameMap.put("전시회",R.drawable.exhibition);
         playNameMap.put("PC방",R.drawable.pcroom);

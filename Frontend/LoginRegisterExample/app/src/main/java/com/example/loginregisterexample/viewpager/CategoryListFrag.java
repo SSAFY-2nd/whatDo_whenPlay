@@ -1,32 +1,29 @@
 package com.example.loginregisterexample.viewpager;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
+import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.SimpleItemAnimator;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.loginregisterexample.MainActivity;
 import com.example.loginregisterexample.R;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-public class CategoryListActivity extends AppCompatActivity {
+public class CategoryListFrag extends Fragment {
+    private View view;
+
     static public Context mContext;
 
     private RecyclerAdapter recyclerAdapter;
@@ -49,24 +46,27 @@ public class CategoryListActivity extends AppCompatActivity {
     private String genre = null;
     private String category = null;
 
-    @SuppressLint("ResourceAsColor")
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.categorylist_activity);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.categorylist_activity,container,false);
 
         // 데이터 받기
-        Intent intent = getIntent();
-        genre = intent.getStringExtra("genre");
-        category = intent.getStringExtra("category");
+        //Intent intent = MainActivity.mContext.getIntent();
+        Bundle bundle = getArguments();
+
+        //genre = intent.getStringExtra("genre");
+        //category = intent.getStringExtra("category");
+        genre = bundle.getString("genre");
+        category = bundle.getString("category");
         Log.d("test",genre+" "+category);
 
-        mContext = this;
+        //mContext = this;
         this.initializeData();
 
         // two button
-        foodButton = findViewById(R.id.categoryFoodButton);
-        playButton = findViewById(R.id.categoryPlayButton);
+        foodButton = view.findViewById(R.id.categoryFoodButton);
+        playButton = view.findViewById(R.id.categoryPlayButton);
 
         // 놀거리 먹거리 버튼 선택 색깔
         if(genre.equals("놀거리")) {
@@ -83,32 +83,38 @@ public class CategoryListActivity extends AppCompatActivity {
         foodButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(selectedPosition == 0) {
+                    return;
+                }
                 selectedPosition = 0;
                 selectButton();
                 recyclerAdapter = new RecyclerAdapter(foodNameList,0);
                 recyclerView.setAdapter(recyclerAdapter);
 
-                viewPager = findViewById(R.id.viewPager);
-                viewPager.setAdapter(new ViewPagerAdapter(CategoryListActivity.mContext, categoryFoodList));
+                viewPager = view.findViewById(R.id.viewPager);
+                viewPager.setAdapter(new ViewPagerAdapter(MainActivity.mContext, categoryFoodList));
             }
         });
         playButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+                if(selectedPosition == 1) {
+                    return;
+                }
                 selectedPosition = 1;
                 selectButton();
                 recyclerAdapter = new RecyclerAdapter(playNameList, 0);
                 recyclerView.setAdapter(recyclerAdapter);
 
-                viewPager = findViewById(R.id.viewPager);
-                viewPager.setAdapter(new ViewPagerAdapter(CategoryListActivity.mContext, categoryPlayList));
+                viewPager = view.findViewById(R.id.viewPager);
+                viewPager.setAdapter(new ViewPagerAdapter(getActivity().getApplicationContext(), categoryPlayList));
             }
         });
 
         // button list
-        linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        recyclerView = findViewById(R.id.buttonListView);
+        linearLayoutManager = new LinearLayoutManager(MainActivity.mContext, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView = view.findViewById(R.id.buttonListView);
         recyclerView.setLayoutManager(linearLayoutManager);
 
 
@@ -125,24 +131,20 @@ public class CategoryListActivity extends AppCompatActivity {
 
 
         // list viewPager
-        viewPager = findViewById(R.id.viewPager);
+        viewPager = view.findViewById(R.id.viewPager);
         Log.d("test",genre);
         if(genre.equals("놀거리")) {
-            viewPager.setAdapter(new ViewPagerAdapter(this, categoryPlayList));
+            viewPager.setAdapter(new ViewPagerAdapter(MainActivity.mContext, categoryPlayList));
             Log.d("test",categoryPlayList.indexOf(category)+"");
             viewPager.setCurrentItem(playNameList.indexOf(category));
         } else {
-            viewPager.setAdapter(new ViewPagerAdapter(this, categoryFoodList));
+            viewPager.setAdapter(new ViewPagerAdapter(MainActivity.mContext, categoryFoodList));
             viewPager.setCurrentItem(foodNameList.indexOf(category));
         }
 
-
-        //viewPager.setClipToPadding(false);
-        /*float density = getResources().getDisplayMetrics().density;
-        int margin = (int) (DP * density);
-        viewPager.setPadding(margin, 0, margin, 0);
-        viewPager.setPageMargin(margin/2);*/
+        return view;
     }
+
     public void selectButton() {
         if(selectedPosition == 0) {
             foodButton.setBackgroundResource(R.drawable.food_play_ripple_effect_click);
@@ -152,6 +154,7 @@ public class CategoryListActivity extends AppCompatActivity {
             playButton.setBackgroundResource(R.drawable.food_play_ripple_effect_click);
         }
     }
+
     public void initializeData()
     {
         foodNameList = new ArrayList<>();
@@ -201,6 +204,8 @@ public class CategoryListActivity extends AppCompatActivity {
         playNameList.add("박물관");
         playNameList.add("문화재");
         categoryFoodList = new ArrayList<ArrayList<SampleData>>();
+
+
 
         for (int i=0; i<foodNameList.size(); i++) {
             ArrayList<SampleData> temp = new ArrayList<>();
