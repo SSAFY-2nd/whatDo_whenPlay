@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,6 +14,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.loginregisterexample.R;
+import com.example.loginregisterexample.VO.foodCategory;
+import com.example.loginregisterexample.VO.foodNameMap;
+import com.example.loginregisterexample.VO.playCategory;
+import com.example.loginregisterexample.VO.playNameMap;
+import com.example.loginregisterexample.main_category.Frag0;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,56 +26,10 @@ import java.util.HashMap;
 public class PlaywithmeLikelyActivity extends AppCompatActivity {
 
     private View view;
-
-    public final HashMap<Integer, String> foodCategory = new HashMap<Integer, String >(){
-        {
-            put(1,"치킨");
-            put(2, "피자");
-            put(3, "분식");
-            put(4, "일삭");
-            put(5, "중식");
-            put(6, "한식");
-            put(7, "양식");
-            put(8, "족발");
-            put(9, "카페");
-            put(10, "디저트");
-            put(11, "곱창");
-            put(12, "술집");
-            put(13, "호프집");
-            put(14, "칵테일바");
-            put(15, "와인");
-            put(16, "죽");
-            put(17, "샐러드");
-            put(18, "도시락");
-        }
-    };
-
-    public final HashMap<Integer, String> playCategory = new HashMap<Integer, String >(){
-        {
-            put(1,"전시회");
-            put(2, "pc방");
-            put(3, "당구장");
-            put(4, "볼링장");
-            put(5, "낚시카페");
-            put(6, "vr");
-            put(7, "오락실");
-            put(8, "헬스장");
-            put(9, "골프");
-            put(10, "양궁");
-            put(11, "연극");
-            put(12, "방탈출");
-            put(13, "영화관");
-            put(14, "서점");
-            put(15, "공원");
-            put(16, "시장");
-            put(17, "찜질방");
-            put(18, "공방");
-            put(19, "수영장");
-            put(20, "탁구장");
-            put(21, "박물관");
-            put(22, "문화재");
-        }
-    };
+    private ImageView eat_strongcomm1, eat_strongcomm2, eat_strongcomm3;
+    private ImageView eat_comm1, eat_comm2, eat_comm3;
+    private ImageView play_strongcomm1, play_strongcomm2, play_strongcomm3;
+    private ImageView play_comm1, play_comm2, play_comm3;
 
 
     @Override
@@ -81,8 +41,52 @@ public class PlaywithmeLikelyActivity extends AppCompatActivity {
         ArrayList<Integer> listPlay = getIntent().getIntegerArrayListExtra("listplay");
         ArrayList<Integer> listFood = getIntent().getIntegerArrayListExtra("listfood");
 
+
+        foodCategory fc = new foodCategory();
+        playCategory pc = new playCategory();
+        foodNameMap fnm = new foodNameMap();
+        playNameMap pnm = new playNameMap();
+
+
+        eat_strongcomm1 = (ImageView)findViewById(R.id.btn_eat_strongcomm1);
+        eat_strongcomm2 = (ImageView)findViewById(R.id.btn_eat_strongcomm2);
+        eat_strongcomm3 = (ImageView)findViewById(R.id.btn_eat_strongcomm3);
+
+        eat_comm1 = (ImageView)findViewById(R.id.btn_eat_comm1);
+        eat_comm2 = (ImageView)findViewById(R.id.btn_eat_comm2);
+        eat_comm3 = (ImageView)findViewById(R.id.btn_eat_comm3);
+
+
+        play_strongcomm1 = (ImageView)findViewById(R.id.btn_play_strongcomm1);
+        play_strongcomm2 = (ImageView)findViewById(R.id.btn_play_strongcomm2);
+        play_strongcomm3 = (ImageView)findViewById(R.id.btn_play_strongcomm3);
+
+
+        play_comm1 = (ImageView)findViewById(R.id.btn_play_comm1);
+        play_comm2 = (ImageView)findViewById(R.id.btn_play_comm2);
+        play_comm3 = (ImageView)findViewById(R.id.btn_play_comm3);
+
+
         // 놀거리 강추 3, 추천 3, 먹거리 강추 3, 추천 3
-        
+        eat_strongcomm1.setImageDrawable(getResources().getDrawable(fnm.getFoodNameMap(fc.getFoodCategory(listFood.get(0)))));
+        eat_strongcomm2.setImageDrawable(getResources().getDrawable(fnm.getFoodNameMap(fc.getFoodCategory(listFood.get(1)))));
+        eat_strongcomm3.setImageDrawable(getResources().getDrawable(fnm.getFoodNameMap(fc.getFoodCategory(listFood.get(2)))));
+
+        eat_comm1.setImageDrawable(getResources().getDrawable(fnm.getFoodNameMap(fc.getFoodCategory(listFood.get(4)))));
+        eat_comm2.setImageDrawable(getResources().getDrawable(fnm.getFoodNameMap(fc.getFoodCategory(listFood.get(5)))));
+        eat_comm3.setImageDrawable(getResources().getDrawable(fnm.getFoodNameMap(fc.getFoodCategory(listFood.get(6)))));
+
+        Log.v("A", listPlay.get(2).toString());
+        Log.v("B", pc.getPlayCategory(listPlay.get(2)).toString());
+        Log.v("C", pnm.getPlayNameMap(pc.getPlayCategory(listPlay.get(2))).toString());
+
+        play_strongcomm1.setImageDrawable(getResources().getDrawable(pnm.getPlayNameMap(pc.getPlayCategory(listPlay.get(0)))));
+        play_strongcomm2.setImageDrawable(getResources().getDrawable(pnm.getPlayNameMap(pc.getPlayCategory(listPlay.get(1)))));
+        play_strongcomm3.setImageDrawable(getResources().getDrawable(pnm.getPlayNameMap(pc.getPlayCategory(listPlay.get(2)))));
+
+        play_comm1.setImageDrawable(getResources().getDrawable(pnm.getPlayNameMap(pc.getPlayCategory(listPlay.get(3)))));
+        play_comm2.setImageDrawable(getResources().getDrawable(pnm.getPlayNameMap(pc.getPlayCategory(listPlay.get(4)))));
+        play_comm3.setImageDrawable(getResources().getDrawable(pnm.getPlayNameMap(pc.getPlayCategory(listPlay.get(5)))));
 
 
 

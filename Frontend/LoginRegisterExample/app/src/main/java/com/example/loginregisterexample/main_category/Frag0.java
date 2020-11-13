@@ -28,7 +28,7 @@ public class Frag0 extends Fragment {
     private MainRecyclerAdapter playAdapter;
     private ArrayList<MainCategoryData> foodCategoryData;
     private ArrayList<MainCategoryData> playCategoryData;
-
+    public static Map<String, Integer> foodNameMap;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
