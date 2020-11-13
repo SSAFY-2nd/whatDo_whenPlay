@@ -28,7 +28,7 @@ public class Frag0 extends Fragment {
     private MainRecyclerAdapter playAdapter;
     private ArrayList<MainCategoryData> foodCategoryData;
     private ArrayList<MainCategoryData> playCategoryData;
-
+    public static Map<String, Integer> foodNameMap;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
@@ -45,7 +45,7 @@ public class Frag0 extends Fragment {
         playRecyclerView.setLayoutManager(playLinearLayoutManager);
 
         foodCategoryData = new ArrayList<>();
-        Map<String, Integer> foodNameMap = new HashMap<>();
+        foodNameMap = new HashMap<>();
         foodNameMap.put("치킨",R.drawable.chicken);
         foodNameMap.put("피자",R.drawable.pizza);
         foodNameMap.put("분식",R.drawable.snack_bar);
