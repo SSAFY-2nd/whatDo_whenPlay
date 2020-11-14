@@ -151,7 +151,7 @@ public class Frag2 extends Fragment {
         final String searchFriendId = search_friend.getText().toString();
 
         // 대표적인 예로 androidhive의 테스트 url을 삽입했다. 이부분을 자신이 원하는 부분으로 바꾸면 될 터
-        String URL = String.format("http://k3a304.p.ssafy.io:8399/api/account/info?nickname=%s", searchFriendId);
+        String URL = String.format("http://k3a304.p.ssafy.io:8399/account/info?nickname=%s", searchFriendId);
         Log.v("갓갓",URL);
 
         StringRequest request = new StringRequest(

@@ -1,6 +1,8 @@
 package com.example.loginregisterexample.main_category;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +35,10 @@ public class Frag0 extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
+
+        Bundle bundle = getArguments();
+        String curId = bundle.getString("id");
+
         //view = inflater.inflate(R.layout.home,container,false);
         view = inflater.inflate(R.layout.main_category,container,false);
 
@@ -67,7 +73,7 @@ public class Frag0 extends Fragment {
         foodNameMap.put("샐러드",R.drawable.salad);
         foodNameMap.put("도시락",R.drawable.dosirak);
 
-        foodAdapter = new MainRecyclerAdapter(foodCategoryData,"먹거리",foodInput);
+        foodAdapter = new MainRecyclerAdapter(foodCategoryData,"먹거리",foodInput,curId);
         foodRecyclerView.setAdapter(foodAdapter);
 
 
@@ -85,7 +91,7 @@ public class Frag0 extends Fragment {
                 "공원","시장","찜질방","공방","수영장","탁구장","박물관","문화재"};
 
         playCategoryData = new ArrayList<>();
-        playAdapter = new MainRecyclerAdapter(playCategoryData,"놀거리",playInput);
+        playAdapter = new MainRecyclerAdapter(playCategoryData,"놀거리",playInput,curId);
         Map<String, Integer> playNameMap = new HashMap<>();
         playNameMap.put("전시회",R.drawable.exhibition);
         playNameMap.put("PC방",R.drawable.pcroom);
