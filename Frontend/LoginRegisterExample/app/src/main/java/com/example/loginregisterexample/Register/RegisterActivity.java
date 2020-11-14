@@ -19,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.loginregisterexample.LogIn.LoginActivity;
 import com.example.loginregisterexample.Playwithme.AppHelper;
 import com.example.loginregisterexample.R;
 import com.example.loginregisterexample.main_category.Frag0;
@@ -182,8 +183,8 @@ public class RegisterActivity extends AppCompatActivity {
         try{
             jsonBody.put("email", UserEmail);
             jsonBody.put("name", UserName);
-            jsonBody.put("nickname", UserPwd);
-            jsonBody.put("password", NickName);
+            jsonBody.put("nickname", NickName);
+            jsonBody.put("password", UserPwd);
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -229,8 +230,9 @@ public class RegisterActivity extends AppCompatActivity {
                     if(UserPwd.equals(PassCk)){
                         if(success){
                             Toast.makeText(getApplicationContext(), String.format("%s님 가입을 환영합니다. ", UserName), Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(RegisterActivity.this, Frag0.class);
+                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                             startActivity(intent);
+                            finish();
                         }else{
                             // 회원가입 실패시
                             Toast.makeText(getApplicationContext(), "회원가입에 실패하였습니다.", Toast.LENGTH_SHORT).show();

@@ -25,11 +25,15 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
     private String genre = null;
     private String[] array = null;
 
+
+
     MainRecyclerAdapter(ArrayList<MainCategoryData> arrayList, String genre, String[] array) {
         listData = arrayList;
         this.genre = genre;
         this.array = array;
     }
+
+    //해당 adapter와 연결하는 recyclerView에 추가할 item의 레이아웃과 item Data를 bind
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -38,6 +42,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
         return new ItemViewHolder(view);
     }
 
+    //recyclerView 자체와 item 데이터셋을 서로 연결
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         holder.onBind(listData.get(position));
@@ -58,7 +63,6 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
             holder.imageView2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     // 클릭해서 카테고리 리스트로 가는 함수
                     /*Intent intent = new Intent(v.getContext(), CategoryListActivity.class);
                     intent.putExtra("genre", genre);
@@ -70,6 +74,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
         }
     }
 
+    //  데이터셋의 데이터 개수
     @Override
     public int getItemCount() {
         return listData.size();
@@ -80,6 +85,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
     }
 
 
+    //item 레이아웃에 추가했던 view들을 추가하고, 생성자에서 id로 연결
     class ItemViewHolder extends RecyclerView.ViewHolder {
         //private Button button;
         private ImageView imageView1;
@@ -90,6 +96,19 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
             //button = itemView.findViewById(R.id.item_button);
             imageView1 = itemView.findViewById(R.id.item_imageview1);
             imageView2 = itemView.findViewById(R.id.item_imageview2);
+
+            // 아이템 클릭 이벤트 처리.
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    if (pos != RecyclerView.NO_POSITION){
+                        // 데이터 리스트로부터 아이템 데이터 참조.
+                        System.out.println("POS: " +pos);
+                    }
+                }
+            });
+
         }
 
         void onBind(MainCategoryData data) {
