@@ -76,7 +76,7 @@ public class Frag2 extends Fragment {
         autoCompleteTextView = (AutoCompleteTextView)view.findViewById(R.id.et_choice_station);
         // AutoCompleteTextView 에 아답터를 연결한다.
         autoCompleteTextView.setAdapter(new ArrayAdapter<String>(MainActivity.mContext, android.R.layout.simple_dropdown_item_1line,  station_list));*/
-
+        //Log.d("subway",getArguments().getString("subway"));
         view = inflater.inflate(R.layout.playwithme,container,false);
 
         station_list = new ArrayList<>();

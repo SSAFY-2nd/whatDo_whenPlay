@@ -15,7 +15,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.loginregisterexample.MainActivity;
 import com.example.loginregisterexample.R;
-import com.example.loginregisterexample.viewpager.CategoryListActivity;
+//import com.example.loginregisterexample.viewpager.CategoryListActivity;
 
 import java.util.ArrayList;
 

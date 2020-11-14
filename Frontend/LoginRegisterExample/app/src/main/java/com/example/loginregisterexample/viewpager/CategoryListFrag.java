@@ -16,10 +16,28 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
+import com.android.volley.ParseError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.loginregisterexample.MainActivity;
 import com.example.loginregisterexample.R;
+import com.example.loginregisterexample.VO.Store;
+import com.example.loginregisterexample.VO.User;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class CategoryListFrag extends Fragment {
     private View view;
@@ -27,11 +45,13 @@ public class CategoryListFrag extends Fragment {
     static public Context mContext;
 
     private RecyclerAdapter recyclerAdapter;
+    private RecyclerAdapter playRecyclerAdapter;
+    private RecyclerAdapter foodRecyclerAdapter;
     private ArrayList<String> foodNameList;
     private ArrayList<String> playNameList;
 
-    private ArrayList<ArrayList<SampleData>> categoryFoodList;
-    private ArrayList<ArrayList<SampleData>> categoryPlayList;
+    private ArrayList<ArrayList<Store>> categoryFoodList;
+    private ArrayList<ArrayList<Store>> categoryPlayList;
     private int selectedPosition = 0;
     private static final int DP = 24;
 
@@ -43,13 +63,20 @@ public class CategoryListFrag extends Fragment {
 
     static public ViewPager viewPager;
 
-    private String genre = null;
+    private String genre = "놀거리";
     private String category = null;
+
+    static RequestQueue searchFriendRequest2;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.categorylist_activity,container,false);
+
+        // RequestQueue 객체생성
+        if (searchFriendRequest2 == null) {
+            searchFriendRequest2 = Volley.newRequestQueue(getActivity());
+        }
 
         // 데이터 받기
         //Intent intent = MainActivity.mContext.getIntent();
@@ -59,6 +86,9 @@ public class CategoryListFrag extends Fragment {
         //category = intent.getStringExtra("category");
         genre = bundle.getString("genre");
         category = bundle.getString("category");
+        if(genre == null) {
+            genre = "놀거리";
+        }
         Log.d("test",genre+" "+category);
 
         //mContext = this;
@@ -79,6 +109,8 @@ public class CategoryListFrag extends Fragment {
             foodButton.setBackgroundResource(R.drawable.food_play_ripple_effect);
             playButton.setBackgroundResource(R.drawable.food_play_ripple_effect_click);
         }
+        foodRecyclerAdapter = new RecyclerAdapter(foodNameList,0);
+        playRecyclerAdapter = new RecyclerAdapter(playNameList,0);
         // 위의 버튼 누를때
         foodButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,8 +120,13 @@ public class CategoryListFrag extends Fragment {
                 }
                 selectedPosition = 0;
                 selectButton();
-                recyclerAdapter = new RecyclerAdapter(foodNameList,0);
+                recyclerAdapter = foodRecyclerAdapter;
+
+                linearLayoutManager = new LinearLayoutManager(MainActivity.mContext, LinearLayoutManager.HORIZONTAL, false);
+                recyclerView.setLayoutManager(linearLayoutManager);
+
                 recyclerView.setAdapter(recyclerAdapter);
+                recyclerView.setItemAnimator(null);
 
                 viewPager = view.findViewById(R.id.viewPager);
                 viewPager.setAdapter(new ViewPagerAdapter(MainActivity.mContext, categoryFoodList));
@@ -102,13 +139,20 @@ public class CategoryListFrag extends Fragment {
                 if(selectedPosition == 1) {
                     return;
                 }
+
                 selectedPosition = 1;
                 selectButton();
-                recyclerAdapter = new RecyclerAdapter(playNameList, 0);
+
+                recyclerAdapter = playRecyclerAdapter;
+
+                linearLayoutManager = new LinearLayoutManager(MainActivity.mContext, LinearLayoutManager.HORIZONTAL, false);
+                recyclerView.setLayoutManager(linearLayoutManager);
+
                 recyclerView.setAdapter(recyclerAdapter);
+                recyclerView.setItemAnimator(null);
 
                 viewPager = view.findViewById(R.id.viewPager);
-                viewPager.setAdapter(new ViewPagerAdapter(getActivity().getApplicationContext(), categoryPlayList));
+                viewPager.setAdapter(new ViewPagerAdapter(MainActivity.mContext, categoryPlayList));
             }
         });
 
@@ -121,10 +165,10 @@ public class CategoryListFrag extends Fragment {
         // 받아온 intent로 결정 디폴트 food
         if(genre.equals("놀거리")) {
             int position = playNameList.indexOf(category);
-            recyclerAdapter = new RecyclerAdapter(playNameList,position);
+            recyclerAdapter = playRecyclerAdapter;
         } else {
             int position = foodNameList.indexOf(category);
-            recyclerAdapter = new RecyclerAdapter(foodNameList,position);
+            recyclerAdapter = foodRecyclerAdapter;
         }
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.setItemAnimator(null);
@@ -135,7 +179,6 @@ public class CategoryListFrag extends Fragment {
         Log.d("test",genre);
         if(genre.equals("놀거리")) {
             viewPager.setAdapter(new ViewPagerAdapter(MainActivity.mContext, categoryPlayList));
-            Log.d("test",categoryPlayList.indexOf(category)+"");
             viewPager.setCurrentItem(playNameList.indexOf(category));
         } else {
             viewPager.setAdapter(new ViewPagerAdapter(MainActivity.mContext, categoryFoodList));
@@ -168,7 +211,6 @@ public class CategoryListFrag extends Fragment {
         foodNameList.add("양식");
         foodNameList.add("족발");
         foodNameList.add("카페");
-        foodNameList.add("피자");
         foodNameList.add("디저트");
         foodNameList.add("곱창");
         foodNameList.add("술집");
@@ -203,27 +245,170 @@ public class CategoryListFrag extends Fragment {
         playNameList.add("탁구장");
         playNameList.add("박물관");
         playNameList.add("문화재");
-        categoryFoodList = new ArrayList<ArrayList<SampleData>>();
-
-
+        categoryFoodList = new ArrayList<ArrayList<Store>>();
 
         for (int i=0; i<foodNameList.size(); i++) {
-            ArrayList<SampleData> temp = new ArrayList<>();
-            temp.add(new SampleData(R.drawable.user_icon, foodNameList.get(i),"15세 이상관람가"));
-            temp.add(new SampleData(R.drawable.user_icon, "미션임파서블","15세 이상관람가"));
-            temp.add(new SampleData(R.drawable.user_icon, "아저씨","19세 이상관람가"));
-            temp.add(new SampleData(R.drawable.user_icon, "어벤져스","12세 이상관람가"));
+            ArrayList<Store> temp = new ArrayList<>();
             categoryFoodList.add(temp);
         }
 
-        categoryPlayList = new ArrayList<ArrayList<SampleData>>();
+        // 데이터 받기
+        // 대표적인 예로 androidhive의 테스트 url을 삽입했다. 이부분을 자신이 원하는 부분으로 바꾸면 될 터
+        // 1 강남역
+        String URL = String.format("http://k3a304.p.ssafy.io:8399/foodstore/sub/%d", 1);
+
+
+        StringRequest request = new StringRequest(
+                Request.Method.GET,
+                URL,
+                new Response.Listener<String>() {
+
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            // ID 입력하여 존재하는 Email인지 확인.
+                            // 존재한다면 "@@님" 확인되었습니다.
+                            // 존재하지않는다면 "아이디를 다시 입력해주세요.!"
+                            JSONArray jsonObj = null;
+                            jsonObj = new JSONArray(response);
+
+                            for(int i=0; i<jsonObj.length(); i++){
+                                Store store = new Store();
+                                JSONObject temp = jsonObj.getJSONObject(i);
+                                store.setId(temp.getString("id"));
+                                store.setSubway_id(temp.getString("subway_id"));
+                                store.setCategory(temp.getString("category"));
+                                store.setName(temp.getString("name"));
+                                store.setTotReview(temp.getString("totReview"));
+                                store.setRating(temp.getString("rating"));
+                                store.setAddress(temp.getString("address"));
+                                store.setDistance(temp.getString("distance"));
+                                store.setPhoneNumber(temp.getString("phoneNumber"));
+                                store.setWorkingTime(temp.getString("workingTime"));
+                                store.setIntroduce(temp.getString("introduce"));
+                                store.setMenu(temp.getString("menu"));
+                                store.setPicture(temp.getString("picture"));
+                                categoryFoodList.get(0).add(store);
+                                categoryFoodList.get(Integer.parseInt(store.getCategory())).add(store);
+                                Log.d("test",store.toString());
+                            }
+                        }catch (Exception e){
+                            Log.v("E", e.getMessage());
+                        }
+
+                    }
+                }, new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error){
+                Log.i("EE", "HERE");
+
+            }
+        }
+        ){
+            @Override
+            protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                try {
+                    String utf8String = new String(response.data, "UTF-8");
+                    return Response.success(utf8String, HttpHeaderParser.parseCacheHeaders(response));
+                } catch (UnsupportedEncodingException e) {
+                    // log error
+                    return Response.error(new ParseError(e));
+                } catch (Exception e) {
+                    // log error
+                    return Response.error(new ParseError(e));
+                }
+            }
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                return super.getParams();
+            }
+        };
+
+        // 캐쉬기능을 끊다. 바로바로 내용처리되도록
+        request.setShouldCache(false);
+        searchFriendRequest2.add(request);
+
+        categoryPlayList = new ArrayList<ArrayList<Store>>();
 
         for (int i=0; i<playNameList.size(); i++) {
-            ArrayList<SampleData> temp = new ArrayList<>();
-            temp.add(new SampleData(R.drawable.user_icon, "미션임파서블","15세 이상관람가"));
-            temp.add(new SampleData(R.drawable.user_icon, "아저씨","19세 이상관람가"));
-            temp.add(new SampleData(R.drawable.user_icon, "어벤져스","12세 이상관람가"));
+            ArrayList<Store> temp = new ArrayList<>();
             categoryPlayList.add(temp);
         }
+
+        // 데이터 받기
+        // 대표적인 예로 androidhive의 테스트 url을 삽입했다. 이부분을 자신이 원하는 부분으로 바꾸면 될 터
+        // 1 강남역
+        String play_URL = String.format("http://k3a304.p.ssafy.io:8399/playStore/sub/%d", 1);
+
+
+        StringRequest play_request = new StringRequest(
+                Request.Method.GET,
+                play_URL,
+                new Response.Listener<String>() {
+
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            // ID 입력하여 존재하는 Email인지 확인.
+                            // 존재한다면 "@@님" 확인되었습니다.
+                            // 존재하지않는다면 "아이디를 다시 입력해주세요.!"
+                            JSONArray jsonObj = null;
+                            jsonObj = new JSONArray(response);
+
+                            for(int i=0; i<jsonObj.length(); i++){
+                                Store store = new Store();
+                                JSONObject temp = jsonObj.getJSONObject(i);
+                                store.setId(temp.getString("id"));
+                                store.setSubway_id(temp.getString("subway_id"));
+                                store.setCategory(temp.getString("category"));
+                                store.setName(temp.getString("name"));
+                                store.setTotReview(temp.getString("totReview"));
+                                store.setRating(temp.getString("rating"));
+                                store.setAddress(temp.getString("address"));
+                                store.setDistance(temp.getString("distance"));
+                                store.setPhoneNumber(temp.getString("phoneNumber"));
+                                store.setWorkingTime(temp.getString("workingTime"));
+                                store.setIntroduce(temp.getString("introduce"));
+                                store.setMenu(temp.getString("menu"));
+                                store.setPicture(temp.getString("picture"));
+                                categoryPlayList.get(0).add(store);
+                                categoryPlayList.get(Integer.parseInt(store.getCategory())).add(store);
+                                Log.d("test",store.toString());
+                            }
+                        }catch (Exception e){
+                            Log.v("E", e.getMessage());
+                        }
+
+                    }
+                }, new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error){
+                Log.i("EE", "HERE");
+
+            }
+        }
+        ){
+            @Override
+            protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                try {
+                    String utf8String = new String(response.data, "UTF-8");
+                    return Response.success(utf8String, HttpHeaderParser.parseCacheHeaders(response));
+                } catch (UnsupportedEncodingException e) {
+                    // log error
+                    return Response.error(new ParseError(e));
+                } catch (Exception e) {
+                    // log error
+                    return Response.error(new ParseError(e));
+                }
+            }
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                return super.getParams();
+            }
+        };
+
+        // 캐쉬기능을 끊다. 바로바로 내용처리되도록
+        request.setShouldCache(false);
+        searchFriendRequest2.add(play_request);
     }
 }
