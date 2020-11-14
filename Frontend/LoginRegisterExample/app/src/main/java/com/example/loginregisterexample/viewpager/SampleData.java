@@ -1,17 +1,17 @@
 package com.example.loginregisterexample.viewpager;
 
 public class SampleData {
-    private int poster;
+    private String poster;
     private String movieName;
     private String grade;
 
-    public SampleData(int poster, String movieName, String grade){
+    public SampleData(String poster, String movieName, String grade){
         this.poster = poster;
         this.movieName = movieName;
         this.grade = grade;
     }
 
-    public int getPoster()
+    public String getPoster()
     {
         return this.poster;
     }

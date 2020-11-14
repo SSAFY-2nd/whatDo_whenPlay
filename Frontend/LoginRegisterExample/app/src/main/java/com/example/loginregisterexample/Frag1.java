@@ -19,6 +19,7 @@ public class Frag1 extends Fragment {
     {
         //view = inflater.inflate(R.layout.foodcategory,container,false);
         view = inflater.inflate(R.layout.activity_subway,container,false);
+        MainActivity.selectedFrag = 1;
         return view;
     }
 

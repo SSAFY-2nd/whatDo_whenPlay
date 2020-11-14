@@ -11,15 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.example.loginregisterexample.R;
+import com.example.loginregisterexample.VO.Store;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ViewPagerAdapter extends PagerAdapter {
     private Context mContext;
-    private ArrayList<ArrayList<SampleData>> categoryList;
+    private ArrayList<ArrayList<Store>> categoryList;
 
-    public ViewPagerAdapter(Context context, ArrayList<ArrayList<SampleData>> categoryList) {
+    public ViewPagerAdapter(Context context, ArrayList<ArrayList<Store>> categoryList) {
         this.mContext = context;
         this.categoryList = categoryList;
     }
