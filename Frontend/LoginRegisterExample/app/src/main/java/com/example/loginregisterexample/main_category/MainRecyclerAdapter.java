@@ -37,7 +37,6 @@ import com.example.loginregisterexample.MainActivity;
 import com.example.loginregisterexample.R;
 import com.example.loginregisterexample.VO.foodCategory;
 import com.example.loginregisterexample.VO.playCategory;
-import com.example.loginregisterexample.viewpager.CategoryListActivity;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
