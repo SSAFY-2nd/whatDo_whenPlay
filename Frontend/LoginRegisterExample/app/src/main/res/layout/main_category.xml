@@ -29,35 +29,18 @@
                 android:paddingBottom="10dp"
                 android:layout_marginTop="25dp">
 
-                <Button
-                    android:id="@+id/btn_taste1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:text="#취향1"
-                    android:textColor="@color/white"
-                    android:layout_marginRight="15dp"
-                    android:background="@drawable/likely_design"/>
-
-                <Button
-                    android:id="@+id/btn_taste2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:text="#취향2"
-                    android:textColor="@color/white"
-                    android:layout_marginRight="15dp"
-                    android:background="@drawable/likely_design"/>
-
-                <Button
-                    android:id="@+id/btn_taste3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:text="#취향3"
-                    android:textColor="@color/white"
-                    android:background="@drawable/likely_design"/>
             </LinearLayout>
+            <TextView
+                android:id="@+id/tasteList"
+                android:paddingTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:paddingBottom="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bottom_border"
+                android:textSize="20dp"
+                android:text="취향 LIST"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -97,7 +80,19 @@
                 android:orientation="horizontal"
                 android:layout_weight="1">
             </androidx.recyclerview.widget.RecyclerView>
+                <Button
+                    android:id="@+id/store_taste"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="저장완료"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/likely_design"/>
+
             </LinearLayout>
+
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

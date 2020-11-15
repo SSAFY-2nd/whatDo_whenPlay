@@ -30,6 +30,15 @@ public class foodCategory {
         return foodCategory.get(key);
     }
 
+    public Integer getKey(String value) {
+        for(Integer o: foodCategory.keySet()) {
+            if(foodCategory.get(o).equals(value)) {
+                return o;
+            }
+        }
+        return null;
+    }
+
     @Override
     public String toString() {
         return "foodCategory{" +

@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
         String user_pw = login_et_pw.getText().toString();
 
 
-        String URL = String.format("http://k3a304.p.ssafy.io:8399/api/account/login?nickname=%s&password=%s",user_id, user_pw);
+        String URL = String.format("http://k3a304.p.ssafy.io:8399/account/login?nickname=%s&password=%s",user_id, user_pw);
         Log.v("URL_체크",URL);
 
         StringRequest request = new StringRequest(

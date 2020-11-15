@@ -204,13 +204,6 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        // 한 칸이라도 입력 안했을 경우
-//        if(NickName.equals("") || UserName.equals("") || UserEmail.equals("") || UserPwd.equals("") || PassCk.equals("")){
-//            AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-//            dialog = builder.setMessage("모두 입력해주세요.").setNegativeButton("확인", null).create();
-//            dialog.show();
-//            return;
-//        }
         String URL = String.format("http://k3a304.p.ssafy.io:8399/api/account/signup");
 
 //        RequestQueue postRequestqueue = Volley.newRequestQueue(RegisterActivity.this);

@@ -6,11 +6,11 @@ public class playCategory {
     final HashMap<Integer, String> playCategory = new HashMap<Integer, String>() {
         {
             put(1,"전시회");
-            put(2, "pc방");
+            put(2, "PC방");
             put(3, "당구장");
             put(4, "볼링장");
             put(5, "낚시카페");
-            put(6, "vr");
+            put(6, "VR");
             put(7, "오락실");
             put(8, "헬스장");
             put(9, "골프");

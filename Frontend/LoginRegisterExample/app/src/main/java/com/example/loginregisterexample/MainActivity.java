@@ -3,6 +3,7 @@ package com.example.loginregisterexample;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.Window;
 
@@ -50,6 +51,15 @@ public class MainActivity extends AppCompatActivity {
         frag1=new Frag1();
         frag2=new Frag2();
         frag3=new Frag3();
+
+        Intent getIntent = getIntent();
+        int id = getIntent.getIntExtra("id",0);
+        //Log.v("text 잘들어옴?",Integer.toString(id));
+        Bundle bundle = new Bundle();
+        bundle.putString("id", Integer.toString(id));
+        frag0.setArguments(bundle);
+
+
         categoryListFrag = new CategoryListFrag();
         detailFrag = new DetailFrag();
     }
