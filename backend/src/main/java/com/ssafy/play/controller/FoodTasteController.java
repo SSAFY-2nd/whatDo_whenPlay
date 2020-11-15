@@ -33,10 +33,10 @@ public class FoodTasteController {
 
 	@ApiOperation(value = "취향을 등록한다", response = String.class)
 	@PostMapping("insert/{user_id}")
-	public ResponseEntity<String> insertTaste(@PathVariable int user_id, @RequestBody TasteMap[] category) {
+	public ResponseEntity<String> insertTaste(@PathVariable int user_id, @RequestBody TasteMap category) {
 		foodtasteservice.deleteTaste(user_id);
-		for (int i = 0; i < category.length; i++) {
-			foodtasteservice.insertTaste(user_id, Integer.parseInt(category[i].getCategory_id()));
+		for (int i = 0; i < category.getCategory_id().length; i++) {
+			foodtasteservice.insertTaste(user_id,  Integer.parseInt(category.getCategory_id()[i]));
 		}
 		return new ResponseEntity<String>("success", HttpStatus.OK);
 	}
