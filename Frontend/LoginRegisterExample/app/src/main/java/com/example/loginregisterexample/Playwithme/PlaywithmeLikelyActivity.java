@@ -34,6 +34,7 @@ public class PlaywithmeLikelyActivity extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView( R.layout.playwithme_likely);
         Intent intent = getIntent();
@@ -75,10 +76,6 @@ public class PlaywithmeLikelyActivity extends AppCompatActivity {
         eat_comm1.setImageDrawable(getResources().getDrawable(fnm.getFoodNameMap(fc.getFoodCategory(listFood.get(4)))));
         eat_comm2.setImageDrawable(getResources().getDrawable(fnm.getFoodNameMap(fc.getFoodCategory(listFood.get(5)))));
         eat_comm3.setImageDrawable(getResources().getDrawable(fnm.getFoodNameMap(fc.getFoodCategory(listFood.get(6)))));
-
-        Log.v("A", listPlay.get(2).toString());
-        Log.v("B", pc.getPlayCategory(listPlay.get(2)).toString());
-        Log.v("C", pnm.getPlayNameMap(pc.getPlayCategory(listPlay.get(2))).toString());
 
         play_strongcomm1.setImageDrawable(getResources().getDrawable(pnm.getPlayNameMap(pc.getPlayCategory(listPlay.get(0)))));
         play_strongcomm2.setImageDrawable(getResources().getDrawable(pnm.getPlayNameMap(pc.getPlayCategory(listPlay.get(1)))));

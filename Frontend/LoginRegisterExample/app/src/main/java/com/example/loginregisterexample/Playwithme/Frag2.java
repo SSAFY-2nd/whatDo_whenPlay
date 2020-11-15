@@ -113,8 +113,8 @@ public class Frag2 extends Fragment {
 
 
                 class NewRunnable implements Runnable{
-                    @Override
-                    public void run(){
+                        @Override
+                        public void run(){
                         while(true){
                             if(check){
                                 Intent intent = new Intent(getActivity(), PlaywithmeLikelyActivity.class);
