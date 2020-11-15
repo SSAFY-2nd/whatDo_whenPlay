@@ -6,7 +6,7 @@ import java.util.List;
 public interface PlayTasteService {
 
 
-	int deleteTaste(int user_id, int category_id);
+	int deleteTaste(int user_id);
 
 	List<Integer> selectTaste(int user_id);
 

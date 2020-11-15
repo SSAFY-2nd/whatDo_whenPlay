@@ -13,10 +13,7 @@ public class FoodTasteServiceImpl implements FoodTasteService{
 	@Autowired
 	FoodTasteDAO foodtastedao;
 
-	@Override
-	public int deleteTaste(int user_id, int category_id) {
-		return foodtastedao.deleteTaste(user_id, category_id);
-	}
+
 
 	@Override
 	public List<Integer> selectTaste(int user_id) {
@@ -31,6 +28,11 @@ public class FoodTasteServiceImpl implements FoodTasteService{
 	@Override
 	public int possibleTaste(int user_id, int category_id) {
 		return foodtastedao.possibleTaste(user_id, category_id);
+	}
+
+	@Override
+	public int deleteTaste(int user_id) {
+		return foodtastedao.deleteTaste(user_id);
 	}
 
 }

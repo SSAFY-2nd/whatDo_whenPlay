@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.play.model.TasteMap;
 import com.ssafy.play.service.PlayTasteService;
 
 import io.swagger.annotations.ApiOperation;
@@ -30,17 +32,13 @@ public class PlayTasteController {
 	private PlayTasteService playtasteservice;
 	
 	@ApiOperation(value = "취향을 등록한다", response = String.class)
-	@PostMapping("{user_id}/{category_id}")
-	public ResponseEntity<String> insertTaste(@PathVariable int user_id, @PathVariable int category_id) {
-		System.out.println(playtasteservice.possibleTaste(user_id, category_id));
-		if (playtasteservice.possibleTaste(user_id, category_id) == 1) {
-			playtasteservice.deleteTaste(user_id, category_id);
-			return new ResponseEntity<String>("success", HttpStatus.OK);
-		} else if (playtasteservice.possibleTaste(user_id, category_id) == 0) {
-			playtasteservice.insertTaste(user_id, category_id);
-			return new ResponseEntity<String>("success", HttpStatus.OK);
+	@PostMapping("insert/{user_id}")
+	public ResponseEntity<String> insertTaste(@PathVariable int user_id, @RequestBody TasteMap[] category) {
+		playtasteservice.deleteTaste(user_id);
+		for (int i = 0; i < category.length; i++) {
+			playtasteservice.insertTaste(user_id, Integer.parseInt(category[i].getCategory_id()));
 		}
-		return new ResponseEntity<String>("fail", HttpStatus.NO_CONTENT);
+		return new ResponseEntity<String>("success", HttpStatus.OK);
 	}
 	
 	@ApiOperation(value = "회원정보에 관한 취향를 반환한다.", response = List.class)

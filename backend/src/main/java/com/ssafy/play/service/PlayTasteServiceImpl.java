@@ -14,10 +14,6 @@ public class PlayTasteServiceImpl implements PlayTasteService{
 	@Autowired
 	PlayTasteDAO playtastedao;
 	
-	@Override
-	public int deleteTaste(int user_id, int category_id) {
-		return playtastedao.deleteTaste(user_id, category_id);
-	}
 
 	@Override
 	public List<Integer> selectTaste(int user_id) {
@@ -32,6 +28,11 @@ public class PlayTasteServiceImpl implements PlayTasteService{
 	@Override
 	public int insertTaste(int user_id, int category_id) {
 		return playtastedao.insertTaste(user_id, category_id);
+	}
+
+	@Override
+	public int deleteTaste(int user_id) {
+		return playtastedao.deleteTaste(user_id);
 	}
 
 }
