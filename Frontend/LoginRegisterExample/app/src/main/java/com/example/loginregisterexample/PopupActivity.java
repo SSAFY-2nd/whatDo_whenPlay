@@ -15,7 +15,9 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.loginregisterexample.viewpager.CategoryListActivity;
+import com.example.loginregisterexample.viewpager.CategoryListFrag;
+
+//import com.example.loginregisterexample.viewpager.CategoryListActivity;
 
 public class PopupActivity extends Activity {
     //private TextView textView;
@@ -47,7 +49,7 @@ public class PopupActivity extends Activity {
 
         //데이터 가져오기
         Intent intent = getIntent();
-        String data = intent.getStringExtra("data");
+        String data = intent.getStringExtra("subway");
         //textView.setText(data);
         subway_btn.setText(data);
 
@@ -58,30 +60,35 @@ public class PopupActivity extends Activity {
         food_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), CategoryListActivity.class);
+                Intent intent = new Intent(v.getContext(), MainActivity.class);
+                intent.putExtra("화면",4);
                 intent.putExtra("genre","먹거리");
                 intent.putExtra("category","전체");
                 v.getContext().startActivity(intent);
-                finish();
+                //finish();
             }
         });
         play_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), CategoryListActivity.class);
+                Intent intent = new Intent(v.getContext(), MainActivity.class);
+                intent.putExtra("화면",4);
                 intent.putExtra("genre","놀거리");
                 intent.putExtra("category","전체");
                 v.getContext().startActivity(intent);
-                finish();
+                //finish();
             }
         });
         playwith_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), MainActivity.class);
-                intent.putExtra("화면",4);
+                intent.putExtra("화면",2);
+                String subway = getIntent().getStringExtra("subway");
+                Log.d("popup",subway);
+                intent.putExtra("subway",subway);
                 v.getContext().startActivity(intent);
-                finish();
+                //finish();
             }
         });
     }
