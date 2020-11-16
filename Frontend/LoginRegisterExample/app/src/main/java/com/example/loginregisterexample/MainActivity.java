@@ -57,13 +57,9 @@ public class MainActivity extends AppCompatActivity {
         //Log.v("text 잘들어옴?",Integer.toString(id));
         Bundle bundle = new Bundle();
         bundle.putString("id", Integer.toString(id));
+        bundle.putString("subway",getIntent().getStringExtra("subway"));
         frag0.setArguments(bundle);
         frag2.setArguments(bundle);
-
-
-        Bundle playWith = new Bundle();
-        playWith.putString("subway",getIntent().getStringExtra("subway"));
-        frag2.setArguments(playWith);
 
         categoryListFrag = new CategoryListFrag();
         detailFrag = new DetailFrag();

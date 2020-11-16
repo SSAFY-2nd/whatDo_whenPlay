@@ -89,8 +89,9 @@ public class Frag2 extends Fragment {
         autoCompleteTextView = (AutoCompleteTextView)view.findViewById(R.id.et_choice_station);
         // AutoCompleteTextView 에 아답터를 연결한다.
         autoCompleteTextView.setAdapter(new ArrayAdapter<String>(MainActivity.mContext, android.R.layout.simple_dropdown_item_1line,  station_list));
-        Bundle bundle = getArguments();
-        String subway = bundle.getString("subway");
+        Bundle bundle2 = getArguments();
+        String subway = bundle2.getString("subway");
+
         if(subway != null) {
             autoCompleteTextView.setText(subway);
         }
@@ -220,11 +221,11 @@ public class Frag2 extends Fragment {
         // subway_id : id
 
         // 리스트를 받아서 다음 페이지로 넘겨줘야함.
-        String user_id = curId;
-        String friend_name = user.getName();
+        int user_id = Integer.parseInt(curId);
+        String friend_name = user.getNickname();
         int subway_id= 1;
-
-        String URL = String.format("http://k3a304.p.ssafy.io:8399/together/%s/%s/%d", user_id,friend_name,subway_id);
+        Log.v("frined_name", friend_name);
+        String URL = String.format("http://k3a304.p.ssafy.io:8399/together/%d/%s/%d", user_id,friend_name,subway_id);
         StringRequest request = new StringRequest(
                 Request.Method.GET,
                 URL,
