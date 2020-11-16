@@ -139,7 +139,7 @@ public class Frag0 extends Fragment {
                 }
                 foodAdapter.notifyDataSetChanged();
 
-                String[] playInput = {"전시회","PC방","당구장","볼링장","낚시","VR","오락실","헬스장","골프","야구","양궁","연극","방탈출","영화관","서점",
+                String[] playInput = {"전시회","PC방","당구","볼링장","낚시카페","VR","오락실","헬스장","골프","야구","양궁","연극","방탈출","영화관","서점",
                         "공원","시장","찜질방","공방","수영장","탁구장","박물관","문화재"};
 
                 playCategoryData = new ArrayList<>();
@@ -149,7 +149,7 @@ public class Frag0 extends Fragment {
                 playNameMap.put("PC방",R.drawable.pcroom);
                 playNameMap.put("당구",R.drawable.billiardball);
                 playNameMap.put("볼링장",R.drawable.bowling);
-                playNameMap.put("낚시까페",R.drawable.fishing);
+                playNameMap.put("낚시카페",R.drawable.fishing);
                 playNameMap.put("VR",R.drawable.vrchat);
                 playNameMap.put("오락실",R.drawable.arcade);
                 playNameMap.put("헬스장",R.drawable.fitness);

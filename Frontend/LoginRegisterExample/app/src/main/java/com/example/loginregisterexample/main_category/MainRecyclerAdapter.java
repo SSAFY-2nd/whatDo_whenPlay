@@ -360,6 +360,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
             else {
                 imageView2.setClickable(false);
                 imageView2.setImageBitmap(null);
+                textView2.setText("");
             }
 
         }

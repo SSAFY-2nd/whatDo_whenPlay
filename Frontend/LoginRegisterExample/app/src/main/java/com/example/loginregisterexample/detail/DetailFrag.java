@@ -1,6 +1,7 @@
 package com.example.loginregisterexample.detail;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,8 +52,13 @@ public class DetailFrag extends Fragment {
         store_address.setText(bundle.getString("store_address"));
         store_workingTime.setText(bundle.getString("store_workingTime"));
         String menu = bundle.getString("store_menu");
-        if(menu != null)
+        Log.d("menu",menu);
+        if(menu.equals("null")) {
+            store_menu.setText("");
+        } else {
             store_menu.setText(bundle.getString("store_menu"));
+        }
+
         store_introduce.setText(bundle.getString("store_introduce"));
 
 

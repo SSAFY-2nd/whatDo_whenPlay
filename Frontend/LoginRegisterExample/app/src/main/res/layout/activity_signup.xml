@@ -59,7 +59,7 @@
                 android:background="@drawable/edit_round"
                 android:drawableLeft="@drawable/baseline_vpn_key_black_18dp"
                 android:hint="@string/hint_password"
-                android:inputType="textEmailAddress"
+                android:inputType="textPassword"
                 android:padding="10dp"
                 android:textColor="@color/input_register"
                 android:textColorHint="@color/input_register_hint" />
