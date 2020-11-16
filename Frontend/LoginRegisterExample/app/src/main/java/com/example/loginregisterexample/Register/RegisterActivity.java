@@ -1,7 +1,6 @@
 package com.example.loginregisterexample.Register;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,33 +12,21 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.Cache;
-import com.android.volley.Network;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.BasicNetwork;
-import com.android.volley.toolbox.DiskBasedCache;
-import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.loginregisterexample.PlayCategory;
+import com.example.loginregisterexample.LogIn.LoginActivity;
+import com.example.loginregisterexample.Playwithme.AppHelper;
 import com.example.loginregisterexample.R;
+import com.example.loginregisterexample.main_category.Frag0;
 
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.ConnectException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -183,9 +170,8 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void sendSignup(){
-    // 닉네임, 이름, 이메일, 비밀번호, 비밀번호 확인
+        // 닉네임, 이름, 이메일, 비밀번호, 비밀번호 확인
         // 값을 텍스트화 하고 toString()으로 변환
-
         String NickName = join_nickname.getText().toString();
         String UserName = join_name.getText().toString();
         String UserEmail = join_email.getText().toString();
@@ -197,8 +183,8 @@ public class RegisterActivity extends AppCompatActivity {
         try{
             jsonBody.put("email", UserEmail);
             jsonBody.put("name", UserName);
-            jsonBody.put("nickname", UserPwd);
-            jsonBody.put("password", NickName);
+            jsonBody.put("nickname", NickName);
+            jsonBody.put("password", UserPwd);
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -218,13 +204,6 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        // 한 칸이라도 입력 안했을 경우
-//        if(NickName.equals("") || UserName.equals("") || UserEmail.equals("") || UserPwd.equals("") || PassCk.equals("")){
-//            AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-//            dialog = builder.setMessage("모두 입력해주세요.").setNegativeButton("확인", null).create();
-//            dialog.show();
-//            return;
-//        }
         String URL = String.format("http://k3a304.p.ssafy.io:8399/api/account/signup");
 
 //        RequestQueue postRequestqueue = Volley.newRequestQueue(RegisterActivity.this);
@@ -244,8 +223,9 @@ public class RegisterActivity extends AppCompatActivity {
                     if(UserPwd.equals(PassCk)){
                         if(success){
                             Toast.makeText(getApplicationContext(), String.format("%s님 가입을 환영합니다. ", UserName), Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(RegisterActivity.this, PlayCategory.class);
+                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                             startActivity(intent);
+                            finish();
                         }else{
                             // 회원가입 실패시
                             Toast.makeText(getApplicationContext(), "회원가입에 실패하였습니다.", Toast.LENGTH_SHORT).show();

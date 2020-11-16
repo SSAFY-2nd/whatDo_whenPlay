@@ -9,7 +9,7 @@
         android:layout_marginBottom="10dp"
         android:id="@+id/subway_main_btn"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/button_shape_sm"
+        android:background="@drawable/button_shape_sm_ripple"
         android:textColor="#FFFFFF"/>
 
     <Button
@@ -27,7 +27,7 @@
         android:layout_toLeftOf="@id/subway_name_btn"
         android:layout_marginTop="40dp"
         android:id="@+id/subway_left"
-        android:background="@drawable/button_shape_sm"
+        android:background="@drawable/button_shape_sm_ripple"
         android:text="놀거리"
         android:textColor="#FFFFFF" />
 
@@ -37,7 +37,7 @@
         android:layout_marginTop="40dp"
         android:layout_toRightOf="@id/subway_name_btn"
         android:id="@+id/subway_right"
-        android:background="@drawable/button_shape_sm"
+        android:background="@drawable/button_shape_sm_ripple"
         android:text="먹거리"
         android:textColor="#FFFFFF" />
 </RelativeLayout>
