@@ -59,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
         bundle.putString("id", Integer.toString(id));
         frag0.setArguments(bundle);
 
+        Bundle playWith = new Bundle();
+        playWith.putString("subway",getIntent().getStringExtra("subway"));
+        frag2.setArguments(playWith);
 
         categoryListFrag = new CategoryListFrag();
         detailFrag = new DetailFrag();
@@ -155,9 +158,6 @@ public class MainActivity extends AppCompatActivity {
             case 2:
                 ft.replace(R.id.main_frame, frag2);
                 ft.commitNow();
-                Bundle playWith = new Bundle();
-                playWith.putString("subway",getIntent().getStringExtra("subway"));
-                frag2.setArguments(playWith);
                 break;
             case 3:
                 ft.replace(R.id.main_frame, frag3);

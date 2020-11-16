@@ -85,7 +85,6 @@ public class PopupActivity extends Activity {
                 Intent intent = new Intent(v.getContext(), MainActivity.class);
                 intent.putExtra("화면",2);
                 String subway = getIntent().getStringExtra("subway");
-                Log.d("popup",subway);
                 intent.putExtra("subway",subway);
                 v.getContext().startActivity(intent);
                 //finish();
