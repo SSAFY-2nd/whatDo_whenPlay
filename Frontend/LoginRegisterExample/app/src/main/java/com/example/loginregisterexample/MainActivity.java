@@ -58,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putString("id", Integer.toString(id));
         frag0.setArguments(bundle);
+        frag2.setArguments(bundle);
+
 
         Bundle playWith = new Bundle();
         playWith.putString("subway",getIntent().getStringExtra("subway"));

@@ -123,7 +123,7 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        String URL = String.format("http://k3a304.p.ssafy.io:8399/api/account/info?nickname=%s", NickName);
+        String URL = String.format("http://k3a304.p.ssafy.io:8399/account/info?nickname=%s", NickName);
         Log.e(URL, "이것은 수정된 URL입니다.");
 
         StringRequest request = new StringRequest( Request.Method.GET, URL, new Response.Listener<String>(){
@@ -204,7 +204,7 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        String URL = String.format("http://k3a304.p.ssafy.io:8399/api/account/signup");
+        String URL = String.format("http://k3a304.p.ssafy.io:8399/account/signup");
 
 //        RequestQueue postRequestqueue = Volley.newRequestQueue(RegisterActivity.this);
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -222,6 +222,7 @@ public class RegisterActivity extends AppCompatActivity {
                     // 비밀번호와 비밀번호 Check가 같을 경우.
                     if(UserPwd.equals(PassCk)){
                         if(success){
+
                             Toast.makeText(getApplicationContext(), String.format("%s님 가입을 환영합니다. ", UserName), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                             startActivity(intent);

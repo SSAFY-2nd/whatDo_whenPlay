@@ -34,8 +34,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1ecc8df-e198-451b-9510-17f4d4b7e9b8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Frontend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Frontend.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoginRegisterExample/app/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LoginRegisterExample/app/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoginRegisterExample/app/.idea/modules.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +54,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/LoginRegisterExample" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -82,10 +82,11 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="549" y="153" key="FileChooserDialogImpl" timestamp="1603890671595">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="689" y="-887" key="FileChooserDialogImpl" timestamp="1605490496523">
+      <screen x="3" y="-1080" width="1920" height="1040" />
     </state>
     <state x="549" y="153" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1603890671595" />
+    <state x="689" y="-887" key="FileChooserDialogImpl/0.0.1920.1040/3.-1080.1920.1040@3.-1080.1920.1040" timestamp="1605490496523" />
     <state x="428" y="116" key="NewModule_or_Project.wizard" timestamp="1603890674464">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
