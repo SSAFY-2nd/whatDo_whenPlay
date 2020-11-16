@@ -16,7 +16,7 @@ public class FoodStoreServiceImpl implements FoodStoreService {
 	private FoodStoreDAO storeDAO;
 
 	@Override
-	public List<FoodStore> searchBySubway(int subway_id, String category) {
+	public List<FoodStore> searchBySubway(int subway_id, int category) {
 		return storeDAO.searchBySubway(subway_id, category);
 	}
 

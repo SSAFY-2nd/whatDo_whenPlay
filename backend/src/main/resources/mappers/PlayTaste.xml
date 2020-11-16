@@ -21,7 +21,12 @@
 	<delete id="deleteTaste">
 		delete from playtaste
 		where user_id = #{user_id} 
-		AND category_id = #{category_id}
 	</delete>
 	
+	<select id="possibleTaste" resultType="Integer">
+		select count(*)
+		from playtaste
+		where user_id = #{user_id} 
+		AND category_id = #{category_id}
+	</select>
 </mapper>

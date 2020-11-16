@@ -6,6 +6,6 @@ import com.ssafy.play.model.PlayCategoryposting;
 
 public interface PlayCategorypostingService {
 
-	List<PlayCategoryposting> searchBySubwayId(int subway_id);
+	List<Integer> searchBySubwayId(int subway_id);
 
 }

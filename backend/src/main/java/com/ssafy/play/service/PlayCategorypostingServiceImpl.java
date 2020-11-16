@@ -16,7 +16,7 @@ public class PlayCategorypostingServiceImpl implements PlayCategorypostingServic
 	private PlayCategorypostingDAO PlayDAO;
 
 	@Override
-	public List<PlayCategoryposting> searchBySubwayId(int subway_id) {
+	public List<Integer> searchBySubwayId(int subway_id) {
 		return PlayDAO.searchBySubwayId(subway_id);
 	}
 	

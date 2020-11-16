@@ -5,6 +5,6 @@ import java.util.List;
 import com.ssafy.play.model.FoodCategoryposting;
 
 public interface FoodCategorypostingService {
-	List<FoodCategoryposting> searchBySubwayId(int subway_id);
+	List<Integer> searchBySubwayId(int subway_id);
 
 }

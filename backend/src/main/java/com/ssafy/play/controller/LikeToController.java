@@ -1,6 +1,7 @@
 package com.ssafy.play.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,14 +20,14 @@ import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = { "*" })
 @RestController
-@RequestMapping("/liketo")
+@RequestMapping(value = "/liketo", method= {RequestMethod.POST})
 public class LikeToController {
 
 	@Autowired
 	private LikeToService likeService;
 
 	@ApiOperation(value = "즐겨찾기 추가", response = String.class)
-	@PostMapping
+	@PostMapping("create")
 	public ResponseEntity<String> createLiketo(@RequestBody LikeTo liketo) {
 		if (likeService.createLiketo(liketo) == 1) {
 			return new ResponseEntity<String>("success", HttpStatus.OK);
