@@ -13,6 +13,7 @@ public class PlayStore {
 	private String workingTime;
 	private String introduce;
 	private String menu;
+	private String picture;
 
 	public int getId() {
 		return id;
@@ -110,8 +111,16 @@ public class PlayStore {
 		this.menu = menu;
 	}
 
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
 	public PlayStore(int id, int subway_id, int category, String name, String totReview, double rating, String address,
-			int distance, String phoneNumber, String workingTime, String introduce, String menu) {
+			int distance, String phoneNumber, String workingTime, String introduce, String menu, String picture) {
 		super();
 		this.id = id;
 		this.subway_id = subway_id;
@@ -125,6 +134,7 @@ public class PlayStore {
 		this.workingTime = workingTime;
 		this.introduce = introduce;
 		this.menu = menu;
+		this.picture = picture;
 	}
 
 	public PlayStore() {

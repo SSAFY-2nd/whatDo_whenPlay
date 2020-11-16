@@ -1,12 +1,5 @@
 CREATE TABLE `foodcategory` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
-
-CREATE TABLE `subway` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL,
   `name` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -19,13 +12,13 @@ CREATE TABLE `liketo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE `playcategory` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL,
   `name` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE `playstore` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL,
   `subway_id` int NOT NULL,
   `category` int NOT NULL,
   `name` varchar(45) COLLATE utf8_bin NOT NULL,
@@ -43,7 +36,7 @@ CREATE TABLE `playstore` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE `foodstore` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL,
   `subway_id` int NOT NULL,
   `category` int NOT NULL,
   `name` varchar(45) COLLATE utf8_bin NOT NULL,
@@ -60,6 +53,11 @@ CREATE TABLE `foodstore` (
   CONSTRAINT `subway_id2` FOREIGN KEY (`subway_id`) REFERENCES `subway` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+CREATE TABLE `subway` (
+  `id` int NOT NULL,
+  `name` varchar(255) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE `user` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -72,29 +70,30 @@ CREATE TABLE `user` (
 ) ;
 
 create table foodcategoryposting (
-     `id` int NOT NULL AUTO_INCREMENT,
-     `subway_id` int not null,
+	  `id` int NOT NULL AUTO_INCREMENT,
+	  `subway_id` int not null,
       `category_id` int not null,
       `post` int,
-     PRIMARY KEY (`id`)
+	  PRIMARY KEY (`id`)
 );
 
 create table playcategoryposting (
-     `id` int NOT NULL AUTO_INCREMENT,
-     `subway_id` int not null,
+	  `id` int NOT NULL AUTO_INCREMENT,
+	  `subway_id` int not null,
       `category_id` int not null,
       `post` int,
-     PRIMARY KEY (`id`)
-)
+	  PRIMARY KEY (`id`)
+);
+
 create table foodtaste(
-   `id` int not null auto_increment, 
+	`id` int not null auto_increment, 
     `user_id` int not null,
     `category_id` int not null,
     PRIMARY KEY(`id`)
 );
 
 create table playtaste(
-   `id` int not null auto_increment, 
+	`id` int not null auto_increment, 
     `user_id` int not null,
     `category_id` int not null,
     PRIMARY KEY(`id`)

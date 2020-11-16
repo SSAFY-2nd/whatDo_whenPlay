@@ -570,7 +570,7 @@ public class SubsamplingScaleImageView extends View {
                 setScaleAndCenter(2f,viewToSourceCoord(e.getX(),e.getY()));
                 Context subwayContext = MainActivity.mContext;
                 Intent intent = new Intent(subwayContext, PopupActivity.class);
-                intent.putExtra("data","서울역");
+                intent.putExtra("subway","강남역");
                 subwayContext.startActivity(intent);
                 return true;
             }

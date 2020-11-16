@@ -16,7 +16,7 @@ public class PlayStoreServiceImpl implements PlayStoreService {
 	private PlayStoreDAO playDAO;
 
 	@Override
-	public List<PlayStore> searchBySubway(int subway_id, String category) {
+	public List<PlayStore> searchBySubway(int subway_id, int category) {
 		return playDAO.searchBySubway(subway_id, category);
 	}
 
