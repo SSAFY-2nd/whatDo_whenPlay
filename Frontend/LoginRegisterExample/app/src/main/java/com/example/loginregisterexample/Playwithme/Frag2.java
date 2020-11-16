@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -44,13 +45,14 @@ public class Frag2 extends Fragment {
 
     private View view;
     private EditText search_friend;
-    private Button check_btn1, check_btn2;
+    private Button check_btn1, check_btn2, check_subway;
     static RequestQueue searchFriendRequest;
     private User user;
     private Play play;
     private ArrayList<Integer> listFood;
     private ArrayList<Integer> listPlay;
     private boolean check = false;
+    private String curId = "";
 
     private AutoCompleteTextView autoCompleteTextView;
     private List<String> station_list;
@@ -79,6 +81,9 @@ public class Frag2 extends Fragment {
         //Log.d("subway",getArguments().getString("subway"));
         view = inflater.inflate(R.layout.playwithme,container,false);
 
+
+        Bundle bundle = getArguments();
+        curId = bundle.getString("id");
         station_list = new ArrayList<>();
         settingList();
         autoCompleteTextView = (AutoCompleteTextView)view.findViewById(R.id.et_choice_station);
@@ -111,7 +116,6 @@ public class Frag2 extends Fragment {
 
                 searchPlaywithme();
 
-
                 class NewRunnable implements Runnable{
                         @Override
                         public void run(){
@@ -134,8 +138,6 @@ public class Frag2 extends Fragment {
                 NewRunnable nr = new NewRunnable();
                 Thread t = new Thread(nr);
                 t.start();
-
-
 
 
             }
@@ -176,9 +178,10 @@ public class Frag2 extends Fragment {
                             user.setNickname(jsonObject2.getString("nickname"));
                             user.setPassword(jsonObject2.getString("password"));
                             user.setEmail(jsonObject2.getString("email"));
-
+                            Toast.makeText(getContext(), String.format("%s님 친구 찾기 성공! ", user.getNickname()), Toast.LENGTH_SHORT).show();
 
                         } catch (JSONException e) {
+                            Toast.makeText(getContext(), String.format("친구 찾기 실패! "), Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
                         }
 
@@ -186,7 +189,7 @@ public class Frag2 extends Fragment {
                 }, new Response.ErrorListener(){
                     @Override
                     public void onErrorResponse(VolleyError error){
-                        Log.i("EE", "HERE");
+                        Toast.makeText(getContext(), String.format("친구 찾기 실패! "), Toast.LENGTH_SHORT).show();
 
                     }
             }
@@ -211,11 +214,11 @@ public class Frag2 extends Fragment {
         // subway_id : id
 
         // 리스트를 받아서 다음 페이지로 넘겨줘야함.
-        int user_id = 1;
+        String user_id = curId;
         String friend_name = user.getName();
         int subway_id= 1;
 
-        String URL = String.format("http://k3a304.p.ssafy.io:8399/together/%d/%s/%d", user_id,friend_name,subway_id);
+        String URL = String.format("http://k3a304.p.ssafy.io:8399/together/%s/%s/%d", user_id,friend_name,subway_id);
         StringRequest request = new StringRequest(
                 Request.Method.GET,
                 URL,
