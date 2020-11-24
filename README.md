@@ -243,10 +243,10 @@ Android Studio활용한 어플리케이션 개발
 |역 주변 놀거리 리스트 검색|/playstore/sub/{subway_id}|GET|역 주변에 있는 놀거리들 검색|
 |역 검색|	/subway/{subway_id}|GET|지하철 검색|
 |역 이름 검색|	/subway/name/{subway_name}|	GET|지하철 이름 검색|
-|놀거리 취향 등록|	/playtaste/add|	POST|놀거리 취향을 등록한다|
-|놀거리 취향 삭제|	/playtaste/{user_id}/{category_id}|	DELETE|	놀거리 취향을 삭제한다 (해당하는 유저)|
-|음식점 취향 등록|	/foodtaste/add|	POST|먹거리 취향을 등록한다|
-|음식점 취향 삭제|	/foodtaste/{user_id}/{category_id}|	DELETE|	먹거리 취향을 삭제한다 (해당하는 유저)|
+|놀거리 취향 등록| /playtaste/{user_id}/{category_id} |	POST|놀거리 취향을 등록한다(이미 등록했을 시 삭제한다) |
+|놀거리 취향 검색| /playtaste/{user_id} |GET|놀거리 취향을 검색|
+|음식점 취향 등록| /foodtaste/{user_id}/{category_id} |	POST|먹거리 취향을 등록한다(이미 등록했을 시 삭제한다)|
+|먹거리 취향 검색| /foodtaste/{user_id} |GET|먹거리 취향을 검색|
 |같은 취향 리스트 검색|	/together/{user_id}/{friend_name}|	GET|	친구와 같은 취향 상점 리스트 검색|
 |지하철 취향 리스트 검색|	/together/{user_id}/{friend_name}/{subway_id}|	GET|친구와 같은 취향과 함께 지하철에 어울리는 리스트 검색|
 |즐겨찾기 추가|/liketo|POST|	별표를 눌렀을 때 즐겨찾기 추가|
@@ -462,7 +462,56 @@ CREATE TABLE IF NOT EXISTS `playwithme`.`playtaste` (
 
 # :crown: 프로젝트 결과물
 
+#### 01 로딩페이지
+<img src="https://ifh.cc/g/43vQcp.jpg" width="300px"></img>
 
+#### 02 메인페이지
+<img src="https://ifh.cc/g/fygcRE.jpg"  width="300px"></img>
+
+#### 03 로그인 시 메인페이지
+<img src="https://ifh.cc/g/HeBN57.jpg"  width="300px"></img>
+
+#### 04 클릭 시 화면
+<img src="https://ifh.cc/g/RQmvB6.jpg"  width="300px"></img>
+
+#### 05 놀거리 검색 시
+<img src="https://ifh.cc/g/DL5D0a.jpg"  width="300px"></img>
+
+#### 05-1 놀거리 검색 시(전시회)
+<img src="https://ifh.cc/g/uY94DL.jpg"  width="300px"></img>
+
+#### 06 먹거리 검색 시
+<img src="https://ifh.cc/g/lS2iNh.jpg"  width="300px"></img>
+
+#### 07 상세 보기
+<img src="https://ifh.cc/g/yf5nAc.jpg"  width="300px"></img>
+
+#### 08 즐겨 찾기
+<img src="https://ifh.cc/g/i8iWJP.jpg"  width="300px"></img>
+
+#### 09 내 정보
+<img src="https://ifh.cc/g/DqoNUo.jpg"  width="300px"></img>
+
+#### 10 회원 가입
+<img src="https://ifh.cc/g/B5R8PH.jpg"  width="300px"></img>
+
+#### 11 회원 가입 중복 시
+<img src="https://ifh.cc/g/uhr4Ba.jpg"  width="300px"></img>
+
+#### 12 회원 가입 성공 시
+<img src="https://ifh.cc/g/GMpI4F.jpg"  width="300px"></img>
+
+#### 13 비밀번호 변경
+<img src="https://ifh.cc/g/2djD5E.jpg"  width="300px"></img>
+
+#### 14 같이 놀기
+<img src="https://ifh.cc/g/ZhWxY8.jpg"  width="300px"></img>
+
+#### 15 취향 등록
+<img src="https://ifh.cc/g/8bcYO1.jpg"  width="300px"></img>
+
+#### 16 추천 결과
+<img src="https://ifh.cc/g/OIgkFY.jpg"  width="300px"></img>
 
 
 
